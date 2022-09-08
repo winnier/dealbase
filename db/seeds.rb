@@ -68,5 +68,3 @@ puts "Making join table..."
     deal_id: Deal.all.sample.id,
     company_id: Company.all.sample.id
 )}
-
-puts "Data done seeding"
