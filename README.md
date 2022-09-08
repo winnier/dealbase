@@ -1,5 +1,16 @@
 # README
 
+    ## START UP
+    React app will start up on PORT 4000
+
+    ## FETCH REQUESTS
+    Will use a proxy so that we can fetch like this:
+        fetch("/movies");
+    instead of like this:
+        instead of fetch("http://localhost:3000/movies")
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

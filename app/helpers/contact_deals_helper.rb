@@ -1,0 +1,2 @@
+module ContactDealsHelper
+end

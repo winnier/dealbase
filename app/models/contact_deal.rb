@@ -1,0 +1,2 @@
+class ContactDeal < ApplicationRecord
+end
