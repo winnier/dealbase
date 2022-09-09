@@ -3,8 +3,27 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import {useEffect, useState} from 'react'
 
 function App() {
+
+  const [contacts, setContacts] = useState([])
+
+
+  // I'm using this faker gem in meantime until we get data from backend
+
+  const fetchContacts = async () => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
+    const contactsArray = await response.json()
+    setContacts(contactsArray)
+    console.log(contacts)
+  }
+
+
+  useEffect(() => {
+    fetchContacts()
+  }, )
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,6 +46,7 @@ function App() {
       </Routes > 
       <Footer/>
     </BrowserRouter>
+
     </div>
   );
 }
