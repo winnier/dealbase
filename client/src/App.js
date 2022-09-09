@@ -8,11 +8,23 @@ import Contacts from './Contacts';
 
 function App() {
 
+  const [contacts, setContacts] = useState([])
+  const url = 'http://localhost/3000'
 
 
   // I'm using this faker gem in meantime until we get data from backend
 
+  const fetchContacts = async () => {
+    const response = await fetch(`http://localhost:3000/contacts`)
+    const contactsArray = await response.json()
+    setContacts(contactsArray)
+    console.log(contacts)
+  }
 
+
+  useEffect(() => {
+    fetchContacts()
+  },[])
 
   return (
     <div className="App">
@@ -22,7 +34,7 @@ function App() {
           {/* <Route path="/login" element={<Login/>} /> */}
           {/* <Route path="/create_account" element={<CreateAccount/>} /> */}
           {/* <Route path="/" element={ <LandingPage />} /> */}
-          <Route path="/contacts_page" element={<Contacts />} />
+          <Route path="/contacts_page" element={<Contacts contacts={contacts} />} />
           {/* <Route path="/companies_page" element={<CompaniesPage/>} /> */}
           {/* <Route path="/deals_page" element={<DealsPage/>} /> */}
 
