@@ -5,11 +5,15 @@ import { useNavigate } from 'react-router-dom'
 
 import './App.css';
 import {useEffect, useState} from 'react'
+<<<<<<< HEAD
 import Contacts from './Contacts';
+=======
+>>>>>>> e8bfd0e (just starting out)
 
 function App() {
 
   const [contacts, setContacts] = useState([])
+<<<<<<< HEAD
 <<<<<<< HEAD
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
@@ -27,11 +31,20 @@ function App() {
   // I'm using this faker gem in meantime until we get data from backend
   const fetchContacts = async () => {
     const response = await fetch(`http://localhost:3000/contacts`)
+=======
+
+
+  // I'm using this faker gem in meantime until we get data from backend
+
+  const fetchContacts = async () => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
+>>>>>>> e8bfd0e (just starting out)
     const contactsArray = await response.json()
     setContacts(contactsArray)
     console.log(contacts)
   }
 
+<<<<<<< HEAD
   useEffect(() => {
     fetchContacts()
   },[])
@@ -150,6 +163,29 @@ function App() {
       {/* <Footer/> */}
 >>>>>>> 0249788 (cors resolved in gem & application.rb files)
     </BrowserRouter>
+=======
+
+  useEffect(() => {
+    fetchContacts()
+  }, )
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+>>>>>>> e8bfd0e (just starting out)
     </div>
   );
 }

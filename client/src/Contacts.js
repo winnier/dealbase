@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {useState, useEffect} from 'react'
 
 function Contacts(url){
@@ -19,6 +20,9 @@ function Contacts(url){
 
 
     console.log(url)
+=======
+function Contacts(){
+>>>>>>> e8bfd0e (just starting out)
     return(
         <main>
             <table>
