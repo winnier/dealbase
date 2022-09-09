@@ -37,7 +37,7 @@ puts "Making contacts..."
     phone_number: Faker::PhoneNumber.phone_number,
     address: Faker::Address.full_address,
     # linkedin: "linkedin.com/#{self.name}",
-    linkedin: "linkedin.com/#{name}",
+    linkedin_url: "linkedin.com/#{name}",
     # linkedin: "linkedin.com/example",
     # company_id: rand(1..20),
     # owner_id: rand(1..5)
@@ -48,15 +48,18 @@ puts "Making contacts..."
 puts "Making deals..."
 20.times {
     company = Company.all.sample
+    owner = Owner.all.sample
     product = Faker::Commerce.product_name
     Deal.create!(
-    product: product,
     name: "#{Company.all.sample.name} - #{product} deal",
+    product: product,
     # name: "#{company.name} - deal example",
     value: rand(1000..9000),
+    stage: rand(1..5),
     active: true,
     status: "",
-    company_id: company.id
+    company_id: company.id,
+    owner_id: owner.id
 )}
 
 puts "Making join table..."
@@ -66,3 +69,4 @@ puts "Making join table..."
     company_id: Company.all.sample.id
 )}
 
+puts "Data done seeding"
