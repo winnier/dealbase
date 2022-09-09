@@ -75,3 +75,5 @@ group :test do
 end
 
 gem 'faker'
+
+gem 'active_model_serializers'
