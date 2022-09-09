@@ -5,20 +5,20 @@ function Contacts(url){
     const [contacts, setContacts] = useState([])
 
 
-    // const fetchContacts = async () => {
-    //     const response = await fetch(`${url}/contacts`)
-    //     const contactsArray = await response.json()
-    //     setContacts(contactsArray)
-    //     console.log(contacts)
-    //   }
+    const fetchContacts = async () => {
+        const response = await fetch(`${url}/contacts`)
+        const contactsArray = await response.json()
+        setContacts(contactsArray)
+        console.log(contacts)
+      }
     
     
-    //   useEffect(() => {
-    //     fetchContacts()
-    //   }, )
+      useEffect(() => {
+        fetchContacts()
+      }, )
 
 
-    console.log(url)
+    console.log(contacts)
     return(
         <main>
             <table>
