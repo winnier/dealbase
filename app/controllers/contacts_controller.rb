@@ -1,9 +1,7 @@
 class ContactsController < ApplicationController
     def index
-
         contacts = Contact.all
         render json: contacts
-
     end
 
     def create
@@ -47,6 +45,5 @@ class ContactsController < ApplicationController
             :company_id,
             :owner_id
             )
-
     end
 end
