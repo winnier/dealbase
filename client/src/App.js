@@ -10,9 +10,10 @@ import Contacts from './Contacts';
 function App() {
 
   const [contacts, setContacts] = useState([])
-  const url = 'http://localhost/3000'
+
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
+  const url = 'http://localhost/3000'
 
   // this state beind used for what we render, depending on what link is clicked
   const [renderedContacts, setRenderedContacts] = useState([])
@@ -85,7 +86,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header 
+      <Header
         handleContactsClick={handleContactsClick} 
         handleCompaniesClick={handleCompaniesClick} 
         handleDealsClick={handleDealsClick}
@@ -109,7 +110,6 @@ function App() {
                                                   setRenderedContacts = {setRenderedContacts}
                                               />}   
         />
-
 
         <Route path="/companies_page" element={<CompaniesPage 
                                                   companies ={companies}   
