@@ -5,12 +5,17 @@ import { useNavigate } from 'react-router-dom'
 
 import './App.css';
 import {useEffect, useState} from 'react'
+import Contacts from './Contacts';
 
 function App() {
 
   const [contacts, setContacts] = useState([])
+<<<<<<< HEAD
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
+=======
+  const url = 'http://localhost/3000'
+>>>>>>> 0249788 (cors resolved in gem & application.rb files)
 
   // this state beind used for what we render, depending on what link is clicked
   const [renderedContacts, setRenderedContacts] = useState([])
@@ -21,7 +26,7 @@ function App() {
   //fetching complete datasets 
   // I'm using this faker gem in meantime until we get data from backend
   const fetchContacts = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
+    const response = await fetch(`http://localhost:3000/contacts`)
     const contactsArray = await response.json()
     setContacts(contactsArray)
     console.log(contacts)
@@ -29,7 +34,7 @@ function App() {
 
   useEffect(() => {
     fetchContacts()
-  }, )
+  },[])
 
   // still using faker gem
   const fetchCompanies = async () => {
@@ -83,6 +88,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+<<<<<<< HEAD
       <Header 
         handleContactsClick={handleContactsClick} 
         handleCompaniesClick={handleCompaniesClick} 
@@ -100,6 +106,16 @@ function App() {
                                       deals = {deals}
                                   />} 
         />
+=======
+        {/* <Header/> */}
+         <Routes > 
+          {/* <Route path="/login" element={<Login/>} /> */}
+          {/* <Route path="/create_account" element={<CreateAccount/>} /> */}
+          {/* <Route path="/" element={ <LandingPage />} /> */}
+          <Route path="/contacts_page" element={<Contacts contacts={contacts} />} />
+          {/* <Route path="/companies_page" element={<CompaniesPage/>} /> */}
+          {/* <Route path="/deals_page" element={<DealsPage/>} /> */}
+>>>>>>> 0249788 (cors resolved in gem & application.rb files)
 
         <Route path="/contacts_page" element={<ContactsPage 
                                                   contacts ={contacts} 
@@ -108,6 +124,7 @@ function App() {
                                               />}   
         />
 
+<<<<<<< HEAD
         <Route path="/companies_page" element={<CompaniesPage 
                                                   companies ={companies}   
                                                   renderedCompanies ={renderedCompanies} 
@@ -125,6 +142,13 @@ function App() {
         
       </Routes > 
       <Footer/>
+=======
+
+          {/* <Route path="*" element={<ErrorPage />} /> */}
+
+        </Routes > 
+      {/* <Footer/> */}
+>>>>>>> 0249788 (cors resolved in gem & application.rb files)
     </BrowserRouter>
     </div>
   );

@@ -1,4 +1,24 @@
-function Contacts(){
+import {useState, useEffect} from 'react'
+
+function Contacts(url){
+
+    const [contacts, setContacts] = useState([])
+
+
+    // const fetchContacts = async () => {
+    //     const response = await fetch(`${url}/contacts`)
+    //     const contactsArray = await response.json()
+    //     setContacts(contactsArray)
+    //     console.log(contacts)
+    //   }
+    
+    
+    //   useEffect(() => {
+    //     fetchContacts()
+    //   }, )
+
+
+    console.log(url)
     return(
         <main>
             <table>
