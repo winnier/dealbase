@@ -1,4 +1,4 @@
-const CompaniesPage = ({ }) => {
+const CompaniesPage = ({renderedCompanies}) => {
 
     return (
         <div>

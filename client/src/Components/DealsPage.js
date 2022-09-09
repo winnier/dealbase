@@ -1,4 +1,4 @@
-const DealsPage = ({ }) => {
+const DealsPage = ({renderedDeals}) => {
 
     return (
         <div>
