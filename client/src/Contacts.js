@@ -19,6 +19,8 @@ function Contacts(url){
 
 
     console.log(contacts)
+    console.log(url)
+
     return(
         <main>
             <table>
