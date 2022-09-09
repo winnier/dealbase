@@ -1,6 +1,10 @@
 const ContactCard = ({ }) => {
 
-
+    return (
+        <div>
+            
+        </div>
+    )
 }
 
-export default Course;
+export default ContactCard;
