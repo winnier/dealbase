@@ -1,4 +1,4 @@
-const ContactsPage = ({ }) => {
+const ContactsPage = ({renderedContacts }) => {
 
     return (
         <div>
