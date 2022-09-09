@@ -4,16 +4,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import {useEffect, useState} from 'react'
+import Contacts from './Contacts';
 
 function App() {
 
   const [contacts, setContacts] = useState([])
+  const url = 'http://localhost/3000'
 
 
   // I'm using this faker gem in meantime until we get data from backend
 
   const fetchContacts = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
+    const response = await fetch(`http://localhost:3000/contacts`)
     const contactsArray = await response.json()
     setContacts(contactsArray)
     console.log(contacts)
@@ -22,29 +24,29 @@ function App() {
 
   useEffect(() => {
     fetchContacts()
-  }, )
+  },[])
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Header/>
+        {/* <Header/> */}
          <Routes > 
-          <Route path="/login" element={<Login/>} />
-          <Route path="/create_account" element={<CreateAccount/>} />
-          <Route path="/" element={ <LandingPage />} />
-          <Route path="/contacts_page" element={<ContactsPage/>} />
-          <Route path="/companies_page" element={<CompaniesPage/>} />
-          <Route path="/deals_page" element={<DealsPage/>} />
+          {/* <Route path="/login" element={<Login/>} /> */}
+          {/* <Route path="/create_account" element={<CreateAccount/>} /> */}
+          {/* <Route path="/" element={ <LandingPage />} /> */}
+          <Route path="/contacts_page" element={<Contacts contacts={contacts} />} />
+          {/* <Route path="/companies_page" element={<CompaniesPage/>} /> */}
+          {/* <Route path="/deals_page" element={<DealsPage/>} /> */}
 
           {/* <Route path="/contacts_card/:id" element={<ContactsPage/>} /> */}
           {/* <Route path="/companies_page" element={<CompaniesPage/>} />
           <Route path="/deals_page" element={<DealsPage/>} /> */}
 
 
-          <Route path="*" element={<ErrorPage />} />
+          {/* <Route path="*" element={<ErrorPage />} /> */}
 
         </Routes > 
-      <Footer/>
+      {/* <Footer/> */}
     </BrowserRouter>
 
     </div>
