@@ -1,4 +1,4 @@
-puts "destroying past data"
+puts "Destroying past data"
 Owner.destroy_all
 Contact.destroy_all
 Company.destroy_all
