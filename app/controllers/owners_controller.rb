@@ -12,6 +12,26 @@ class OwnersController < ApplicationController
         end
     end
 
+    def update
+        owner = Owner.find_by(id: params[:id])
+        if owner
+            owner.update(owner_params)
+            render json: owner, status: 204
+        else
+            render json: { error: "Owner not found" }, status: 422
+        end
+    end
+
+    def destroy
+        owner = Owner.find_by(id: params[:id])
+        if owner
+            owner.destroy
+            render json: {}, status: 200
+        else
+            render json: { error: "Owner not found" }, status: 404
+        end
+    end
+
     private
 
     def owner_params
