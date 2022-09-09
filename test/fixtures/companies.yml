@@ -6,6 +6,8 @@ one:
   country: MyString
   industry: MyString
   owner_id: 1
+  linkedin_url: MyString
+  website: MyString
 
 two:
   name: MyString
@@ -13,4 +15,5 @@ two:
   country: MyString
   industry: MyString
   owner_id: 1
-  
+  linkedin_url: MyString
+  website: MyString

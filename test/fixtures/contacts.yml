@@ -5,7 +5,7 @@ one:
   email: MyString
   phone_number: MyString
   address: MyString
-  linked_in: MyString
+  linkedin_url: MyString
   company_id: 1
   owner_id: 1
 
@@ -14,6 +14,6 @@ two:
   email: MyString
   phone_number: MyString
   address: MyString
-  linked_in: MyString
+  linkedin_url: MyString
   company_id: 1
   owner_id: 1
