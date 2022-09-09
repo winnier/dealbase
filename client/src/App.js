@@ -9,6 +9,7 @@ import Contacts from './Contacts';
 
 function App() {
 
+  const navigate = useNavigate()
   const [contacts, setContacts] = useState([])
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
