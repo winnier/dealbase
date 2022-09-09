@@ -1,26 +1,28 @@
 import {useState, useEffect} from 'react'
 
-function Contacts(url){
+function Contacts(){
 
     const [contacts, setContacts] = useState([])
+    const [tableHeaders, setTableHeaders] = useState([])
 
 
     const fetchContacts = async () => {
-        const response = await fetch(`${url}/contacts`)
+        const response = await fetch(`http://localhost:3000/contacts`)
         const contactsArray = await response.json()
         setContacts(contactsArray)
-        console.log(contacts)
+
       }
     
     
       useEffect(() => {
         fetchContacts()
-      }, )
+      },[])
 
 
-    console.log(contacts)
+    console.log('contacts', contacts)
     return(
         <main>
+
             <table>
                 <tr>
                     <th>Name</th>
