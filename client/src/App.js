@@ -10,7 +10,6 @@ import Contacts from './Contacts';
 function App() {
 
   const [contacts, setContacts] = useState([])
-
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
   const url = 'http://localhost/3000'
