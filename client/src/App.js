@@ -21,8 +21,7 @@ function App() {
   const [renderedDeals, setRenderedDeals] = useState([])
 
   
-  //fetching complete datasets 
-  // I'm using this faker gem in meantime until we get data from backend
+
   const fetchContacts = async () => {
     const response = await fetch(`http://localhost:3000/contacts`)
     const contactsArray = await response.json()
