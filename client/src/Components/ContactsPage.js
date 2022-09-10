@@ -46,13 +46,13 @@ function ContactsPage(){
                     return(
                         <tr>
                             <td>{contact.name}</td>
-                            <td>UK MI6</td>
-                            <td>james.bond@mi6.uk</td>
-                            <td>linkedin.com/jbond</td>
-                            <td>+44 987 987 988</td>
-                            <td>Address</td>
-                            <td>COMPANY</td>
-                            <td>OWNER</td>
+                            <td>{contact.email}</td>
+                            
+                            <td>{contact.phone_number}</td>
+                            <td>{contact.address}</td>
+                            <td>{contact.linkedin_url}</td>
+                            <td>{contact.company_info.name}</td>
+                            <td>{contact.owner_info.name}</td>
                         </tr>
                     )
                 })}

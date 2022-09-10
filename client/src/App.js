@@ -44,7 +44,7 @@ function App() {
 
   useEffect(() => {
     fetchCompanies()
-  }, )
+  }, [])
 
     // still using faker gem
     const fetchDeals = async () => {
@@ -56,7 +56,7 @@ function App() {
   
     useEffect(() => {
       fetchDeals()
-    }, )
+    }, [])
 
 
   //done fetching complete datasets 
