@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 
 import './App.css';
 import {useEffect, useState} from 'react'
-import Contacts from './Contacts';
+import ContactsPage from './Components/ContactsPage';
 
 function App() {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [contacts, setContacts] = useState([])
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
@@ -66,33 +66,33 @@ function App() {
 
 
   //handle click events
-  const handleContactsClick =(event, param)=>{
-    param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
-    navigate ('./Components/contacts_page')
-  }   
+  // const handleContactsClick =(event, param)=>{
+  //   param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
+  //   navigate ('./Components/contacts_page')
+  // }   
 
-  const handleCompaniesClick =(event, param)=>{
-    param === 'yours' ? setRenderedCompanies(/*filteredOnlyYours*/) : setRenderedCompanies(companies)
-    navigate ('./Components/companies_page')
-  } 
+  // const handleCompaniesClick =(event, param)=>{
+  //   param === 'yours' ? setRenderedCompanies(/*filteredOnlyYours*/) : setRenderedCompanies(companies)
+  //   navigate ('./Components/companies_page')
+  // } 
 
-  const handleDealsClick =(event, param)=>{
-    param === 'yours' ? setRenderedDeals(/*filteredOnlyYours*/) : setRenderedDeals(deals)
-    navigate ('./Components/deals_page')
-  } 
+  // const handleDealsClick =(event, param)=>{
+  //   param === 'yours' ? setRenderedDeals(/*filteredOnlyYours*/) : setRenderedDeals(deals)
+  //   navigate ('./Components/deals_page')
+  // } 
   //done with handle click events
 
 
   return (
     <div className="App">
       <BrowserRouter>
-      <Header
+      {/* <Header
         handleContactsClick={handleContactsClick} 
         handleCompaniesClick={handleCompaniesClick} 
         handleDealsClick={handleDealsClick}
-      />
+      /> */}
       <Routes > 
-        <Route path="/login" element={<Login/>} />
+        {/* <Route path="/login" element={<Login/>} />
         <Route path="/create_account" element={<CreateAccount/>} />
         <Route path="/" element={ <LandingPage 
                                       handleContactsClick={handleContactsClick} 
@@ -102,16 +102,16 @@ function App() {
                                       companies ={companies}
                                       deals = {deals}
                                   />} 
-        />
+        /> */}
 
         <Route path="/contacts_page" element={<ContactsPage 
-                                                  contacts ={contacts} 
-                                                  renderedContacts={renderedContacts} 
-                                                  setRenderedContacts = {setRenderedContacts}
+                                                  // contacts ={contacts} 
+                                                  // renderedContacts={renderedContacts} 
+                                                  // setRenderedContacts = {setRenderedContacts}
                                               />}   
         />
 
-        <Route path="/companies_page" element={<CompaniesPage 
+        {/* <Route path="/companies_page" element={<CompaniesPage 
                                                   companies ={companies}   
                                                   renderedCompanies ={renderedCompanies} 
                                                   setRenderedCompanies = {setRenderedCompanies}
@@ -124,10 +124,10 @@ function App() {
                                             />} 
         />
         
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage />} /> */}
         
       </Routes > 
-      <Footer/>
+      {/* <Footer/> */}
     </BrowserRouter>
 
     </div>
