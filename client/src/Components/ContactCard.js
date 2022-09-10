@@ -1,9 +1,7 @@
 const ContactCard = ({ }) => {
 
     return (
-        <div>
-            
-        </div>
+    
     )
 }
 
