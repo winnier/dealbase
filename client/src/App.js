@@ -1,13 +1,24 @@
-// import { BrowserRouter } from "react-router-dom";
 // import { render } from "react-dom";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import {useEffect, useState} from 'react'
+
+import CompaniesPage from './Components/CompaniesPage';
+import ContactsPage from './Components/ContactsPage';
+import Header from './Components/Header';
+import Login from './Components/Login';
+import CreateAccount from './Components/CreateAccount';
+import LandingPage from './Components/LandingPage';
+import DealsPage from './Components/DealsPage';
+import ErrorPage from './Components/ErrorPage';
+import Footer from './Components/Footer';
 
 import './App.css';
-import {useEffect, useState} from 'react'
-import Contacts from './Contacts';
+import './Style/Footer.css';
+import './Style/Header.css';
+
 
 function App() {
+  const navigate = useNavigate()
 
   const [contacts, setContacts] = useState([])
   const [companies, setCompanies] = useState([])
@@ -62,8 +73,6 @@ function App() {
 
 
 
-
-
   //handle click events
   const handleContactsClick =(event, param)=>{
     param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
@@ -83,53 +92,52 @@ function App() {
 
 
   return (
-    <div className="App">
-      <BrowserRouter>
-      <Header
-        handleContactsClick={handleContactsClick} 
-        handleCompaniesClick={handleCompaniesClick} 
-        handleDealsClick={handleDealsClick}
-      />
-      <Routes > 
-        <Route path="/login" element={<Login/>} />
-        <Route path="/create_account" element={<CreateAccount/>} />
-        <Route path="/" element={ <LandingPage 
-                                      handleContactsClick={handleContactsClick} 
-                                      handleCompaniesClick={handleCompaniesClick} 
-                                      handleDealsClick={handleDealsClick}
-                                      contacts ={contacts}
-                                      companies ={companies}
-                                      deals = {deals}
-                                  />} 
+      <div>
+        <Header
+          handleContactsClick={handleContactsClick} 
+          handleCompaniesClick={handleCompaniesClick} 
+          handleDealsClick={handleDealsClick}
         />
+        <Routes > 
+          <Route path="/login" element={<Login/>} />
+          <Route path="/create_account" element={<CreateAccount/>} />
+          <Route path="/" element={ <LandingPage 
+                                        handleContactsClick={handleContactsClick} 
+                                        handleCompaniesClick={handleCompaniesClick} 
+                                        handleDealsClick={handleDealsClick}
+                                        contacts ={contacts}
+                                        companies ={companies}
+                                        deals = {deals}
+                                    />} 
+          />
 
-        <Route path="/contacts_page" element={<ContactsPage 
-                                                  contacts ={contacts} 
-                                                  renderedContacts={renderedContacts} 
-                                                  setRenderedContacts = {setRenderedContacts}
-                                              />}   
-        />
+          <Route path="/contacts_page" element={<ContactsPage 
+                                                    contacts ={contacts} 
+                                                    setContacts= {setContacts}
+                                                    // renderedContacts={renderedContacts} 
+                                                    // setRenderedContacts = {setRenderedContacts}
+                                                />}   
+          />
 
-        <Route path="/companies_page" element={<CompaniesPage 
-                                                  companies ={companies}   
-                                                  renderedCompanies ={renderedCompanies} 
-                                                  setRenderedCompanies = {setRenderedCompanies}
+          <Route path="/companies_page" element={<CompaniesPage 
+                                                    companies ={companies}   
+                                                    renderedCompanies ={renderedCompanies} 
+                                                    setRenderedCompanies = {setRenderedCompanies}
+                                                />} 
+          />
+          <Route path="/deals_page" element={<DealsPage 
+                                                deals = {deals}   
+                                                renderedDeals={renderedDeals} 
+                                                setRenderedDeals = {setRenderedDeals}
                                               />} 
-        />
-        <Route path="/deals_page" element={<DealsPage 
-                                              deals = {deals}   
-                                              renderedDeals={renderedDeals} 
-                                              setRenderedDeals = {setRenderedDeals}
-                                            />} 
-        />
-        
-        <Route path="*" element={<ErrorPage />} />
-        
-      </Routes > 
-      <Footer/>
-    </BrowserRouter>
+          />
+          
+          <Route path="*" element={<ErrorPage />} />
+          
+        </Routes > 
+        <Footer/>
+      </div>
 
-    </div>
   );
 }
 

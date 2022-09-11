@@ -1,11 +1,26 @@
-#header-logo{
+#header-container{
+    background: rgb(37, 70, 118);
+    min-width: 90px;
+    display: flex;
+    align-items: center;
+}
 
+#header-logo{
+    width:5%
 }
 
 .nav-bar{
-
+    display: flex;
+    margin-left: 70%;
+    justify-content: center;
 }
 
 .nav-item{
-    
+    margin-left: 30%;
+    margin-right: 30%;
 }
+
+.nav-item:hover {
+    background-color: #ddd;
+    color: black;
+  }
