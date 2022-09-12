@@ -1,9 +1,14 @@
 class ContactsController < ApplicationController
     def index
+<<<<<<< HEAD
 
         contacts = Contact.all
         render json: contacts
 
+=======
+        contacts = Contact.all
+        render json: contacts
+>>>>>>> 0929411 (friday)
     end
 
     def create
