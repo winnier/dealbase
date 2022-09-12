@@ -21,8 +21,5 @@ class ContactSerializer < ActiveModel::Serializer
     return arr2
     # extracting just the names of all the deals and returning those
   end
-<<<<<<< HEAD
->>>>>>> 0929411 (friday)
-=======
->>>>>>> will/contact_page
+
 end
