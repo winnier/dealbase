@@ -9,7 +9,7 @@ const CompaniesPage = ({}) => {
     const [sortField, setSortField] = useState('')
     const [order, setOrder] = useState('asc')
 
-    console.log('keyArray',keyArray)
+    // console.log('keyArray',keyArray)
 
 
     const fetchCompanies = async () => {
@@ -17,11 +17,11 @@ const CompaniesPage = ({}) => {
         const companiesArray = await response.json()
         setCompanies(companiesArray)
         getKeys(companiesArray[0])
-        console.log(companiesArray)
+        // console.log(companiesArray)
     }
 
-      const handleSorting = (sortField, sortOrder) => {
-        console.log('sortField, sortOrder', sortField, sortOrder)
+    const handleSorting = (sortField, sortOrder) => {
+        // console.log('sortField, sortOrder', sortField, sortOrder)
         if (sortField) {
             const sorted = [...companies].sort((a,b) => {
                 return (
@@ -32,20 +32,21 @@ const CompaniesPage = ({}) => {
             })
             setCompanies(sorted)
         }
-      }
-      const handleSortingChange = (accessor) => {
-        console.log('accessor', accessor)
-        console.log('sortField', sortField)
+    }
+    const handleSortingChange = (accessor) => {
+        // console.log('accessor', accessor)
+        // console.log('sortField', sortField)
         const sortOrder =
         accessor === sortField && order === 'asc' ? 'desc' : 'asc'
-        console.log('sortOrder',sortOrder)
+        // console.log('sortOrder',sortOrder)
         setSortField(accessor)
         setOrder(sortOrder)
         handleSorting(accessor, sortOrder)
-      }
+    }
+
       useEffect(() => {
         fetchCompanies()
-      },[])
+    },[])
 
     const getKeys = (obj)=> {
         let temp = []
@@ -59,7 +60,7 @@ const CompaniesPage = ({}) => {
     }
 
 
-    const handleCompanyClick = () => {
+    const handleCompanyClick = (id) => {
         <CompanyCard />
     }
 
@@ -82,7 +83,7 @@ const CompaniesPage = ({}) => {
                     return(
                         <tr>
                             <td>{company.id}</td>
-                            <td onClick={handleCompanyClick}>{company.name}</td>
+                            <td onClick={() => handleCompanyClick(company.id)}>{company.name}</td>
                             <td>{company.address}</td>
                             <td>{company.country}</td>
                             <td>{company.industry}</td>

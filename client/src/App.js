@@ -32,9 +32,6 @@ function App() {
   const [renderedCompanies, setRenderedCompanies] = useState([])
   const [renderedDeals, setRenderedDeals] = useState([])
 
-
-
-
   //handle click events
   const handleContactsClick =(event, param)=>{
     param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
