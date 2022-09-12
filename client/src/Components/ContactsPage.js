@@ -105,7 +105,7 @@ function ContactsPage(){
             <div className='filter'>
                 <label htmlFor='companies'>Choose Company:</label>
                 <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
-                    <option value="">All</option>
+                    <option value="All">All</option>
                     {companiesNames.map((companyName) => {
                         return <option value={companyName}>{companyName}</option>
                     })}

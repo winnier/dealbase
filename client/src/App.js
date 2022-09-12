@@ -124,12 +124,12 @@ function App() {
   return (
       <div>
         <Header
-          handleContactsClick={handleContactsClick} 
-          handleCompaniesClick={handleCompaniesClick} 
-          handleDealsClick={handleDealsClick}
+          // handleContactsClick={handleContactsClick} 
+          // handleCompaniesClick={handleCompaniesClick} 
+          // handleDealsClick={handleDealsClick}
         />
         <Routes > 
-          <Route path="/login" element={<Login/>} />
+          {/* <Route path="/login" element={<Login/>} />
           <Route path="/create_account" element={<CreateAccount/>} />
           <Route path="/" element={ <LandingPage 
                                         handleContactsClick={handleContactsClick} 
@@ -139,7 +139,7 @@ function App() {
                                         companies ={companies}
                                         deals = {deals}
                                     />} 
-          />
+          /> */}
 
           <Route path="/contacts_page" element={<ContactsPage 
                                                     // contacts ={contacts} 
@@ -160,8 +160,8 @@ function App() {
                                                 // setDeals = {setDeals}
                                               />} 
           />
-          
-          <Route path="*" element={<ErrorPage />} />
+          <Route path='/contact_profile/:id' element={<ContactCard/>}/>
+          {/* <Route path="*" element={<ErrorPage />} /> */}
           
         </Routes > 
         <Footer/>
