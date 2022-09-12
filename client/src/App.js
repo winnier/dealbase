@@ -26,12 +26,12 @@ function App() {
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
 
-  // const url = 'http://localhost/3000'
+  const url = 'http://localhost/3000'
 
   // this state beind used for what we render, depending on what link is clicked
-  // const [renderedContacts, setRenderedContacts] = useState([])
-  // const [renderedCompanies, setRenderedCompanies] = useState([])
-  // const [renderedDeals, setRenderedDeals] = useState([])
+  const [renderedContacts, setRenderedContacts] = useState([])
+  const [renderedCompanies, setRenderedCompanies] = useState([])
+  const [renderedDeals, setRenderedDeals] = useState([])
 
   // const [selectedContactID, setSelectedContactID] = useState(null)
 
@@ -46,90 +46,32 @@ function App() {
   // const [renderedCompanies, setRenderedCompanies] = useState([])
   // const [renderedDeals, setRenderedDeals] = useState([])
 
-  
-
-  const fetchContacts = async () => {
-    const response = await fetch(`http://localhost:3000/contacts`)
-    const contactsArray = await response.json()
-    setContacts(contactsArray)
-  }
-
-  useEffect(() => {
-    fetchContacts()
-  },[])
-
-  // still using faker gem
-  const fetchCompanies = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
-    const contactsArray = await response.json()
-    setCompanies(contactsArray)
-  }
-
-  useEffect(() => {
-    fetchCompanies()
-  }, [])
-
-    // still using faker gem
-    const fetchDeals = async () => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
-      const contactsArray = await response.json()
-      setDeals(contactsArray)
-    }
-  
-    useEffect(() => {
-      fetchDeals()
-    }, [])
-
-
-
   //handle click events
-  // const handleContactsClick =(event, param)=>{
-  //   param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
-  //   navigate ('./Components/contacts_page')
-  // }   
+  const handleContactsClick =(event, param)=>{
+    param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
+    navigate ('./Components/contacts_page')
+  }   
 
+  const handleCompaniesClick =(event, param)=>{
+    param === 'yours' ? setRenderedCompanies(/*filteredOnlyYours*/) : setRenderedCompanies(companies)
+    navigate ('./Components/companies_page')
+  } 
 
-  // const handleCompaniesClick =(event, param)=>{
-  //   param === 'yours' ? setRenderedCompanies(/*filteredOnlyYours*/) : setRenderedCompanies(companies)
-  //   navigate ('./Components/companies_page')
-  // } 
-
-  // const handleDealsClick =(event, param)=>{
-  //   param === 'yours' ? setRenderedDeals(/*filteredOnlyYours*/) : setRenderedDeals(deals)
-  //   navigate ('./Components/deals_page')
-  // } 
-  //done with handle click events
-
-
-
-
-  //handle click events
-  // const handleContactsClick =(event, param)=>{
-  //   param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
-  //   navigate ('./Components/contacts_page')
-  // }   
-
-  // const handleCompaniesClick =(event, param)=>{
-  //   param === 'yours' ? setRenderedCompanies(/*filteredOnlyYours*/) : setRenderedCompanies(companies)
-  //   navigate ('./Components/companies_page')
-  // } 
-
-  // const handleDealsClick =(event, param)=>{
-  //   param === 'yours' ? setRenderedDeals(/*filteredOnlyYours*/) : setRenderedDeals(deals)
-  //   navigate ('./Components/deals_page')
-  // } 
-  //done with handle click events
-
+  const handleDealsClick =(event, param)=>{
+    param === 'yours' ? setRenderedDeals(/*filteredOnlyYours*/) : setRenderedDeals(deals)
+    navigate ('./Components/deals_page')
+  } 
+  // done with handle click events
 
   return (
       <div>
         <Header
-          // handleContactsClick={handleContactsClick} 
-          // handleCompaniesClick={handleCompaniesClick} 
-          // handleDealsClick={handleDealsClick}
+          handleContactsClick={handleContactsClick} 
+          handleCompaniesClick={handleCompaniesClick} 
+          handleDealsClick={handleDealsClick}
         />
         <Routes > 
-          {/* <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/create_account" element={<CreateAccount/>} />
           <Route path="/" element={ <LandingPage 
                                         handleContactsClick={handleContactsClick} 
@@ -139,7 +81,7 @@ function App() {
                                         companies ={companies}
                                         deals = {deals}
                                     />} 
-          /> */}
+          />
 
           <Route path="/contacts_page" element={<ContactsPage 
                                                     // contacts ={contacts} 
@@ -161,7 +103,7 @@ function App() {
                                               />} 
           />
           <Route path='/contact_profile/:id' element={<ContactCard/>}/>
-          {/* <Route path="*" element={<ErrorPage />} /> */}
+          <Route path="*" element={<ErrorPage />} />
           
         </Routes > 
         <Footer/>
