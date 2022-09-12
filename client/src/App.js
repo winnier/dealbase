@@ -127,8 +127,7 @@ function App() {
           />
           <Route path="/deals_page" element={<DealsPage 
                                                 deals = {deals}   
-                                                renderedDeals={renderedDeals} 
-                                                setRenderedDeals = {setRenderedDeals}
+                                                setDeals = {setDeals}
                                               />} 
           />
           
