@@ -45,14 +45,15 @@ function ContactsPage(){
         }
       }
 
-      const handleSortingChange = (e) => {
-        console.log('e',e)
-        
+      const handleSortingChange = (accessor) => {
+        console.log('accessor', accessor)
+        console.log('sortField', sortField)
         const sortOrder = 
-        e === sortField && order === 'asc' ? 'desc' : '---'
-        setSortField(e)
+        accessor === sortField && order === 'asc' ? 'desc' : 'asc'
+        console.log('sortOrder',sortOrder)
+        setSortField(accessor)
         setOrder(sortOrder)
-        handleSorting(e, sortOrder)
+        handleSorting(accessor, sortOrder)
 
         // using toLowerCase()
 
@@ -98,9 +99,9 @@ function ContactsPage(){
             <caption>CONTACTS PAGE</caption>
             <thead>
                 <tr>
-                    {keyArray.map(e=>{
+                    {keyArray.map((accessor)=>{
                         return(
-                            <th onClick={() => handleSortingChange(e)}>{e}</th>
+                            <th onClick={() => handleSortingChange(accessor)}>{accessor}</th>
                         )
                     })}
                 </tr>
