@@ -8,13 +8,13 @@ table, th, td {
     border: 1px solid;
 }
 
-/* tr {
+tr {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 40px;
-} */
+}
 
 th {
     width: 100px;

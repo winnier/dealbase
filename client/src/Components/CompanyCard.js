@@ -1,4 +1,4 @@
-const CompanyCard = ({ }) => {
+const CompanyCard = () => {
 
     return (
         <div>
