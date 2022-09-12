@@ -26,7 +26,6 @@ function App() {
     const response = await fetch(`http://localhost:3000/contacts`)
     const contactsArray = await response.json()
     setContacts(contactsArray)
-    console.log(contacts)
   }
 
   useEffect(() => {
@@ -38,7 +37,6 @@ function App() {
     const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
     const contactsArray = await response.json()
     setCompanies(contactsArray)
-    console.log(contacts)
   }
 
   useEffect(() => {
@@ -50,7 +48,6 @@ function App() {
       const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
       const contactsArray = await response.json()
       setDeals(contactsArray)
-      console.log(contacts)
     }
   
     useEffect(() => {
@@ -58,7 +55,6 @@ function App() {
     }, [])
 
 
-  //done fetching complete datasets 
 
 
 

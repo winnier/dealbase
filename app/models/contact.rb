@@ -4,11 +4,11 @@ class Contact < ApplicationRecord
     belongs_to :company
     belongs_to :owner
 
-    def company_info
-        {id: company.id, name: company.name}
+    def company_name
+        company.name
     end
 
-    def owner_info
-        {id: owner.id, name: owner.name}
+    def owner_name
+        owner.name
     end
 end

@@ -6,11 +6,22 @@ function ContactsPage(){
     const [tableHeaders, setTableHeaders] = useState([])
     const [keyArray, setKeyArray]= useState([])
 
+    const [sortField, setSortField] = useState('')
+    const [order, setOrder] = useState('asc')
+
+    const columns = [
+        {label: "id", accessor: "id"},
+        {label: "Name", accessor: "name"},
+        {label: "Email", accessor: "email"},
+        {label: "Phone", accessor: "phone_number"},
+        {label: "Address", accessor: "address"},
+        {label: "Linkedin", accessor: "linkedin_url"},
+        {label: "Company", accessor: "company_name"},
+        {label: "Owned By", accessor: "owner_name"}
+    ]
 
 
-
-
-    console.log(keyArray)
+    console.log('keyArray',keyArray)
     const fetchContacts = async () => {
         const response = await fetch(`http://localhost:3000/contacts`)
         const contactsArray = await response.json()
@@ -20,29 +31,51 @@ function ContactsPage(){
     
     let sortedContacts = [...contacts]
 
-    
-
-
-      const handleClick = (e) => {
-        console.log('typeof(e.target)', typeof(e.target.value))
-        console.log('e.target',e.target)
-        console.log('contacts for sorting', contacts.sort())
-
-        sortedContacts.sort((a,b) => {
-            let namea = a.name.toLowerCase(),
-                nameb = b.name.toLowerCase();
-            if (namea < nameb) {
-                return -1;
-            }
-            if (namea > nameb) {
-                return 1;
-            }
-            return 0
-        })
-        setContacts(sortedContacts)
-        console.log('sortedContacts',sortedContacts)
+      const handleSorting = (sortField, sortOrder) => {
+        console.log('sortField, sortOrder', sortField, sortOrder)
+        if (sortField) {
+            const sorted = [...contacts].sort((a,b) => {
+                return (
+                    a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
+                        numeric: true,
+                    }) * (sortOrder === 'asc' ? 1: -1)
+                )
+            })
+            setContacts(sorted)
+        }
       }
 
+      const handleSortingChange = (e) => {
+        console.log('e',e)
+        
+        const sortOrder = 
+        e === sortField && order === 'asc' ? 'desc' : '---'
+        setSortField(e)
+        setOrder(sortOrder)
+        handleSorting(e, sortOrder)
+
+        // using toLowerCase()
+
+        // sortedContacts.sort((a,b) => {
+        //     let namea = a.name.toLowerCase(),
+        //         nameb = b.name.toLowerCase();
+        //     if (namea < nameb) {
+        //         return -1;
+        //     }
+        //     if (namea > nameb) {
+        //         return 1;
+        //     }
+        //     return 0
+        // })
+
+        // using localeCompare
+
+        // sortedContacts.sort((a,b) => a.email.toString().localeCompare(b.email.toString(), 'en', {
+        //     numeric: true
+        // }))
+        // setContacts(sortedContacts)
+        // console.log('sortedContacts',sortedContacts)
+      }
 
       useEffect(() => {
         fetchContacts()
@@ -51,7 +84,7 @@ function ContactsPage(){
     const getKeys = (obj)=> {
         let temp = []
          for(const key in obj){
-            if(key == 'id'){
+            if(key == 'nvm'){
                 
             }else{
                 temp.push(key)
@@ -61,36 +94,36 @@ function ContactsPage(){
     }
     console.log('contacts', contacts)
     return(
-        <main>
-
-            <h1>CONTACTS PAGE</h1>
-
             <table>
-                
+            <caption>CONTACTS PAGE</caption>
+            <thead>
                 <tr>
                     {keyArray.map(e=>{
                         return(
-                            <th onClick={handleClick}>{e}</th>
+                            <th onClick={() => handleSortingChange(e)}>{e}</th>
                         )
                     })}
                 </tr>
+                </thead>
+                <tbody>
                 {
                 contacts.map(contact=>{
                     return(
                         <tr>
+                            <td>{contact.id}</td>
                             <td>{contact.name}</td>
                             <td>{contact.email}</td>
                             <td>{contact.phone_number}</td>
                             <td>{contact.address}</td>
                             <td>{contact.linkedin_url}</td>
-                            <td>{contact.company_info.name}</td>
-                            <td>{contact.owner_info.name}</td>
+                            <td>{contact.company_name}</td>
+                            <td>{contact.owner_name}</td>
                         </tr>
                     )
                 })}
-                
+                </tbody>
             </table>
-        </main>
+
     )
 }
 export default ContactsPage
