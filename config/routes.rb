@@ -28,9 +28,4 @@ Rails.application.routes.draw do
   patch '/contact_deals/:id', to: 'contact_deals#update'
   delete '/contact_deals/:id', to: 'contact_deals#destroy'
 
-
-  get '/contacts', to: 'contacts#index'
-
-  get '/contacts', to: 'contacts#index'
-
 end
