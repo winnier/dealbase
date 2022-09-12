@@ -25,6 +25,20 @@ class ContactsController < ApplicationController
         end
     end
 
+    def show
+        contact = Contact.find(params[:id])
+        render json: contact
+    end
+
+    def showcompanies
+        # companies = Contact.all.uniq{|x| x.company_name}.pluck(:company_name)
+        contacts = Contact.all
+        names = []
+        contacts.each {|contact| names.push(contact.company.name)}
+        
+        render json: names.uniq
+    end
+
     def destroy
         contact = Contact.find_by(id: params[:id])
         if contact

@@ -1,13 +1,16 @@
 // import { BrowserRouter } from "react-router-dom";
 // import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
+
 
 import './App.css';
 import {useEffect, useState} from 'react'
 import ContactsPage from './Components/ContactsPage';
+import ContactCard from './Components/ContactCard';
 
 function App() {
+
+  // const [selectedContactID, setSelectedContactID] = useState(null)
 
   // const navigate = useNavigate()
   const [contacts, setContacts] = useState([])
@@ -103,8 +106,14 @@ function App() {
                                                   // contacts ={contacts} 
                                                   // renderedContacts={renderedContacts} 
                                                   // setRenderedContacts = {setRenderedContacts}
+                                                  // setSelectedContactID={setSelectedContactID}
                                               />}   
         />
+        <Route path='/contact_profile/:id' element={<ContactCard 
+                                                  // selectedContactID={selectedContactID}
+                                              />} 
+                                              />
+        {/* <Route path='/contact' element={<ContactCard />} */}
 
         {/* <Route path="/companies_page" element={<CompaniesPage 
                                                   companies ={companies}   

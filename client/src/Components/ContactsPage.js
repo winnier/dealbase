@@ -1,7 +1,11 @@
 import {useState, useEffect} from 'react'
+import ContactCard from './ContactCard'
+import {useNavigate} from 'react-router-dom'
 
 function ContactsPage(){
 
+
+    let navigate = useNavigate()
     const [contacts, setContacts] = useState([])
     const [tableHeaders, setTableHeaders] = useState([])
     const [keyArray, setKeyArray]= useState([])
@@ -9,30 +13,36 @@ function ContactsPage(){
     const [sortField, setSortField] = useState('')
     const [order, setOrder] = useState('asc')
 
-    const columns = [
-        {label: "id", accessor: "id"},
-        {label: "Name", accessor: "name"},
-        {label: "Email", accessor: "email"},
-        {label: "Phone", accessor: "phone_number"},
-        {label: "Address", accessor: "address"},
-        {label: "Linkedin", accessor: "linkedin_url"},
-        {label: "Company", accessor: "company_name"},
-        {label: "Owned By", accessor: "owner_name"}
-    ]
+    const [companiesNames, setCompaniesNames] = useState([])
+    const [company, setCompany] = useState("All")
 
 
-    console.log('keyArray',keyArray)
+
+    // console.log('keyArray',keyArray)
     const fetchContacts = async () => {
         const response = await fetch(`http://localhost:3000/contacts`)
         const contactsArray = await response.json()
+        company == "All" ? 
         setContacts(contactsArray)
+        :
+        setContacts(contactsArray.filter(comp => comp.company_name == company))
+
         getKeys(contactsArray[0])
       }
+
+      console.log('contacts', contacts)
+
+    const fetchCompaniesNames = async () => {
+        const response = await fetch(`http://localhost:3000/contacts/companies`)
+        const companiesNamesArray = await response.json()
+        setCompaniesNames(companiesNamesArray)
+
+    }
     
-    let sortedContacts = [...contacts]
+
 
       const handleSorting = (sortField, sortOrder) => {
-        console.log('sortField, sortOrder', sortField, sortOrder)
+        // console.log('sortField, sortOrder', sortField, sortOrder)
         if (sortField) {
             const sorted = [...contacts].sort((a,b) => {
                 return (
@@ -46,41 +56,20 @@ function ContactsPage(){
       }
 
       const handleSortingChange = (accessor) => {
-        console.log('accessor', accessor)
-        console.log('sortField', sortField)
+        // console.log('accessor', accessor)
+        // console.log('sortField', sortField)
         const sortOrder = 
         accessor === sortField && order === 'asc' ? 'desc' : 'asc'
         console.log('sortOrder',sortOrder)
         setSortField(accessor)
         setOrder(sortOrder)
         handleSorting(accessor, sortOrder)
-
-        // using toLowerCase()
-
-        // sortedContacts.sort((a,b) => {
-        //     let namea = a.name.toLowerCase(),
-        //         nameb = b.name.toLowerCase();
-        //     if (namea < nameb) {
-        //         return -1;
-        //     }
-        //     if (namea > nameb) {
-        //         return 1;
-        //     }
-        //     return 0
-        // })
-
-        // using localeCompare
-
-        // sortedContacts.sort((a,b) => a.email.toString().localeCompare(b.email.toString(), 'en', {
-        //     numeric: true
-        // }))
-        // setContacts(sortedContacts)
-        // console.log('sortedContacts',sortedContacts)
       }
 
       useEffect(() => {
         fetchContacts()
-      },[])
+        fetchCompaniesNames()
+      },[company])
 
     const getKeys = (obj)=> {
         let temp = []
@@ -93,8 +82,36 @@ function ContactsPage(){
         }
         setKeyArray(temp)
     }
-    console.log('contacts', contacts)
+
+
+    const handleContactClick = (id) => {
+
+        navigate(`/contact_profile/${id}`)
+        
+    }
+
+    const updateCompany = (e) => {
+
+        setCompany(e.target.value)
+
+    }
+
+    console.log('companies', companiesNames)
+    console.log('company', company)
+
+    // console.log('contacts', contacts)
     return(
+        <main>
+            <div className='filter'>
+                <label htmlFor='companies'>Choose Company:</label>
+                <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
+                    <option value="">All</option>
+                    {companiesNames.map((companyName) => {
+                        return <option value={companyName}>{companyName}</option>
+                    })}
+                </select>
+
+            </div>
             <table>
             <caption>CONTACTS PAGE</caption>
             <thead>
@@ -112,7 +129,7 @@ function ContactsPage(){
                     return(
                         <tr>
                             <td>{contact.id}</td>
-                            <td>{contact.name}</td>
+                            <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td>
                             <td>{contact.email}</td>
                             <td>{contact.phone_number}</td>
                             <td>{contact.address}</td>
@@ -124,6 +141,7 @@ function ContactsPage(){
                 })}
                 </tbody>
             </table>
+            </main>
 
     )
 }
