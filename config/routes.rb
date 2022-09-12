@@ -29,4 +29,15 @@ Rails.application.routes.draw do
   patch '/contact_deals/:id', to: 'contact_deals#update'
   delete '/contact_deals/:id', to: 'contact_deals#destroy'
 
+  #Users
+  post '/user', to: 'users#create'
+  get '/user/:user_id', to: 'users#show'
+  get '/user', to: 'users#index'
+
+  #Sessions Login/Logout
+
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
+  get '/logged_in', to: 'sessions#is_logged_in?'
+
 end
