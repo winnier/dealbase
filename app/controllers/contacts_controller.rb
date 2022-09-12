@@ -1,7 +1,9 @@
 class ContactsController < ApplicationController
     def index
+
         contacts = Contact.all
         render json: contacts
+
     end
 
     def create
@@ -21,6 +23,20 @@ class ContactsController < ApplicationController
         else
             render json: { error: "Contact not found" }, status: 422
         end
+    end
+
+    def show
+        contact = Contact.find(params[:id])
+        render json: contact
+    end
+
+    def showcompanies
+        # companies = Contact.all.uniq{|x| x.company_name}.pluck(:company_name)
+        contacts = Contact.all
+        names = []
+        contacts.each {|contact| names.push(contact.company.name)}
+        
+        render json: names.uniq
     end
 
     def destroy
@@ -45,5 +61,6 @@ class ContactsController < ApplicationController
             :company_id,
             :owner_id
             )
+
     end
 end

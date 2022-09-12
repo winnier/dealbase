@@ -3,6 +3,12 @@ class CompaniesController < ApplicationController
         render json: Company.all
     end
 
+    def names
+        companies = Company.all
+        names = companies.pluck(:name)
+        render json: names
+    end
+
     def create
         company = Contact.new(company_params)
         if company.save

@@ -3,6 +3,12 @@
 const Header = ({ handleContactsClick, handleCompaniesClick, handleDealsClick}) => {
 
 
+
+const Header = ({ handleContactsClick, handleCompaniesClick, handleDealsClick}) => {
+
+
+
+    onclick 
     return (
         <div>
             <div id="header-container">
