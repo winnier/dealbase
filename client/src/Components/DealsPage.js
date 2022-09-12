@@ -1,5 +1,13 @@
-const DealsPage = ({}) => {
-    const [deals, setDeals] = useState([])
+import DealCard from "./DealCard"
+import {useEffect, useState} from 'react'
+
+
+const DealsPage = ({deals, setDeals}) => {
+    
+    const [changed, setChanged] = useState(false)
+
+
+  
 
 
     const fetchDeals = async () => {
@@ -7,10 +15,15 @@ const DealsPage = ({}) => {
         // const allDeals = await response.json()
         setDeals(await response.json())
     }
+
+    useEffect(() => {
+        fetchDeals()
+    },[changed])
     
 
     const handleDealClick = ( ) => {
-
+        
+        <DealCard setDeals={setDeals} setChanged={setChanged}/>
     }
 
     return (

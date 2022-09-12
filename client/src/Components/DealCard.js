@@ -1,21 +1,11 @@
 import { useState } from "react"
 
-const DealCard = (/* this should be passed from the DealsPage but for now, I'll grab it in a fetch {deal, currentDeal}*/) => {
+const DealCard = ({deal, currentDeal, setDeals}) => {
 
-    const [deals, setDeals] = useState([])
-    const [changed, setChanged] = useState(false)
     const [contactsList, setContactsList] = useState([])
 
-    const fetchDeals = async () => {
-        const response = await fetch(`http://localhost:3000/deals`)
-        // const allDeals = await response.json()
-        setDeals(await response.json())
-    }
-    
+  
 
-    useEffect(() => {
-        fetchDeals()
-    },[changed])
 
     const editDeals = async (id) => {
         const response = await fetch(`http://localhost:3000/deals/:` +id)
