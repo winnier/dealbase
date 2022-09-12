@@ -13,7 +13,7 @@ owner4 = Owner.create!(name: "Haala", email: "haala@gmail.com", username: "haala
 owner5 = Owner.create!(name: "Winnie", email: "winnie@gmail.com", username: "winnie", password_digest: "winnie")
 
 puts "Creating company..."
-20.times {
+50.times {
     company_name = Faker::Company.name
     Company.create!(
     name: company_name,
@@ -43,7 +43,7 @@ puts "Creating company..."
 )}
 
 puts "Making contacts..."
-20.times {
+50.times {
     name = Faker::Name.name
     Contact.create!(
     # name: Faker::Name.name,
@@ -61,7 +61,7 @@ puts "Making contacts..."
     )}
 
 puts "Making deals..."
-20.times {
+50.times {
     company = Company.all.sample
     owner = Owner.all.sample
     product = Faker::Commerce.product_name
@@ -78,7 +78,7 @@ puts "Making deals..."
 )}
 
 puts "Making join table..."
-50.times {ContactDeal.create!(
+100.times {ContactDeal.create!(
     contact_id: Contact.all.sample.id,
     deal_id: Deal.all.sample.id,
     company_id: Company.all.sample.id
