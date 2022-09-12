@@ -1,9 +1,10 @@
-const ContactCard = ({ }) => {
+const ContactCard = () => {
 
     return (
         <div>
-            
+            contacts
         </div>
+    
     )
 }
 

@@ -32,6 +32,8 @@ class DealsController < ApplicationController
         end
     end
 
+
+
     private
 
     def deal_params
@@ -43,7 +45,9 @@ class DealsController < ApplicationController
             :active, 
             :status,
             :company_id,
-            :owner_id
+            :owner_id,
+            :comments #alternatively I can add a seprate comments table, that way we can have 
+            # multiple comments per deal, I will ask on Monday, we can dump some of these changes
             )
     end
 end
