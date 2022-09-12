@@ -4,6 +4,25 @@ import {useNavigate} from 'react-router-dom'
 
 function ContactsPage(){
 
+    let formatter = (str) => {
+        let arr = str.split('')
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == '_') {
+                arr[i] = " "
+            }
+        }
+        for (let i = 0; i < arr.length; i++) {
+            if (i == 0 || arr[i - 1] == " ") {
+                arr[i] = arr[i].toUpperCase()
+            }
+        }
+        let result = ""
+        for (let i = 0; i < arr.length; i++) {
+            result = result + arr[i]
+        }
+        return result
+    }
+    
 
     let navigate = useNavigate()
     const [contacts, setContacts] = useState([])
@@ -16,27 +35,48 @@ function ContactsPage(){
     const [companiesNames, setCompaniesNames] = useState([])
     const [company, setCompany] = useState("All")
 
+    const [ownersNames, setOwnersNames] = useState([])
+    const [owner, setOwner] = useState("All")
+
 
 
     // console.log('keyArray',keyArray)
     const fetchContacts = async () => {
         const response = await fetch(`http://localhost:3000/contacts`)
         const contactsArray = await response.json()
-        company == "All" ? 
-        setContacts(contactsArray)
-        :
-        setContacts(contactsArray.filter(comp => comp.company_name == company))
+
+        if (company == "All" && owner == "All") {
+            setContacts(contactsArray)
+        } else if (company !== "All" && owner == "All") {
+            setContacts(contactsArray.filter(contact => contact.company_name == company))
+        } else if (company == "All" && owner !== "All") {
+            setContacts(contactsArray.filter(contact => contact.owner_name == owner))
+        } else if (company !== "All" && owner !== "All") {
+            setContacts(contactsArray.filter(contact => contact.owner_name == owner && contact.company_name == company))
+        }
+        //--
+        // company == "All" ? 
+        // setContacts(contactsArray)
+        // :
+        // setContacts(contactsArray.filter(comp => comp.company_name == company))
+
+        //--
 
         getKeys(contactsArray[0])
       }
 
-      console.log('contacts', contacts)
+
 
     const fetchCompaniesNames = async () => {
         const response = await fetch(`http://localhost:3000/contacts/companies`)
         const companiesNamesArray = await response.json()
         setCompaniesNames(companiesNamesArray)
-
+    }
+    
+    const fetchOwnersNames = async () => {
+        const response = await fetch(`http://localhost:3000/ownersnames/`)
+        const ownersNamesArray = await response.json()
+        setOwnersNames(ownersNamesArray)
     }
     
 
@@ -60,7 +100,7 @@ function ContactsPage(){
         // console.log('sortField', sortField)
         const sortOrder = 
         accessor === sortField && order === 'asc' ? 'desc' : 'asc'
-        console.log('sortOrder',sortOrder)
+
         setSortField(accessor)
         setOrder(sortOrder)
         handleSorting(accessor, sortOrder)
@@ -69,7 +109,8 @@ function ContactsPage(){
       useEffect(() => {
         fetchContacts()
         fetchCompaniesNames()
-      },[company])
+        fetchOwnersNames()
+      },[company, owner])
 
     const getKeys = (obj)=> {
         let temp = []
@@ -91,13 +132,17 @@ function ContactsPage(){
     }
 
     const updateCompany = (e) => {
-
         setCompany(e.target.value)
-
     }
 
-    console.log('companies', companiesNames)
+    const updateOwner = (e) => {
+        setOwner(e.target.value)
+    }
+
+    console.log('companiesNames', companiesNames)
     console.log('company', company)
+    console.log('ownersNames', ownersNames)
+    console.log('owner', owner)
 
     // console.log('contacts', contacts)
     return(
@@ -112,13 +157,23 @@ function ContactsPage(){
                 </select>
 
             </div>
+            <div className='filter'>
+                <label htmlFor='owners'>Choose Owner:</label>
+                <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
+                    <option value="All">All</option>
+                    {ownersNames.map((ownersName) => {
+                        return <option value={ownersName}>{ownersName}</option>
+                    })}
+                </select>
+
+            </div>
             <table>
             <caption>CONTACTS PAGE</caption>
             <thead>
                 <tr>
                     {keyArray.map((accessor)=>{
                         return(
-                            <th onClick={() => handleSortingChange(accessor)}>{accessor}</th>
+                            <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
                         )
                     })}
                 </tr>

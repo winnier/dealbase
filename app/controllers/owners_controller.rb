@@ -3,6 +3,11 @@ class OwnersController < ApplicationController
         render json: Owner.all
     end
 
+    def shownames
+        owners = Owner.all.pluck(:name)
+        render json: owners
+    end
+
     def create
         owner = Owner.new(owner_params)
         if owner.save

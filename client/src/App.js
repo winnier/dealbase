@@ -18,6 +18,7 @@ import './App.css';
 import './Style/Footer.css';
 import './Style/Header.css';
 import './Style/PageStyle.css';
+import NavBar from './Components/NavBar';
 
 
 function App() {
@@ -63,6 +64,10 @@ function App() {
   } 
   // done with handle click events
 
+  const handleContactsButtonClick = () => {
+
+  }
+
   return (
       <div>
         <Header
@@ -70,6 +75,7 @@ function App() {
           handleCompaniesClick={handleCompaniesClick} 
           handleDealsClick={handleDealsClick}
         />
+        <NavBar/>
         <Routes > 
           <Route path="/login" element={<Login/>} />
           <Route path="/create_account" element={<CreateAccount/>} />
@@ -90,6 +96,7 @@ function App() {
                                                     // setRenderedContacts = {setRenderedContacts}
                                                 />}   
           />
+          <Route path='/contact_profile/:id' element={<ContactCard/>}/>
 
           <Route path="/companies_page" element={<CompaniesPage 
                                                     // companies ={companies}   
@@ -102,7 +109,7 @@ function App() {
                                                 // setDeals = {setDeals}
                                               />} 
           />
-          <Route path='/contact_profile/:id' element={<ContactCard/>}/>
+          
           <Route path="*" element={<ErrorPage />} />
           
         </Routes > 

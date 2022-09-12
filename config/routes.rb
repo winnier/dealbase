@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get '/owners', to: 'owners#index'
+  get '/ownersnames', to: 'owners#shownames'
   post '/owners', to: 'owners#create'
   patch '/owners/:id', to: 'owners#update'
   delete '/owners/:id', to: 'owners#destroy'
