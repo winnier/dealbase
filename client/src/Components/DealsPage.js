@@ -7,9 +7,6 @@ const DealsPage = ({deals, setDeals}) => {
     const [changed, setChanged] = useState(false)
 
 
-  
-
-
     const fetchDeals = async () => {
         const response = await fetch(`http://localhost:3000/deals`)
         // const allDeals = await response.json()

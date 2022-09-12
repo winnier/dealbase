@@ -15,6 +15,7 @@ import Footer from './Components/Footer';
 import './App.css';
 import './Style/Footer.css';
 import './Style/Header.css';
+import './Style/PageStyle.css';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [contacts, setContacts] = useState([])
   const [companies, setCompanies] = useState([])
   const [deals, setDeals] = useState([])
+
   const url = 'http://localhost/3000'
 
   // this state beind used for what we render, depending on what link is clicked
@@ -30,46 +32,6 @@ function App() {
   const [renderedCompanies, setRenderedCompanies] = useState([])
   const [renderedDeals, setRenderedDeals] = useState([])
 
-  
-  //fetching complete datasets 
-  // I'm using this faker gem in meantime until we get data from backend
-  const fetchContacts = async () => {
-    const response = await fetch(`http://localhost:3000/contacts`)
-    const contactsArray = await response.json()
-    setContacts(contactsArray)
-    console.log(contacts)
-  }
-
-  useEffect(() => {
-    fetchContacts()
-  },[])
-
-  // still using faker gem
-  const fetchCompanies = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
-    const contactsArray = await response.json()
-    setCompanies(contactsArray)
-    console.log(contacts)
-  }
-
-  useEffect(() => {
-    fetchCompanies()
-  }, )
-
-    // still using faker gem
-    const fetchDeals = async () => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
-      const contactsArray = await response.json()
-      setDeals(contactsArray)
-      console.log(contacts)
-    }
-  
-    useEffect(() => {
-      fetchDeals()
-    }, )
-
-
-  //done fetching complete datasets 
 
 
 
@@ -78,6 +40,7 @@ function App() {
     param === 'yours' ? setRenderedContacts(/*filteredOnlyYours*/) : setRenderedContacts(contacts)
     navigate ('./Components/contacts_page')
   }   
+
 
   const handleCompaniesClick =(event, param)=>{
     param === 'yours' ? setRenderedCompanies(/*filteredOnlyYours*/) : setRenderedCompanies(companies)
@@ -112,22 +75,22 @@ function App() {
           />
 
           <Route path="/contacts_page" element={<ContactsPage 
-                                                    contacts ={contacts} 
-                                                    setContacts= {setContacts}
+                                                    // contacts ={contacts} 
+                                                    // setContacts= {setContacts}
                                                     // renderedContacts={renderedContacts} 
                                                     // setRenderedContacts = {setRenderedContacts}
                                                 />}   
           />
 
           <Route path="/companies_page" element={<CompaniesPage 
-                                                    companies ={companies}   
-                                                    renderedCompanies ={renderedCompanies} 
-                                                    setRenderedCompanies = {setRenderedCompanies}
+                                                    // companies ={companies}   
+                                                    // renderedCompanies ={renderedCompanies} 
+                                                    // setRenderedCompanies = {setRenderedCompanies}
                                                 />} 
           />
           <Route path="/deals_page" element={<DealsPage 
-                                                deals = {deals}   
-                                                setDeals = {setDeals}
+                                                // deals = {deals}   
+                                                // setDeals = {setDeals}
                                               />} 
           />
           
