@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import CompanyCard from './CompanyCard';
-// import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const CompaniesPage = ({}) => {
     const [companies, setCompanies] = useState([])
@@ -10,7 +10,7 @@ const CompaniesPage = ({}) => {
     const [order, setOrder] = useState('asc')
 
     // console.log('keyArray',keyArray)
-
+    let navigate = useNavigate()
 
     const fetchCompanies = async () => {
         const response = await fetch(`http://localhost:3000/companies`)
@@ -61,7 +61,7 @@ const CompaniesPage = ({}) => {
 
 
     const handleCompanyClick = (id) => {
-        <CompanyCard />
+        navigate(`/company_profile/${id}`)
     }
 
     console.log('companies', companies)
