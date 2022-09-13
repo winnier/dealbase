@@ -14,8 +14,18 @@ class CompaniesController < ApplicationController
         render json: company
     end
 
+    def showcontacts
+        company = Company.find_by(id: params[:id])
+        names = []
+        companycontacts = company.contacts
+        companycontacts.map do |contact|
+            names.push(contact.name)
+        end
+        render json: names.uniq
+    end
+
     def create
-        company = Contact.new(company_params)
+        company = Company.new(company_params)
         if company.save
             render json: deal, status: 201
         else
