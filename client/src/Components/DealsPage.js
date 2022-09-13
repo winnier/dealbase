@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ContactCard from './ContactCard'
+import ContactCard from './Contact/ContactCard'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from "react-router-dom"
 
