@@ -58,7 +58,7 @@ puts "Making deals..."
     value: rand(1000..9000),
     stage: rand(1..5),
     active: true,
-    status: "",
+    status: "pending",
     company_id: company.id,
     owner_id: owner.id
 )}

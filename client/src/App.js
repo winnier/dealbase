@@ -9,9 +9,12 @@ import ContactsPage from './Components/Contact/ContactsPage';
 import LandingPage from './Components/LandingPage';
 import DealsPage from './Components/DealsPage';
 import Footer from './Components/Footer';
-import ContactCard from './Components/Contact/ContactCard';
-import AddNewContact from './Components/Contact/AddNewContact';
-import EditContact from './Components/Contact/EditContact';
+import ContactCard from './Components/ContactCard';
+import AddNewContact from './Components/AddNewContact';
+import EditContact from './Components/EditContact';
+import DealCard from './Components/DealCard'
+
+
 
 import './App.css';
 import './Styles/Footer.css';
@@ -19,6 +22,7 @@ import './Styles/Footer.css';
 import './Styles/PageStyle.css';
 import NavBar from './Components/NavBar';
 import PipelinePage from './Components/PipelinePage';
+
 
 
 function App() {
@@ -31,6 +35,7 @@ function App() {
               <Route path="/" element={ <LandingPage />} />
               <Route path="/contacts_page" element={<ContactsPage />} />
               <Route path='/contact_profile/:id' element={<ContactCard />}/>
+              <Route path='/deal_profile/:id' element={<DealCard />}/>
               <Route path="/companies_page" element={<CompaniesPage />} />
               <Route path="/companies/:id" element={<CompanyCard />}/>
               <Route path='/new_contact' element={<AddNewContact />} />

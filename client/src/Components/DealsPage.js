@@ -3,7 +3,7 @@ import ContactCard from './ContactCard'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from "react-router-dom"
 
-function ContactsPage() {
+function DealsPage() {
 
     let formatter = (str) => {
         let arr = str.split('')
@@ -43,9 +43,7 @@ function ContactsPage() {
             return numWithCommas
         } else if (Math.floor(number) == number) {
             let x = number.toString()
-            console.log(x)
             let numArr = x.split('')
-            console.log(numArr)
             let len = numArr.length
             for (let pos = numArr.length; pos > 0; pos--) {
                 if ((len - pos) % 3 == 0 && len - pos != 0) {
@@ -78,35 +76,43 @@ function ContactsPage() {
 
 
 
-    console.log('keyArray',keyArray)
-    const fetchContacts = async () => {
+    // console.log('keyArray',keyArray)
+    const fetchDeals = async () => {
         const response = await fetch(`http://localhost:3000/deals`)
         const dealsArray = await response.json()
-
-        // if (company == "All" && owner == "All") {
-        //     setContacts(contactsArray)
-        // } else if (company !== "All" && owner == "All") {
-        //     setContacts(contactsArray.filter(contact => contact.company_name == company))
-        // } else if (company == "All" && owner !== "All") {
-        //     setContacts(contactsArray.filter(contact => contact.owner_name == owner))
-        // } else if (company !== "All" && owner !== "All") {
-        //     setContacts(contactsArray.filter(contact => contact.owner_name == owner && contact.company_name == company))
-        // }
         
         // company == "All" ? 
-        setDeals(dealsArray)
+        if (company == "All" && owner == "All") {
+            setDeals(dealsArray)
+        } else if (company !== "All" && owner == "All") {
+            setDeals(dealsArray.filter(deal => deal.company_name == company))
+        } else if (company == "All" && owner !== "All") {
+            setDeals(dealsArray.filter(deal => deal.owner_name == owner))
+        } else if (company !== "All" && owner !== "All") {
+            setDeals(dealsArray.filter(deal => deal.owner_name == owner && deal.company_name == company))
+        }
+        // setDeals(dealsArray)
         
-        // setContacts(contactsArray.filter(comp => comp.company_name == company))
-
-
-
-        // getKeys(contactsArray[0])
+        // setDeals(dealsArray.filter(comp => comp.company_name == company))
+        console.log(dealsArray)
+        console.log("dealsArray[0]: ", dealsArray[0])
+        getKeys(dealsArray[0])
     }
 
-
+    // const filterDeals = (company, owner) => {
+    //     if (company == "All" && owner == "All") {
+    //         setDeals([...deals])
+    //     } else if (company !== "All" && owner == "All") {
+    //         setDeals([...deals].filter(deal => deal.company_name == company))
+    //     } else if (company == "All" && owner !== "All") {
+    //         setDeals([...deals].filter(deal => deal.owner_name == owner))
+    //     } else if (company !== "All" && owner !== "All") {
+    //         setDeals([...deals].filter(deal => deal.owner_name == owner && deal.company_name == company))
+    //     }
+    // }
 
     const fetchCompaniesNames = async () => {
-        const response = await fetch(`http://localhost:3000/contacts/companies`)
+        const response = await fetch(`http://localhost:3000/deals/companies`)
         const companiesNamesArray = await response.json()
         setCompaniesNames(companiesNamesArray)
     }
@@ -119,63 +125,64 @@ function ContactsPage() {
 
 
 
-    // const handleSorting = (sortField, sortOrder) => {
-    //     // console.log('sortField, sortOrder', sortField, sortOrder)
-    //     if (sortField) {
-    //         const sorted = [...contacts].sort((a, b) => {
-    //             return (
-    //                 a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
-    //                     numeric: true,
-    //                 }) * (sortOrder === 'asc' ? 1 : -1)
-    //             )
-    //         })
-    //         setContacts(sorted)
-    //     }
-    // }
+    const handleSorting = (sortField, sortOrder) => {
+        // console.log('sortField, sortOrder', sortField, sortOrder)
+        if (sortField) {
+            const sorted = [...deals].sort((a, b) => {
+                return (
+                    a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
+                        numeric: true,
+                    }) * (sortOrder === 'asc' ? 1 : -1)
+                )
+            })
+            setDeals(sorted)
+        }
+    }
 
-    // const handleSortingChange = (accessor) => {
-    //     // console.log('accessor', accessor)
-    //     // console.log('sortField', sortField)
-    //     const sortOrder =
-    //         accessor === sortField && order === 'asc' ? 'desc' : 'asc'
+    const handleSortingChange = (accessor) => {
+        // console.log('accessor', accessor)
+        // console.log('sortField', sortField)
+        const sortOrder =
+            accessor === sortField && order === 'asc' ? 'desc' : 'asc'
 
-    //     setSortField(accessor)
-    //     setOrder(sortOrder)
-    //     handleSorting(accessor, sortOrder)
-    // }
+        setSortField(accessor)
+        setOrder(sortOrder)
+        handleSorting(accessor, sortOrder)
+    }
 
     useEffect(() => {
-        fetchContacts()
+        fetchDeals()
         fetchCompaniesNames()
         fetchOwnersNames()
     }, [company, owner])
 
-    // const getKeys = (obj) => {
-    //     let temp = []
-    //     for (const key in obj) {
-    //         if (key == 'nvm') {
+    const getKeys = (obj) => {
+        let temp = []
+        for (const key in obj) {
+            if (key == 'nvm') {
 
-    //         } else {
-    //             temp.push(key)
-    //         }
-    //     }
-    //     setKeyArray(temp)
-    // }
+            } else {
+                temp.push(key)
+            }
+        }
+        setKeyArray(temp)
+        console.log("Keys Array: ", keyArray)
+    }
 
 
-    // const handleContactClick = (id) => {
+    const handleDealClick = (id) => {
 
-    //     navigate(`/contact_profile/${id}`)
+        navigate(`/deal_profile/${id}`)
 
-    // }
+    }
 
-    // const updateCompany = (e) => {
-    //     setCompany(e.target.value)
-    // }
+    const updateCompany = (e) => {
+        setCompany(e.target.value)
+    }
 
-    // const updateOwner = (e) => {
-    //     setOwner(e.target.value)
-    // }
+    const updateOwner = (e) => {
+        setOwner(e.target.value)
+    }
 
     // console.log('companiesNames', companiesNames)
     // console.log('company', company)
@@ -183,40 +190,50 @@ function ContactsPage() {
     // console.log('owner', owner)
 
     // console.log('contacts', contacts)
+
+    // useEffect(() => {
+    //     filterDeals(company, owner)
+    // },[company, owner])
+
+
+
+
+
     return (
         <main>
             <NavLink className='AddNewContact' to='/new_contact'><button>Create a New Deal</button></NavLink>
             <div className='filter'>
                 <label htmlFor='companiesNames'>Choose Company:</label>
-                {/* <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
+                <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
                     <option value="All">All</option>
                     {companiesNames.map((companyName) => {
                         return <option value={companyName}>{companyName}</option>
                     })}
-                </select> */}
+                </select>
 
             </div>
             <div className='filter'>
                 <label htmlFor='owners'>Choose Owner:</label>
-                {/* <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
+                <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
                     <option value="All">All</option>
                     {ownersNames.map((ownersName) => {
                         return <option value={ownersName}>{ownersName}</option>
                     })}
-                </select> */}
+                </select>
 
             </div>
             <table>
                 <caption>DEALS PAGE</caption>
-                {/* <thead>
+                <thead>
                     <tr>
                         {keyArray.map((accessor) => {
                             return (
+                                // onClick = {() => handleSortingChange(accessor)} this goes in the line below
                                 <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
                             )
                         })}
                     </tr>
-                </thead> */}
+                </thead>
                 <tbody>
                     {
                         deals.map(deal => {
@@ -224,12 +241,14 @@ function ContactsPage() {
                                 <tr>
                                     <td>{deal.id}</td>
                                     {/* <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td> */}
-                                    <td>{deal.name}</td>
+                                    <td onClick={() => handleDealClick(deal.id)}>{deal.name}</td>
                                     <td>{deal.product}</td>
-                                    <td>{deal.value}</td>
+                                    <td>{`$${numDisplayer(deal.value)}`}</td>
                                     <td>{deal.stage}</td>
-                                    <td>{deal.status}</td>
-                                    <td>{deal.active}</td>
+                                    <td>{deal.active.toString()}</td>
+                                    <td>{deal.status.toString()}</td>
+                                    <td>{deal.company_name}</td>
+                                    <td>{deal.owner_name}</td>
                                 </tr>
                             )
                         })}
@@ -239,4 +258,4 @@ function ContactsPage() {
 
     )
 }
-export default ContactsPage
+export default DealsPage
