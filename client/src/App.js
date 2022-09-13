@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
 
 
 import CompaniesPage from './Components/CompaniesPage';
+import CompanyCard from './Components/CompanyCard';
 import ContactsPage from './Components/ContactsPage';
 
 import LandingPage from './Components/LandingPage';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/contacts_page" element={<ContactsPage />} />
             <Route path='/contact_profile/:id' element={<ContactCard />}/>
             <Route path="/companies_page" element={<CompaniesPage />} />
+            <Route path="/companies/:id" element={<CompanyCard />}/>
             <Route path="/deals_page" element={<DealsPage />} />
           </Routes > 
         </BrowserRouter>
