@@ -4,14 +4,14 @@ import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
 
 import CompaniesPage from './Components/CompaniesPage';
 import CompanyCard from './Components/CompanyCard';
-import ContactsPage from './Components/ContactsPage';
+import ContactsPage from './Components/Contact/ContactsPage';
 
 import LandingPage from './Components/LandingPage';
 import DealsPage from './Components/DealsPage';
 import Footer from './Components/Footer';
-import ContactCard from './Components/ContactCard';
-import AddNewContact from './Components/AddNewContact';
-import EditContact from './Components/EditContact';
+import ContactCard from './Components/Contact/ContactCard';
+import AddNewContact from './Components/Contact/AddNewContact';
+import EditContact from './Components/Contact/EditContact';
 
 
 

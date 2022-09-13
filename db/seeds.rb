@@ -12,23 +12,9 @@ owner3 = Owner.create!(name: "Will", email: "will@gmail.com", username: "will", 
 owner4 = Owner.create!(name: "Haala", email: "haala@gmail.com", username: "haala", password_digest: "haala")
 owner5 = Owner.create!(name: "Winnie", email: "winnie@gmail.com", username: "winnie", password_digest: "winnie")
 
-puts "Creating company..."
-50.times {
-    company_name = Faker::Company.name
-    Company.create!(
-    name: company_name,
-    address: Faker::Address.full_address,
-    country: Faker::Address.country,
-    industry: Faker::Job.field,
-    linkedin_url: "linkedin.com/#{company_name}",
-    # linkedin_url: "linkedin.com/example",
-    # website: "#{self.name}.com",
-    website: "#{company_name}.com",
-    owner_id: Owner.all.sample.id
-)}
 
 puts "Creating company..."
-20.times {
+5.times {
     company_name = Faker::Company.name
     Company.create!(
     name: company_name,
