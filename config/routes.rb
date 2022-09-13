@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete '/owners/:id', to: 'owners#destroy'
 
   get '/companies', to: 'companies#index'
+  get '/companies/:id', to: 'companies#show'
   get '/companies_names', to: 'companies#names'
   post '/companies', to: 'companies#create'
   patch '/companies/:id', to: 'companies#update'
