@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/companies', to: 'companies#index'
   get '/companies/:id', to: 'companies#show'
   get '/companies_names', to: 'companies#names'
+  get '/companies/:id/contacts', to: 'companies#showcontacts'
   post '/companies', to: 'companies#create'
   patch '/companies/:id', to: 'companies#update'
   delete '/companies/:id', to: 'companies#destroy'
