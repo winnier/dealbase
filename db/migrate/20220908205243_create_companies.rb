@@ -7,7 +7,7 @@ class CreateCompanies < ActiveRecord::Migration[7.0]
       t.string :industry
       t.string :linkedin_url
       t.string :website
-      t.integer :owner_id
+      t.integer :user_id
 
       t.timestamps
     end
