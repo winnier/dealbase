@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    # skip_before_action :verify_authenticity_token
 
         def create
             @user = User.find_by(username: session_params[:username])
@@ -39,6 +40,12 @@ class SessionsController < ApplicationController
               logged_out: true
             }
         end
+
+        # def index
+        #     session[:session_hello] ||= 'World'
+        #     cookies[:cookies_hello] ||= 'World'
+        #     render json: { session: session, cookies: cookies.to_hash }
+        # end
 
     private
 

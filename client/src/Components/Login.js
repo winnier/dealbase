@@ -29,6 +29,7 @@ const Login = ({ handleLogin }) => {
 
 
     return (
+        <div id='tint'>
         <div id='login-container'>
             <h2>Log In</h2>
 
@@ -54,6 +55,7 @@ const Login = ({ handleLogin }) => {
                     or <Link to='/signup'>Sign Up</Link>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

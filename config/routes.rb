@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post '/contacts', to: 'contacts#create'
   patch '/contacts/:id', to: 'contacts#update'
   delete '/contacts/:id', to: 'contacts#destroy'
-  
+
   #Deals
   get '/deals', to: 'deals#index'
   post '/deals', to: 'deals#create'
@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   post '/contact_deals', to: 'contact_deals#create'
   patch '/contact_deals/:id', to: 'contact_deals#update'
   delete '/contact_deals/:id', to: 'contact_deals#destroy'
-
 
   #Users
   post '/user', to: 'users#create'

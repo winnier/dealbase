@@ -33,6 +33,7 @@ function App() {
   const [renderedContacts, setRenderedContacts] = useState([])
   const [renderedCompanies, setRenderedCompanies] = useState([])
   const [renderedDeals, setRenderedDeals] = useState([])
+  const [loginToggle, setLoginToggle] = useState(false)
 
   // const [selectedContactID, setSelectedContactID] = useState(null)
 
@@ -76,6 +77,7 @@ function App() {
           handleDealsClick={handleDealsClick}
         />
         <NavBar/>
+        {loginToggle ? <Login /> : null}
         <Routes > 
           <Route path="/login" element={<Login/>} />
           <Route path="/create_account" element={<CreateAccount/>} />
