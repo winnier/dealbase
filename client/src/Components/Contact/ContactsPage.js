@@ -87,7 +87,7 @@ function ContactsPage(){
         if (sortField) {
             const sorted = [...contacts].sort((a,b) => {
                 return (
-                    a[sortField]?.toString().localeCompare(b[sortField].toString(), 'en', {
+                    a[sortField]?.toString().localeCompare(b[sortField].toString(), 'en', { // add the question mark after the field before the toString()
                         numeric: true,
                     }) * (sortOrder === 'asc' ? 1: -1)
                 )
