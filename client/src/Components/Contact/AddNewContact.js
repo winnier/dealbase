@@ -8,30 +8,26 @@ function AddNewContact() {
     const [linkedin, setLinkedin] = useState("")
     const [company, setCompany] = useState("")
 
-    const onDelete = (id) => {
-        console.log('delete this contact:', id)
-    }
+
 
     const handleContactSubmit = (e) =>{
         e.preventDefault();
         console.log('name:', name, 'email:', email, 'phoneNumber:', phoneNumber, 'linkedin:', linkedin, 'company:', company)
 
-        // fetch(`http://localhost:3000/contacts`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         name: name,
-        //         email: email,
-        //         phone_number: phoneNumber,
-        //         address: address,
-        //         linkedin_url: linkedin,
-        //         company_name: company,
-        //         owner_id: 3
+        fetch(`http://localhost:3000/contacts`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                phone_number: phoneNumber,
+                linkedin_url: linkedin,
+                owner_id: 5
 
-        //     })
-        // })
+            })
+        })
 
     }
     return(
@@ -70,14 +66,14 @@ function AddNewContact() {
                 onChange={(e => setLinkedin(e.target.value))}
                 >
                 </input>
-                <input
+                {/* <input
                 type='text'
                 name='company_name'
                 placeholder='Company'
                 value={company}
                 onChange={(e => setCompany(e.target.value))}
                 >
-                </input>
+                </input> */}
                 <button type='submit'>Add Contact</button>
             </form>
         </div>

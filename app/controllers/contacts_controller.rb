@@ -38,7 +38,7 @@ class ContactsController < ApplicationController
         # companies = Contact.all.uniq{|x| x.company_name}.pluck(:company_name)
         contacts = Contact.all
         names = []
-        contacts.each {|contact| names.push(contact.company.name)}
+        contacts.each {|contact| names.push(contact.company&.name)}
         
         render json: names.uniq
     end
