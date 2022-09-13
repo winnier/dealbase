@@ -200,6 +200,7 @@ function DealsPage() {
 
 
     return (
+<<<<<<< HEAD
         <main>
             <NavLink className='AddNewContact' to='/new_contact'><button>Create a New Deal</button></NavLink>
             <div className='filter'>
@@ -208,6 +209,28 @@ function DealsPage() {
                     <option value="All">All</option>
                     {companiesNames.map((companyName) => {
                         return <option value={companyName}>{companyName}</option>
+=======
+        <div>
+            <table className="page-holder">
+                    <thead>
+                    <tr>
+                        <th onClick={() => handleSort('name')}>Deal Name</th>
+                        <th onClick={() => handleSort('product')}>Product</th>
+                        <th onClick={() => handleSort('value')}>Value</th>
+                        <th onClick={() => handleSort('stage')}>Stage</th>
+                        <th onClick={() => handleSort('associated_company')}>Company Name</th>
+                        <th onClick={() => handleSort('associated_owner')}>DealBase Agent In Charge</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    {showDeals.map((deal) => {
+                        return (
+                                <DealItem
+                                    key={c++}
+                                    deal = {deal}
+                                />
+                        )
+>>>>>>> 6165e1c (initial commit)
                     })}
                 </select>
 
@@ -256,6 +279,10 @@ function DealsPage() {
             </table>
         </main>
 
+<<<<<<< HEAD
     )
 }
 export default DealsPage
+=======
+export default DealsPage
+>>>>>>> 6165e1c (initial commit)
