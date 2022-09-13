@@ -12,6 +12,8 @@ import DealsPage from './Components/DealsPage';
 import ErrorPage from './Components/ErrorPage';
 import Footer from './Components/Footer';
 import ContactCard from './Components/ContactCard';
+import AddNewContact from './Components/AddNewContact';
+import EditContact from './Components/EditContact';
 
 
 import './App.css';
@@ -68,6 +70,8 @@ function App() {
 
   }
 
+
+
   return (
       <div>
         <Header
@@ -79,6 +83,8 @@ function App() {
         <Routes > 
           <Route path="/login" element={<Login/>} />
           <Route path="/create_account" element={<CreateAccount/>} />
+          <Route path='/new_contact' element={<AddNewContact />} />
+          <Route path='/edit_contact' element={<EditContact />} />
           <Route path="/" element={ <LandingPage 
                                         handleContactsClick={handleContactsClick} 
                                         handleCompaniesClick={handleCompaniesClick} 
@@ -96,7 +102,7 @@ function App() {
                                                     // setRenderedContacts = {setRenderedContacts}
                                                 />}   
           />
-          <Route path='/contact_profile/:id' element={<ContactCard/>}/>
+          <Route path='/contact_profile/:id' element={<ContactCard />}/>
 
           <Route path="/companies_page" element={<CompaniesPage 
                                                     // companies ={companies}   

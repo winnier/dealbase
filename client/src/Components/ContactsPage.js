@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import ContactCard from './ContactCard'
 import {useNavigate} from 'react-router-dom'
+import { NavLink } from "react-router-dom"
 
 function ContactsPage(){
 
@@ -147,8 +148,9 @@ function ContactsPage(){
     // console.log('contacts', contacts)
     return(
         <main>
+            <NavLink className='AddNewContact' to='/new_contact'><button>New Contact</button></NavLink>
             <div className='filter'>
-                <label htmlFor='companies'>Choose Company:</label>
+                <label htmlFor='companiesNames'>Choose Company:</label>
                 <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
                     <option value="All">All</option>
                     {companiesNames.map((companyName) => {

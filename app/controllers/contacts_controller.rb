@@ -9,11 +9,15 @@ class ContactsController < ApplicationController
     def create
         contact = Contact.new(contact_params)
         if contact.save
-            render json: deal, status: 201
+            render json: contact, status: 201
         else
+            # render json: {errors: 'this dont work'}
             render json: { errors: contact.errors.full_messages }, status: 422
         end
     end
+    # def build // --> this is just for troubleshooting
+    #     contact = Contact.create(name: params[:name], email: params[:email], phone_number: params[:phone_number], address: [:address], linkedin_url: params[:linkedin_url], company_id: params[:company_id], owner_id: params[:owner_id])
+    # end
 
     def update
         contact = Contact.find_by(id: params[:id])
