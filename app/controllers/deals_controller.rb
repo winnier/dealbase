@@ -32,7 +32,12 @@ class DealsController < ApplicationController
         end
     end
 
-
+    def show_companies
+        deals = Deal.all
+        names = []
+        deals.each {|deal| names.push(deal.company.name)}
+        render json: names.uniq
+    end
 
     private
 
