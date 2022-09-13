@@ -1,18 +1,24 @@
-import { NavLink } from "react-router-dom"
+import { Link } from 'react-router-dom'
+// import '../Style/NavStyling.css'
 
 const NavBar = () => {
     return (
-        <nav className='nav'>
-            <a>
-                <div>DealBase</div>
-            </a>
-            <ul>
-                <NavLink className='NavButton' to='/contacts_page'><button>Contacts</button></NavLink>
-                <NavLink className='NavButton' to='/companies_page'><button>Companies</button></NavLink>
-                <NavLink className='NavButton' to='/deals_page'><button>Deals</button></NavLink>
+        <div className="navbar">
+            <ul className='nav-links'>
+                <li className='hover'>
+                    <Link to="/">Home</Link>
+                </li>
+                <li className='hover'>
+                    <Link to="/contacts_page">Contacts</Link>
+                </li>
+                <li className='hover'>
+                    <Link to='/deals_page'>Deals</Link>
+                </li>
+                <li className='hover'>
+                    <Link to='/companies_page'>Companies</Link>
+                </li>
             </ul>
-
-        </nav>
+        </div>
     )
 }
 

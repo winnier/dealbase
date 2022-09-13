@@ -9,6 +9,11 @@ class CompaniesController < ApplicationController
         render json: names
     end
 
+    def show
+        company = Company.find_by(id: params[:id])
+        render json: company
+    end
+
     def create
         company = Contact.new(company_params)
         if company.save

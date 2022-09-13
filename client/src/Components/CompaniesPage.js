@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import CompanyCard from './CompanyCard';
-// import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const CompaniesPage = ({}) => {
     const [companies, setCompanies] = useState([])
@@ -9,19 +9,19 @@ const CompaniesPage = ({}) => {
     const [sortField, setSortField] = useState('')
     const [order, setOrder] = useState('asc')
 
-    console.log('keyArray',keyArray)
-
+    // console.log('keyArray',keyArray)
+    let navigate = useNavigate()
 
     const fetchCompanies = async () => {
         const response = await fetch(`http://localhost:3000/companies`)
         const companiesArray = await response.json()
         setCompanies(companiesArray)
         getKeys(companiesArray[0])
-        console.log(companiesArray)
+        // console.log(companiesArray)
     }
 
-      const handleSorting = (sortField, sortOrder) => {
-        console.log('sortField, sortOrder', sortField, sortOrder)
+    const handleSorting = (sortField, sortOrder) => {
+        // console.log('sortField, sortOrder', sortField, sortOrder)
         if (sortField) {
             const sorted = [...companies].sort((a,b) => {
                 return (
@@ -32,20 +32,21 @@ const CompaniesPage = ({}) => {
             })
             setCompanies(sorted)
         }
-      }
-      const handleSortingChange = (accessor) => {
-        console.log('accessor', accessor)
-        console.log('sortField', sortField)
+    }
+    const handleSortingChange = (accessor) => {
+        // console.log('accessor', accessor)
+        // console.log('sortField', sortField)
         const sortOrder =
         accessor === sortField && order === 'asc' ? 'desc' : 'asc'
-        console.log('sortOrder',sortOrder)
+        // console.log('sortOrder',sortOrder)
         setSortField(accessor)
         setOrder(sortOrder)
         handleSorting(accessor, sortOrder)
-      }
+    }
+
       useEffect(() => {
         fetchCompanies()
-      },[])
+    },[])
 
     const getKeys = (obj)=> {
         let temp = []
@@ -59,8 +60,8 @@ const CompaniesPage = ({}) => {
     }
 
 
-    const handleCompanyClick = () => {
-        <CompanyCard />
+    const handleCompanyClick = (id) => {
+        navigate(`/companies/${id}`)
     }
 
     console.log('companies', companies)
@@ -82,7 +83,7 @@ const CompaniesPage = ({}) => {
                     return(
                         <tr>
                             <td>{company.id}</td>
-                            <td onClick={handleCompanyClick}>{company.name}</td>
+                            <td onClick={() => handleCompanyClick(company.id)}>{company.name}</td>
                             <td>{company.address}</td>
                             <td>{company.country}</td>
                             <td>{company.industry}</td>

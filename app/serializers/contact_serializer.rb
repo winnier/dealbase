@@ -1,8 +1,6 @@
 class ContactSerializer < ActiveModel::Serializer
-
   attributes :id, :name, :email, :phone_number, :address, :linkedin_url, :company_name, :owner_name
-  # :company_id, :owner_id, :associated_company, :associated_owner, :associated_deals,
-
+  # :company_id, :owner_id, :associated_company, :associated_owner, :associated_deals
 
   def associated_company
     self.object.company.name
@@ -21,5 +19,4 @@ class ContactSerializer < ActiveModel::Serializer
     return arr2
     # extracting just the names of all the deals and returning those
   end
-
 end

@@ -36,42 +36,29 @@ const DealsPage = () => {
 
     return (
         <div>
-            {/* <div>
-                <select onChange={handleSelect}>
-                    <option>{'Select One'}</option>
-                    <option value='Alphabetically'>{'Alphabetically'}</option>
-                    <option value='By Stage'>{'By Stage'}</option>
-                    <option value='By ID'>{'By ID'}</option>
-                </select>
-            </div> */}
-
-            <div>
-                <table className="page-holder">
+            <table className="page-holder">
                     <thead>
-                        <tr>
-                            <th onClick={() => handleSort('name')}>Deal Name</th>
-                            <th onClick={() => handleSort('product')}>Product</th>
-                            <th onClick={() => handleSort('value')}>Value</th>
-                            <th onClick={() => handleSort('stage')}>Stage</th>
-                            <th onClick={() => handleSort('company_id')}>Company Name</th>
-                            <th onClick={() => handleSort('stage')}>Stage</th>
-                        </tr>
+                    <tr>
+                        <th onClick={() => handleSort('name')}>Deal Name</th>
+                        <th onClick={() => handleSort('product')}>Product</th>
+                        <th onClick={() => handleSort('value')}>Value</th>
+                        <th onClick={() => handleSort('stage')}>Stage</th>
+                    </tr>
                     </thead>
-                    <tbody>
-                        {showDeals.map((deal) => {
-                            return (
+                <tbody>
+                    {showDeals.map((deal) => {
+                        return (
                                 <DealItem
                                     key={c++}
                                     name={deal.name}
                                     product={deal.product}
                                     value={deal.value}
                                     stage={deal.stage}
-                                />
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div>
+                                    />
+                        )
+                    })}
+                </tbody>
+            </table>
         </div>
     )   
 }
