@@ -10,7 +10,7 @@ const ContactCard = () => {
     const fetchContact = async () => {
         const response = await fetch(`http://localhost:3000/contacts/${id}`)
         const contactObj = await response.json()
-        console.log(contactObj)
+        console.log('contactObj',contactObj)
         setContact(contactObj)
       }
 
@@ -53,7 +53,7 @@ const ContactCard = () => {
             <h4>Company: {contact.company_name}</h4>
             <h4>Owner: {contact.owner_name}</h4>
             {isEditClicked?
-            <EditContact contact={contact}/> : null}
+            <EditContact contact={contact} setContact={setContact}/> : null}
         </div>
     
     )
