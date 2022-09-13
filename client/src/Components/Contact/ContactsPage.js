@@ -83,11 +83,11 @@ function ContactsPage(){
 
 
       const handleSorting = (sortField, sortOrder) => {
-        // console.log('sortField, sortOrder', sortField, sortOrder)
+        console.log('sortField, sortOrder', sortField, sortOrder)
         if (sortField) {
             const sorted = [...contacts].sort((a,b) => {
                 return (
-                    a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
+                    a[sortField]?.toString().localeCompare(b[sortField].toString(), 'en', {
                         numeric: true,
                     }) * (sortOrder === 'asc' ? 1: -1)
                 )
