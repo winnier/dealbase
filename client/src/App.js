@@ -9,6 +9,7 @@ import DealsPage from './Components/DealsPage';
 import Footer from './Components/Footer';
 import DealCard from './Components/DealCard'
 
+
 import ContactsPage from './Components/Contact/ContactsPage';
 import ContactCard from './Components/Contact/ContactCard';
 import AddNewContact from './Components/Contact/AddNewContact';
@@ -24,6 +25,7 @@ import PipelinePage from './Components/PipelinePage';
 function App() {
   return (
       <div>
+
         <DndProvider backend={HTML5Backend}>
           <BrowserRouter>
             <NavBar />
@@ -42,6 +44,7 @@ function App() {
           </BrowserRouter>
           <Footer />
         </DndProvider>
+
       </div>
 
   );
