@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import CompaniesPage from './CompaniesPage'
+import CompanyCard from './CompanyCard'
 
 const Login = ({ handleLogin }) => {
 
@@ -65,3 +67,4 @@ const Login = ({ handleLogin }) => {
 
 
 export default Login
+

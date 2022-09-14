@@ -38,9 +38,9 @@ Rails.application.routes.draw do
   delete '/contact_deals/:id', to: 'contact_deals#destroy'
 
   #Users
-  post '/user', to: 'users#create'
-  get '/user/:user_id', to: 'users#show'
-  get '/user', to: 'users#index'
+  post '/users', to: 'users#create'
+  get '/users/:user_id', to: 'users#show' 
+  get '/users', to: 'users#index'
 
   #Sessions Login/Logout
   post '/login', to: 'sessions#create'

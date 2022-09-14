@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
     def index
-        render json: Company.all
+        companies = Company.all
+        render json: companies
     end
 
     def names
@@ -48,7 +49,7 @@ class CompaniesController < ApplicationController
             :industry, 
             :linkedin_url, 
             :website,
-            :owner_id
+            :user_id
             )
     end
 

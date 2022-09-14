@@ -1,4 +1,4 @@
-class OwnerSerializer < ActiveModel::Serializer
+class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :associated_contacts, :associated_companies, :associated_deals
 
   def associated_contacts
