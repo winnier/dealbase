@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/deals', to: 'deals#index'
   get '/deals/companies', to: 'deals#show_companies' # this is used in DealsPage
   post '/deals', to: 'deals#create'
+  get '/deals/:id', to: 'deals#show'
   patch '/deals/:id', to: 'deals#update'
   delete '/deals/:id', to: 'deals#destroy'
 

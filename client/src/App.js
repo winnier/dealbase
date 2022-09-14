@@ -8,6 +8,7 @@ import LandingPage from './Components/LandingPage';
 import DealsPage from './Components/DealsPage';
 import Footer from './Components/Footer';
 import DealCard from './Components/DealCard'
+import AddNewDeal from './Components/AddNewDeal'
 
 import ContactsPage from './Components/Contact/ContactsPage';
 import ContactCard from './Components/Contact/ContactCard';
@@ -34,12 +35,13 @@ function App() {
             <Route path="/" element={ <LandingPage />} />
             <Route path="/contacts_page" element={<ContactsPage />} />
             <Route path='/contact_profile/:id' element={<ContactCard />}/>
-            <Route path='/deal_profile/:id' element={<DealCard />}/>
+            <Route path='/deal_profile/:id' element={<DealCard />} />
             <Route path="/companies_page" element={<CompaniesPage />} />
-            <Route path="/companies/:id" element={<CompanyCard />}/>
+            <Route path="/companies/:id" element={<CompanyCard />} />
             <Route path='/new_contact' element={<AddNewContact />} />
             <Route path='/edit_contact' element={<EditContact />} />
             <Route path="/deals_page" element={<DealsPage />} />
+            <Route path='new_deal' element={<AddNewDeal />} />
           </Routes > 
         </BrowserRouter>
         <Footer />

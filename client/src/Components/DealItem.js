@@ -4,7 +4,6 @@ const DealItem = ({ name, product, value, stage }) => {
         if (Math.floor(number) != number) {
             let x = number.toString()
             let numArr = x.split('')
-            console.log(numArr)
             let len = numArr.length
             let a = numArr.indexOf('.')
             for (let pos = a - 1; pos > 0; pos--) {
@@ -21,7 +20,6 @@ const DealItem = ({ name, product, value, stage }) => {
             let x = number.toString()
             console.log(x)
             let numArr = x.split('')
-            console.log(numArr)
             let len = numArr.length
             for (let pos = numArr.length; pos > 0; pos--) {
                 if ((len - pos) % 3 == 0 && len - pos != 0) {

@@ -3,6 +3,11 @@ class DealsController < ApplicationController
         render json: Deal.all
     end
 
+    def show
+        deal = Deal.find_by(id: params[:id])
+        render json: deal
+    end
+
     def create
         deal = Deal.new(deal_params)
         if deal.save
