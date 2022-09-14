@@ -1,6 +1,8 @@
 class ContactSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :phone_number, :address, :linkedin_url, :company_name, :owner_name
+  attributes :id, :name, :email, :phone_number, :address, :linkedin_url, :company_name, :owner_name, :contact_notes
   # :company_id, :owner_id, :associated_company, :associated_owner, :associated_deals
+
+  has_many :contact_notes
 
   def associated_company
     self.object.company.name

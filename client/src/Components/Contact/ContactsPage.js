@@ -116,7 +116,7 @@ function ContactsPage(){
     const getKeys = (obj)=> {
         let temp = []
          for(const key in obj){
-            if(key == 'nvm'){
+            if(key == 'contact_notes'){
                 
             }else{
                 temp.push(key)

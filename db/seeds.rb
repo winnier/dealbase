@@ -28,6 +28,8 @@ puts "Creating company..."
     owner_id: Owner.all.sample.id
 )}
 
+
+
 puts "Making contacts..."
 50.times {
     name = Faker::Name.name
@@ -45,6 +47,21 @@ puts "Making contacts..."
     company_id: Company.all.sample.id,
     owner_id: Owner.all.sample.id 
     )}
+
+
+    puts "Making contact notes..."
+
+    ContactNote.create!(
+        content: "this is fake content I wrote",
+        contact_id: Contact.first.id,
+        owner_id: Owner.third.id
+    )
+
+    ContactNote.create!(
+        content: "this is a second fake note content I wrote",
+        contact_id: Contact.first.id,
+        owner_id: Owner.first.id
+    )
 
 puts "Making deals..."
 50.times {

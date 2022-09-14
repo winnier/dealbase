@@ -6,12 +6,15 @@ const ContactCard = () => {
     let {id} = useParams();
     const [contact, setContact] = useState({})
     const [isEditClicked, setIsEditClicked] = useState(false)
+    const [notes, setNotes] = useState([])
+    const [newNote, setNewNote] = useState("")
 
     const fetchContact = async () => {
         const response = await fetch(`http://localhost:3000/contacts/${id}`)
         const contactObj = await response.json()
         console.log('contactObj',contactObj)
         setContact(contactObj)
+        setNotes(contactObj.contact_notes)
       }
 
     useEffect(() => {
@@ -31,9 +34,24 @@ const ContactCard = () => {
 
 
     }
-    
+    const handleAddNote = (e) => {
+        e.preventDefault()
+        
+        console.log(`you clicked the add note button for ${contact.name}`)
+    }
 
     console.log('isEditClicked', isEditClicked)
+
+
+
+
+
+    
+
+    console.log('notes', notes)
+    console.log('typeof(notes)', typeof(notes))
+    console.log('newNote', newNote)
+
 
     // if (isEditClicked == true) {
     //     console.log('wwttff')
@@ -52,6 +70,20 @@ const ContactCard = () => {
             <h4>Linkedin: {contact.linkedin_url}</h4>
             <h4>Company: {contact.company_name}</h4>
             <h4>Owner: {contact.owner_name}</h4>
+            <form className='form' onClick={handleAddNote}>
+            <textarea className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
+            <button className="button">Add Note</button>
+            </form>
+            <h4 className='notesheader'>All Notes</h4>
+            <ul className='notes'>
+                {notes.map((note) => {
+                    console.log('note', note)
+                    console.log('note.id', note.id)
+                    console.log('typeof(note.created_at)', typeof(note.created_at))
+
+                    return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} note content: ${note.content}`}</li>
+                })}
+            </ul>
             {isEditClicked?
             <EditContact contact={contact} setContact={setContact}/> : null}
         </div>
