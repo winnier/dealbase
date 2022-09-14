@@ -1,7 +1,6 @@
 // import { render } from "react-dom";
 import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
 
-
 import CompaniesPage from './Components/CompaniesPage';
 import CompanyCard from './Components/CompanyCard';
 import ContactsPage from './Components/Contact/ContactsPage';
