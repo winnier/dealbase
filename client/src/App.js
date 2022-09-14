@@ -5,10 +5,11 @@ import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
 import CompaniesPage from './Components/CompaniesPage';
 import CompanyCard from './Components/CompanyCard';
 import LandingPage from './Components/LandingPage';
-import DealsPage from './Components/DealsPage';
 import Footer from './Components/Footer';
-import DealCard from './Components/DealCard'
-import AddNewDeal from './Components/AddNewDeal'
+
+import DealsPage from './Components/Deal/DealsPage';
+import DealCard from './Components/Deal/DealCard'
+import AddNewDeal from './Components/Deal/AddNewDeal'
 
 import ContactsPage from './Components/Contact/ContactsPage';
 import ContactCard from './Components/Contact/ContactCard';

@@ -3,6 +3,11 @@ class ContactDealsController < ApplicationController
         render json: ContactDeal.all
     end
 
+    def show
+        deal = Deal.find_by(id: params[:id])
+        render json: deal.contacts
+    end
+
     def create
         contact_deal = ContactDeal.new(contact_deal_params)
         if contact_deal.save

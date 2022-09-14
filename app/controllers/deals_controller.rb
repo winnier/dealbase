@@ -20,8 +20,8 @@ class DealsController < ApplicationController
     def update
         deal = Deal.find_by(id: params[:id])
         if deal
-            deal.update(deal_params)
-            render json: deal, status: 204
+            deal.update!(deal_params)
+            render json: deal, status: 201
         else
             render json: { error: "Deal not found" }, status: 422
         end
@@ -55,8 +55,10 @@ class DealsController < ApplicationController
             :active, 
             :status,
             :company_id,
-            :owner_id,
-            :comments #alternatively I can add a seprate comments table, that way we can have 
+            :owner_id
+            # :company_name,
+            # :owner_name
+            # :comments #alternatively I can add a seprate comments table, that way we can have 
             # multiple comments per deal, I will ask on Monday, we can dump some of these changes
             )
     end
