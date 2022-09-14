@@ -14,16 +14,12 @@ import ContactCard from './Components/Contact/ContactCard';
 import AddNewContact from './Components/Contact/AddNewContact';
 import EditContact from './Components/Contact/EditContact';
 
-
-
 import './App.css';
 import './Styles/Footer.css';
 // import './Styles/Header.css';
 import './Styles/PageStyle.css';
 import NavBar from './Components/NavBar';
 import PipelinePage from './Components/PipelinePage';
-
-
 
 function App() {
   return (
