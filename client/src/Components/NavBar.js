@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import '../Styles/Navbar.css'
 
-const NavBar = () => {
+const NavBar = ({toggleLogin, setToggleLogin, isLoggedIn, user}) => {
+    
+    const handleLoginClick = () => {
+        setToggleLogin(!toggleLogin)
+    }
+
+
     return (
         <div className="navbar">
             <ul className='nav-links'>
@@ -17,6 +23,11 @@ const NavBar = () => {
                 <li className='hover'>
                     <Link to='/companies_page'>Companies</Link>
                 </li>
+                { isLoggedIn ?  <li className='hover' >{user.name}</li> :
+                <li className='hover' onClick={handleLoginClick}>
+                    Login
+                </li>
+                }   
             </ul>
         </div>
     )

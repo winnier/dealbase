@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom"
 
 function DealsPage() {
 
+<<<<<<< HEAD
     let formatter = (str) => {
         let arr = str.split('')
         for (let i = 0; i < arr.length; i++) {
@@ -22,6 +23,19 @@ function DealsPage() {
             result = result + arr[i]
         }
         return result
+=======
+   
+
+    let c = 0
+    const [deals, setDeals] = useState([])
+    const [showDeals, setShowDeals] = useState([])
+
+    const getDeals = async () => {
+        let req = await fetch('http://localhost:3000/deals')
+        let res = await req.json()
+        // console.log("Response Data: ", res)
+        setDeals(res)
+>>>>>>> 27f83c5 (landing page changes, also added the toggle for the companies)
     }
 
     const numDisplayer = (number) => {
@@ -59,6 +73,7 @@ function DealsPage() {
         }
     }
 
+<<<<<<< HEAD
 
     let navigate = useNavigate()
     const [deals, setDeals] = useState([])
@@ -278,6 +293,51 @@ function DealsPage() {
                 </tbody>
             </table>
         </main>
+=======
+    const [showTable, setShowTable] = useState(true)
+
+
+    return (
+
+        <div>
+            <label class="switch" onClick={setShowTable(!showTable)}>
+                <input type="checkbox"/>
+                <span class="slider"></span>
+            </label>
+
+
+            {showTable? 
+                <table className="page-holder">
+                        <thead>
+                        <tr>
+                            <th onClick={() => handleSort('name')}>Deal Name</th>
+                            <th onClick={() => handleSort('product')}>Product</th>
+                            <th onClick={() => handleSort('value')}>Value</th>
+                            <th onClick={() => handleSort('stage')}>Stage</th>
+                            <th onClick={() => handleSort('associated_company')}>Company Name</th>
+                            <th onClick={() => handleSort('associated_owner')}>DealBase Agent In Charge</th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        {showDeals.map((deal) => {
+                            return (
+                                    <DealItem
+                                        key={c++}
+                                        deal = {deal}
+                                    />
+                            )
+                        })}
+                    </tbody>
+                </table>
+            :
+                <PiplinePage/>
+            }
+
+            
+        </div>
+    )   
+}
+>>>>>>> 27f83c5 (landing page changes, also added the toggle for the companies)
 
 <<<<<<< HEAD
     )
