@@ -4,8 +4,9 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import CompaniesPage from './Components/CompaniesPage';
-import CompanyCard from './Components/CompanyCard';
+
+import CompaniesPage from './Components/Company/CompaniesPage';
+import CompanyCard from './Components/Company/CompanyCard';
 import LandingPage from './Components/LandingPage';
 import Footer from './Components/Footer';
 import Login from './Components/Login'

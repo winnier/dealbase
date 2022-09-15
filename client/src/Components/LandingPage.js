@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import CompanyCard from './CompanyCard'
+import CompanyCard from './Company/CompanyCard'
 
 
 const LandingPage = (user) => {

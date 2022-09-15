@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post '/companies', to: 'companies#create'
   patch '/companies/:id', to: 'companies#update'
   delete '/companies/:id', to: 'companies#destroy'
+  get 'company/:id/deals', to: 'companies#show_deals'
+  get 'company/:id/contacts', to: 'companies#show_all_contacts'
 
   get '/contacts', to: 'contacts#index'
   get '/contacts/companies', to: 'contacts#showcompanies' # this is used in ContactsPage

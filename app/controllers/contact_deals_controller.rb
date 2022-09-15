@@ -9,12 +9,18 @@ class ContactDealsController < ApplicationController
     end
 
     def create
-        contact_deal = ContactDeal.new(contact_deal_params)
-        if contact_deal.save
-            render json: deal, status: 201
-        else
-            render json: { errors: contact_deal.errors.full_messages }, status: 422
+        arr = params[:contact_id_array]
+        deal = Deal.find(params[:deal_id])
+        arr.each do |id|
+            cd = ContactDeal.create!(deal_id: params[:deal_id], contact_id: id, company_id: params[:company_id])
         end
+        render json: deal
+        # contact_deal = ContactDeal.new(contact_deal_params)
+        # if contact_deal.save
+        #     render json: deal, status: 201
+        # else
+        #     render json: { errors: contact_deal.errors.full_messages }, status: 422
+        # end
     end
 
     def update
@@ -39,11 +45,11 @@ class ContactDealsController < ApplicationController
 
     private
 
-    def contact_deals_params
-        params.permit(
-            :contact_id,
-            :deal_id, 
-            :company_id
-            )
-    end
+    # def contact_deals_params
+    #     params.permit(
+    #         :contact_id,
+    #         :deal_id, 
+    #         :company_id
+    #         )
+    # end
 end
