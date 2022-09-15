@@ -3,6 +3,8 @@ import ContactCard from './ContactCard'
 import {useNavigate} from 'react-router-dom'
 import { NavLink } from "react-router-dom"
 import styles from './Contacts.css'
+import WebFont from 'webfontloader';
+
 
 
 function ContactsPage(){
@@ -108,6 +110,14 @@ function ContactsPage(){
         setOrder(sortOrder)
         handleSorting(accessor, sortOrder)
       }
+
+      useEffect(() => {
+        WebFont.load({
+            google: {
+                families: ['Droid Sans', 'Chilanka']
+            }
+        });
+      }, []);
 
       useEffect(() => {
         fetchContacts()
