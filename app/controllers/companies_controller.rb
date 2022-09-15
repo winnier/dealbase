@@ -9,6 +9,16 @@ class CompaniesController < ApplicationController
         render json: names
     end
 
+    def show_deals
+        company = Company.find_by(id: params[:id])
+        render json: company.deals
+    end
+
+    def show_all_contacts
+        company = Company.find_by(id: params[:id])
+        render json: company.contacts
+    end
+
     def show
         company = Company.find_by(id: params[:id])
         render json: company
