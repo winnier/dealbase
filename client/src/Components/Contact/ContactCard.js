@@ -40,7 +40,7 @@ const ContactCard = () => {
     const handleAddNote = (e) => {
         e.preventDefault();
 
-        console.log('content', `${newNote}`)
+        console.log('newNote', `${newNote}`)
         console.log('contact.id', contact.id)
         console.log('owner.id', owner.id)
         console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
@@ -57,14 +57,16 @@ const ContactCard = () => {
             })
         })
         fetchContact()
+        setNewNote("")
         console.log(`you clicked the add note button for ${contact.name}`)
     }
 
-    console.log('isEditClicked', isEditClicked)
 
-    console.log('notes', notes)
+
+    console.log('notes', notes.reverse())
     console.log('typeof(notes)', typeof(notes))
-    console.log('newNote', newNote)
+
+
 
     return (
         
@@ -80,7 +82,7 @@ const ContactCard = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-4 mt-1">
+                    <div className="left col-md-4 mt-1">
                         <div className="card text-center sidebar">
                             <div className="card-body">
                                 <div className="card-text">
@@ -92,17 +94,17 @@ const ContactCard = () => {
                                     <div className="card-text-body">
                                         <h4 className='card-data'>Email: {contact.email}/</h4>
                                         <h4 className="card-data">Phone: {contact.phone_number}</h4>
-                                        <h4 className="card-data">Adress: {contact.address}</h4>
+                                        <h4 className="card-data">Address: {contact.address}</h4>
                                         <h4 className="card-data">Linkedin: {contact.linkedin_url}</h4>
                                         <h4 className="card-data">Company: {contact.company_name}</h4>
                                         <h4 className="card-data">Owner: {contact.owner_name}</h4>
-                                    
+                                        <h4 className="card-data">Deals</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-8 mt-1">
+                    <div className="right col-md-8 mt-1">
                         <div className="card mb-3 content">
                             <div className="card-body">
                                 <div className="row">
@@ -112,11 +114,14 @@ const ContactCard = () => {
                                             {notes.map((note) => {
                                                 return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
                                             })}
+                                            <li>
+                                                <form className='form' >
+                                                    <textarea className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
+                                                    <button className="button" onClick={handleAddNote}>Add Note</button>
+                                                </form>
+                                            </li>
                                         </ul>
-                                        <form className='form' >
-                                            <textarea className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
-                                            <button className="button newNoteInput" onClick={handleAddNote}>Add Note</button>
-                                        </form>
+
 
                                     </div>
                                 </div>
