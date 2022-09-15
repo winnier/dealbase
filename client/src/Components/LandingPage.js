@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import CompanyCard from './CompanyCard'
 
-
 const LandingPage = (user) => {
 
     const [deals, setDeals] = useState([])
@@ -39,13 +38,13 @@ const LandingPage = (user) => {
     }, [])
 
 
-
     const sumValue = (table, columnName) =>{
         let arr = []
         table.forEach((element) => {
             if (!arr.includes(element[columnName])){
                 arr.push(element[columnName])
             }
+        return arr.sumValue
     });    }
 
 
@@ -59,6 +58,8 @@ const LandingPage = (user) => {
 
         return arr.length
     }
+
+    console.log(companies)
 
 
     return (
@@ -77,7 +78,6 @@ const LandingPage = (user) => {
 
                 <div id="your-deals" className='landing-card'>
                     <h1>Companies</h1>
-                      
                         
                 </div>
             </div>
@@ -94,18 +94,18 @@ const LandingPage = (user) => {
                     <p>Number of deals: {deals.length}</p>
                     <p>Total overall earnings: {sumValue()}</p>
                     <p>Total potential earnings: </p>
-                </div>
+               </div>
 
-                <div id="company-deals" className='landing-card'>
+               <div id="company-deals" className='landing-card'>
                     <h1>Companies</h1>
-                    {/* we can rename these things */}
-                    <p>{companies.length} companies across {countUnique(companies, "country")} countries.</p>
-                    <p>Spanning {countUnique(companies, "industry")} industries.</p>
+                   {/* we can rename these things */}
+                   <p>{companies.length} companies across {countUnique(companies, "country")} countries.</p>
+                   <p>Spanning {countUnique(companies, "industry")} industries.</p>
                 </div>
 
-            </div>  
+           </div>  
             
-        </div>
+       </div>
     )
 
 

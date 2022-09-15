@@ -17,24 +17,13 @@ import ContactCard from './Components/Contact/ContactCard';
 import AddNewContact from './Components/Contact/AddNewContact';
 import EditContact from './Components/Contact/EditContact';
 
-
-
+// STYLESHEETS
 import './App.css';
 import './Styles/Footer.css';
-// import './Styles/Header.css';
+// import './Styles/NavBar.css';
 import './Styles/PageStyle.css';
 
 // COMPONENTS
-// import CompaniesPage from './Components/CompaniesPage';
-// import CompanyCard from './Components/CompanyCard';
-// import ContactsPage from './Components/Contact/ContactsPage';
-// import ContactCard from './Components/Contact/ContactCard';
-// import DealsPage from './Components/DealsPage';
-// import DealCard from './Components/DealCard'
-// import AddNewContact from './Components/Contact/AddNewContact';
-// import EditContact from './Components/Contact/EditContact';
-// import LandingPage from './Components/LandingPage';
-// import Footer from './Components/Footer';
 import NavBar from './Components/NavBar';
 import PipelinePage from './Components/PipelinePage'
 

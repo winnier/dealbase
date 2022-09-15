@@ -169,7 +169,7 @@ function ContactsPage(){
                 </select>
 
             </div>
-            <table>
+            <table className="page-holder">
             <caption>CONTACTS PAGE</caption>
             <thead>
                 <tr>
