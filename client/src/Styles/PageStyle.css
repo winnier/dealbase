@@ -1,7 +1,7 @@
-/* .page-holder {
+.page-holder {
     margin: 8%;
     border: 1px solid;
-} */
+}
 
 
 table, tr, td{
@@ -9,13 +9,13 @@ table, tr, td{
 }
 
 tr {
-    /* display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
     gap: 40px;
 }
 
 th {
-    /* width: 100px; */
+    width: 100px;
 }
