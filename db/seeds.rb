@@ -6,11 +6,12 @@ Deal.destroy_all
 ContactDeal.destroy_all
 
 puts "Making owners..."
-owner1 =  Owner.create!(name: "Aaron", email: "aaron@gmail.com", username: "aaron", password_digest: "aaron")
-owner2 = Owner.create!(name: "Antonio", email: "antonio@gmail.com", username: "antonio", password_digest: "antonio")
-owner3 = Owner.create!(name: "Will", email: "will@gmail.com", username: "will", password_digest: "will")
-owner4 = Owner.create!(name: "Haala", email: "haala@gmail.com", username: "haala", password_digest: "haala")
-owner5 = Owner.create!(name: "Winnie", email: "winnie@gmail.com", username: "winnie", password_digest: "winnie")
+owner1 = Owner.create!(name: "Aaron", email: "aaron@gmail.com", username: "aaron", password_digest: BCrypt::Password.create("aaron"))
+owner2 = Owner.create!(name: "Antonio", email: "antonio@gmail.com", username: "antonio", password_digest: BCrypt::Password.create("antonio"))
+owner3 = Owner.create!(name: "Will", email: "will@gmail.com", username: "will", password_digest: BCrypt::Password.create("will"))
+owner4 = Owner.create!(name: "Haala", email: "haala@gmail.com", username: "haala", password_digest: BCrypt::Password.create("haala"))
+owner5 = Owner.create!(name: "Winnie", email: "winnie@gmail.com", username: "winnie", password_digest: BCrypt::Password.create("winnie"))
+
 
 
 puts "Creating company..."

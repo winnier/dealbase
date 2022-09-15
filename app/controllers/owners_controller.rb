@@ -1,45 +1,53 @@
 class OwnersController < ApplicationController
+
     def index
-        render json: Owner.all
+        @owners = Owner.all
+        if @owners
+            render json: {
+            owners: @owners
+            }
+        else
+            render json: {
+                status: 500,
+                errors: ['No users found']
+            }
+        end
     end
 
-    def shownames
-        owners = Owner.all.pluck(:name)
-        render json: owners
+    def show
+        @owner = Owner.find_by!(params[:id])
+         if @owner
+            render json: {
+            owner: @owner
+            }
+         else 
+            render json: {
+            status: 500,
+            erros: ['User not found']
+            }
+         end
     end
 
     def create
-        owner = Owner.new(owner_params)
-        if owner.save
-            render json: owner, status: 201
+        @owner = Owner.new(user_params)
+        if @owner.save
+            login!
+            render json: {
+            status: :created,
+            owner: @owner
+            }
         else
-            render json: { errors: owner.errors.full_messages }, status: 422
-        end
-    end
-
-    def update
-        owner = Owner.find_by(id: params[:id])
-        if owner
-            owner.update(owner_params)
-            render json: owner, status: 204
-        else
-            render json: { error: "Owner not found" }, status: 422
-        end
-    end
-
-    def destroy
-        owner = Owner.find_by(id: params[:id])
-        if owner
-            owner.destroy
-            render json: {}, status: 200
-        else
-            render json: { error: "Owner not found" }, status: 404
+            render json: {
+            status: 500,
+            errors: @owner.errors.full_messages
+            }
         end
     end
 
     private
 
-    def owner_params
-        params.permit(:name, :email, :username, :password_digest)
+    def user_params
+        params.require(:owner).permit(:username, :password, :password_confirmation)
     end
+
 end
