@@ -44,18 +44,22 @@ const Login = ({ setUser, setIsLoggedIn }) => {
                     name="username"
                     onChange={(e) => handleChange(e.target.name, e.target.value)}
                 />
+
                 <h3>Password</h3>
+               
                 <input
                     paceholder="password"
                     type="password"
                     name="password"
                     onChange={(e) => handleChange(e.target.name, e.target.value)}
                 />
+
                 <NavLink to="/">
                     <button placeholder='submit' type='submit'>Log In</button>
                 </NavLink>
-                <div>
-                    or <Link to='/signup'>Sign Up</Link>
+
+                <div id="signup-sentence">
+                    or <Link id="signup-link"to='/signup'>Sign Up</Link>
                 </div>
             </form>
         </div>
