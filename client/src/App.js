@@ -26,7 +26,7 @@ import './Styles/Footer.css';
 import './Styles/LandingPage.css';
 import './Styles/PageStyle.css';
 import './Styles/Login.css';
-
+import './Styles/DealsToggle.css'
 
 // COMPONENTS
 import NavBar from './Components/NavBar';

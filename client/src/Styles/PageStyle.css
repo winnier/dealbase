@@ -1,12 +1,12 @@
 .page-holder {
-    margin: 8%;
+    margin: 0% 8%;
 }
 
 
 th {
     border-bottom: 1px solid rgb(134, 132, 132);
     background-color: rgb(226, 226, 226);
-    color: whatever;
+    height: 2em;
 }
 
 
@@ -16,6 +16,31 @@ td {
 }
 
 body tr:hover {
-    background-color: grey;
+    background-color: #dae3ee;
 } 
 
+
+.filter {
+    margin: 2% auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.filter label{
+    margin-bottom: 6px;
+}
+
+
+.chooseBox{
+    border: 1px transparent;
+    border-radius: 4px;
+    background-color: #dae3ee;
+    text-align: center;
+}
+
+.chooseBox option:hover{
+    background-color: #dae3ee;
+    text-align: center;
+}
