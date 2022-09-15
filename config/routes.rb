@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/deals', to: 'deals#index'
   get '/deals/companies', to: 'deals#show_companies' # this is used in DealsPage
   post '/deals', to: 'deals#create'
+  get '/deals/:id', to: 'deals#show'
   patch '/deals/:id', to: 'deals#update'
   delete '/deals/:id', to: 'deals#destroy'
 
@@ -35,5 +36,6 @@ Rails.application.routes.draw do
   get '/contact_notes', to: 'contact_notes#index'
   get '/contact_notes/:id', to: 'contact_notes#show'
   post '/contact_notes', to: 'contact_notes#create'
+  get '/contact/:id/deals', to: 'contact_deals#show'
 
 end

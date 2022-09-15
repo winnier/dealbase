@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import ContactCard from './Contact/ContactCard'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from "react-router-dom"
 
@@ -99,18 +98,6 @@ function DealsPage() {
         getKeys(dealsArray[0])
     }
 
-    // const filterDeals = (company, owner) => {
-    //     if (company == "All" && owner == "All") {
-    //         setDeals([...deals])
-    //     } else if (company !== "All" && owner == "All") {
-    //         setDeals([...deals].filter(deal => deal.company_name == company))
-    //     } else if (company == "All" && owner !== "All") {
-    //         setDeals([...deals].filter(deal => deal.owner_name == owner))
-    //     } else if (company !== "All" && owner !== "All") {
-    //         setDeals([...deals].filter(deal => deal.owner_name == owner && deal.company_name == company))
-    //     }
-    // }
-
     const fetchCompaniesNames = async () => {
         const response = await fetch(`http://localhost:3000/deals/companies`)
         const companiesNamesArray = await response.json()
@@ -171,9 +158,7 @@ function DealsPage() {
 
 
     const handleDealClick = (id) => {
-
         navigate(`/deal_profile/${id}`)
-
     }
 
     const updateCompany = (e) => {
@@ -184,24 +169,9 @@ function DealsPage() {
         setOwner(e.target.value)
     }
 
-    // console.log('companiesNames', companiesNames)
-    // console.log('company', company)
-    // console.log('ownersNames', ownersNames)
-    // console.log('owner', owner)
-
-    // console.log('contacts', contacts)
-
-    // useEffect(() => {
-    //     filterDeals(company, owner)
-    // },[company, owner])
-
-
-
-
-
     return (
         <main>
-            <NavLink className='AddNewContact' to='/new_contact'><button>Create a New Deal</button></NavLink>
+            <NavLink className='AddNewContact' to='/new_deal'><button>Create a New Deal</button></NavLink>
             <div className='filter'>
                 <label htmlFor='companiesNames'>Choose Company:</label>
                 <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
