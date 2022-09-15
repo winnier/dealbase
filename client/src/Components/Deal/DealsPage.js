@@ -246,7 +246,11 @@ function DealsPage() {
         <PipelinePage/>
 
         }
+<<<<<<< HEAD
     </div>
+=======
+        </div>
+>>>>>>> 05a9e42 (commit)
     )
 }
 export default DealsPage
