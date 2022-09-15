@@ -43,6 +43,8 @@
     border: 1px solid black;
     box-sizing: border-box;
     border-radius: 15px;;
+    box-shadow: 5px 5px black;
+
 }
 
 .landing-card p {

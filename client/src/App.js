@@ -56,6 +56,9 @@ function App() {
               <Route path="/deals_page" element={<DealsPage />} />
               <Route path="/pipeline_page" element={<PipelinePage />} />
               <Route path='new_deal' element={<AddNewDeal />} />
+              <Route path='login' element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn}/>} />
+
+
             </Routes > 
           </BrowserRouter>
           <Footer />
