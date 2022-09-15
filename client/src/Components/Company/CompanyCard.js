@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import RenderCompanyDeals from './RenderCompanyDeals'
-import RenderCompanyContacts from './RenderCompanyContacts'
-import EditCompany from './EditCompany'
+import { useParams } from "react-router-dom";
 
 const CompanyCard = () => {
 
     let {id} = useParams();
     const [company, setCompany] = useState({})
-    let navigate = useNavigate()
-
-
-    const backToCompanies = () => {
-        navigate('/companies_page')
-    }
 
     const fetchCompany = async () => {
         const response = await fetch(`http://localhost:3000/companies/${id}`)
@@ -26,78 +17,9 @@ const CompanyCard = () => {
         fetchCompany()
     }, [])
 
-    const handleCompanyDeleteClick = () => {
-        fetch(`http://localhost:3000/companies/${id}`, {
-            method: "DELETE",
-        })
-            .then(alert('Company has been deleted'))
-        backToCompanies()
-    }
-
-    let [companyDealsArray, setCompanyDealsArray] = useState([])
-
-    const fetchCompanyDeals = async () => {
-        const req = await fetch(`http://localhost:3000/company/${id}/deals`)
-        const res = await req.json()
-        console.log(res)
-        setCompanyDealsArray(res)
-    }
-
-    useEffect(() => {
-        fetchCompanyDeals()
-    },[])
-
-    let c = 0
-
-    let [companyContactsArray, setCompanyContactsArray] = useState([])
-
-    const fetchCompanyContacts = async () => {
-        const req = await fetch(`http://localhost:3000/company/${id}/contacts`)
-        const res = await req.json()
-        console.log(res)
-        setCompanyContactsArray(res)
-    }
-
-    useEffect(() => {
-        fetchCompanyContacts()
-    },[])
-
-
-
-
-
-
-
-
-
-
-
-
-    let [dealShow, setDealShow] = useState(false)
-
-    let dealSwitch = () => {
-        setDealShow(!dealShow)
-        console.log(dealShow)
-    }
-
-    let [contactShow, setContactShow] = useState(false)
-
-    let contactSwitch = () => {
-        setContactShow(!contactShow)
-    }
-
-
-    let [editState, setEditState] = useState(false)
-    let editClick = () => {
-        setEditState(!editState)
-        console.log(editState)
-    }
-
-
-
     return(
         <div className="details-card">
-            <h2>{company.name}</h2>
+            <h5>{company.name}</h5>
             <p>Company Id: {company.id}</p>
             <p>Company Address: {company.address}</p>
             <p>Country: {company.country}</p>
