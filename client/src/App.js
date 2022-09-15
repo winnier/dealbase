@@ -32,6 +32,7 @@ import './Styles/DealsToggle.css'
 // COMPONENTS
 import NavBar from './Components/NavBar';
 import PipelinePage from './Components/PipelinePage'
+import ErrorPage from './Components/ErrorPage';
 
 
 
@@ -60,6 +61,7 @@ function App() {
               <Route path="/pipeline_page" element={<PipelinePage />} />
               <Route path='new_deal' element={<AddNewDeal />} />
               <Route path='login' element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn}/>} />
+              <Route path='*' element={<ErrorPage/>} />
 
 
             </Routes > 
