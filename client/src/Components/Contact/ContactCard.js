@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
+import { useParams, NavLink, useNavigate } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
 import EditContact from "./EditContact";
+import RenderDeals from './RenderDeals'
+import AddAssociatedDeals from './AddAssociatedDeals'
 
 const ContactCard = () => {
     let {id} = useParams();
@@ -14,7 +16,7 @@ const ContactCard = () => {
     const fetchContact = async () => {
         const response = await fetch(`http://localhost:3000/contacts/${id}`)
         const contactObj = await response.json()
-        console.log('contactObj',contactObj)
+        // console.log('contactObj',contactObj)
         setContact(contactObj)
         setNotes(contactObj.contact_notes)
       }
@@ -38,10 +40,10 @@ const ContactCard = () => {
     const handleAddNote = (e) => {
         e.preventDefault();
 
-        console.log('content', `${newNote}`)
-        console.log('contact.id', contact.id)
-        console.log('owner.id', owner.id)
-        console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
+        // console.log('content', `${newNote}`)
+        // console.log('contact.id', contact.id)
+        // console.log('owner.id', owner.id)
+        // console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
 
         fetch(`http://localhost:3000/contact_notes`, {
             method: "POST",
@@ -55,20 +57,53 @@ const ContactCard = () => {
             })
         })
         fetchContact()
-        console.log(`you clicked the add note button for ${contact.name}`)
+        // console.log(`you clicked the add note button for ${contact.name}`)
     }
 
-    console.log('isEditClicked', isEditClicked)
+    // console.log('isEditClicked', isEditClicked)
 
-    console.log('notes', notes)
-    console.log('typeof(notes)', typeof(notes))
-    console.log('newNote', newNote)
+    // console.log('notes', notes)
+    // console.log('typeof(notes)', typeof(notes))
+    // console.log('newNote', newNote)
+
+    let [dealState, setDealState] = useState(false)
+    let dealSwitch = () => {
+        setDealState(!dealState)
+    }
+
+    let [contactDealsArray, setContactDealsArray] = useState([])
+
+    const fetchContactDeals = async () => {
+        const req = await fetch(`http://localhost:3000/contact_to/${id}/deals`)
+        const res = await req.json()
+        console.log(res)
+        setContactDealsArray(res)
+    }
+
+    useEffect(() => {
+        fetchContactDeals()
+    }, [])
+    
+    let c = 0
+
+    let navigate = useNavigate()
+
+
+    const backToContacts = () => {
+        navigate('/contacts_page')
+    }
+
+    let [associateDeals, setAssociateDeals] = useState(false)
+
+    let flipDealSwitch = () => {
+        setAssociateDeals(!associateDeals)
+    }
+
 
     return (
         
         <div>
-            <button onClick={handleContactDeleteClick}>Delete Contact</button>
-            <button onClick={handleEditClick}>Edit Contact</button>
+            
             {/* <NavLink className='editContact' to="/edit_contact"><button>Edit Contact</button></NavLink> */}
             {/* <NavLink className='editContact' to="/edit_contact" state={{ from: "ContactCard"}}><button>Edit Contact</button></NavLink> */}
             <h4>Name: {contact.name}</h4>
@@ -88,8 +123,19 @@ const ContactCard = () => {
                     return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} note content: ${note.content}`}</li>
                 })}
             </ul>
-            {isEditClicked?
-            <EditContact fetchContact={fetchContact} contact={contact} setContact={setContact}/> : null}
+            <button onClick={handleContactDeleteClick}>Delete Contact</button>
+            <button onClick={handleEditClick}>Edit Contact</button>
+            {isEditClicked? <EditContact id={id} fetchContact={fetchContact} contact={contact} setContact={setContact}/> : null}
+
+            <button onClick={() => dealSwitch()}>View Associated Deals</button>
+            {dealState ? contactDealsArray.map((deal) => { return <RenderDeals key={c++} name={deal.name} product={deal.product} value={deal.value} stage={deal.stage} status={deal.status} company_name={deal.company_name} owner_name={deal.owner_name} /> }) : null}
+
+            <button onClick={() => flipDealSwitch()}>Add Associated Deals</button>
+
+            {associateDeals ? <AddAssociatedDeals /> : null}
+
+            <button onClick={() => backToContacts()}>{'Back to Contacts'}</button>
+
         </div>
     
     )

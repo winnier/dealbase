@@ -59,13 +59,7 @@ function ContactsPage(){
         } else if (company !== "All" && owner !== "All") {
             setContacts(contactsArray.filter(contact => contact.owner_name == owner && contact.company_name == company))
         }
-        //--
-        // company == "All" ? 
-        // setContacts(contactsArray)
-        // :
-        // setContacts(contactsArray.filter(comp => comp.company_name == company))
-
-        //--
+    
 
         getKeys(contactsArray[0])
       }
