@@ -54,7 +54,7 @@ const ContactCard = () => {
                 owner_id: owner.id
             })
         })
-        
+        fetchContact()
         console.log(`you clicked the add note button for ${contact.name}`)
     }
 
@@ -89,7 +89,7 @@ const ContactCard = () => {
                 })}
             </ul>
             {isEditClicked?
-            <EditContact contact={contact} setContact={setContact}/> : null}
+            <EditContact fetchContact={fetchContact} contact={contact} setContact={setContact}/> : null}
         </div>
     
     )
