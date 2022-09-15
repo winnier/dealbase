@@ -192,7 +192,7 @@ function DealsPage() {
                 </select>
 
             </div>
-            <table>
+            <table className="page-holder">
                 <caption>DEALS PAGE</caption>
                 <thead>
                     <tr>

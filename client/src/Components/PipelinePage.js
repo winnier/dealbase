@@ -6,6 +6,7 @@ import { data, statuses } from "../data";
 import '../Styles/Pipeline.css';
 
 const PipelinePage = () => {
+    
     const [items, setItems] = useState(data);
 
     const onDrop = (item, monitor, status) => {
