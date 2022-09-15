@@ -1,7 +1,7 @@
 // import { render } from "react-dom";
 import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
-// import { DndProvider } from "react-dnd";
-// import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
 import CompaniesPage from './Components/CompaniesPage';
@@ -37,13 +37,13 @@ import './Styles/PageStyle.css';
 // import LandingPage from './Components/LandingPage';
 // import Footer from './Components/Footer';
 import NavBar from './Components/NavBar';
-// import PipelinePage from './Components/PipelinePage'
+import PipelinePage from './Components/PipelinePage'
 
 function App() {
 
   return (
       <div>
-        {/* <DndProvider backend={HTML5Backend}> */}
+        <DndProvider backend={HTML5Backend}>
           <BrowserRouter>
             <NavBar />
             <Routes > 
@@ -56,12 +56,12 @@ function App() {
               <Route path='/new_contact' element={<AddNewContact />} />
               <Route path='/edit_contact' element={<EditContact />} />
               <Route path="/deals_page" element={<DealsPage />} />
-              {/* <Route path="/pipeline_page" element={<PipelinePage />} /> */}
+              <Route path="/pipeline_page" element={<PipelinePage />} />
               <Route path='new_deal' element={<AddNewDeal />} />
             </Routes > 
           </BrowserRouter>
           <Footer />
-        {/* </DndProvider> */}
+        </DndProvider>
         <Footer />
       </div>
 
