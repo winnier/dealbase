@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from "react-router-dom"
+import PipelinePage from '../PipelinePage'
 
 function DealsPage() {
 
@@ -72,6 +73,8 @@ function DealsPage() {
 
     const [ownersNames, setOwnersNames] = useState([])
     const [owner, setOwner] = useState("All")
+    const [showTable, setShowTable] = useState(true)
+
 
 
 
@@ -169,63 +172,81 @@ function DealsPage() {
         setOwner(e.target.value)
     }
 
+    const clickToggle = ()=> {
+        console.log("I'm clicked")
+        setShowTable(!showTable)
+    }
+
     return (
-        <main>
-            <NavLink className='AddNewContact' to='/new_deal'><button>Create a New Deal</button></NavLink>
-            <div className='filter'>
-                <label htmlFor='companiesNames'>Choose Company:</label>
-                <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
-                    <option value="All">All</option>
-                    {companiesNames.map((companyName) => {
-                        return <option value={companyName}>{companyName}</option>
-                    })}
-                </select>
+        <div>
+            <label className="switch" onChange={clickToggle}>
+                <input type="checkbox"/>
+                <span className="slider"></span>
+            </label>
 
-            </div>
-            <div className='filter'>
-                <label htmlFor='owners'>Choose Owner:</label>
-                <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
-                    <option value="All">All</option>
-                    {ownersNames.map((ownersName) => {
-                        return <option value={ownersName}>{ownersName}</option>
-                    })}
-                </select>
+            {showTable ? 
+                <main>
+                    <NavLink className='AddNewContact' to='/new_deal'><button>Create a New Deal</button></NavLink>
+                    <div className='filter'>
+                        <label htmlFor='companiesNames'>Choose Company:</label>
+                        <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
+                            <option value="All">All</option>
+                            {companiesNames.map((companyName) => {
+                                return <option value={companyName}>{companyName}</option>
+                            })}
+                        </select>
 
-            </div>
-            <table className="page-holder">
-                <caption>DEALS PAGE</caption>
-                <thead>
-                    <tr>
-                        {keyArray.map((accessor) => {
-                            return (
-                                // onClick = {() => handleSortingChange(accessor)} this goes in the line below
-                                <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
-                            )
-                        })}
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        deals.map(deal => {
-                            return (
-                                <tr>
-                                    <td>{deal.id}</td>
-                                    {/* <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td> */}
-                                    <td onClick={() => handleDealClick(deal.id)}>{deal.name}</td>
-                                    <td>{deal.product}</td>
-                                    <td>{`$${(deal.value)}`}</td>
-                                    <td>{deal.stage}</td>
-                                    <td>{deal.active.toString()}</td>
-                                    <td>{deal.status.toString()}</td>
-                                    <td>{deal.company_name}</td>
-                                    <td>{deal.owner_name}</td>
-                                </tr>
-                            )
-                        })}
-                </tbody>
-            </table>
-        </main>
+                    </div>
+                    <div className='filter'>
+                        <label htmlFor='owners'>Choose Owner:</label>
+                        <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
+                            <option value="All">All</option>
+                            {ownersNames.map((ownersName) => {
+                                return <option value={ownersName}>{ownersName}</option>
+                            })}
+                        </select>
 
+                    </div>
+                    <table className="page-holder">
+                        <caption>DEALS PAGE</caption>
+                        <thead>
+                            <tr>
+                                {keyArray.map((accessor) => {
+                                    return (
+                                        // onClick = {() => handleSortingChange(accessor)} this goes in the line below
+                                        <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
+                                    )
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                deals.map(deal => {
+                                    return (
+                                        <tr>
+                                            <td>{deal.id}</td>
+                                            {/* <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td> */}
+                                            <td onClick={() => handleDealClick(deal.id)}>{deal.name}</td>
+                                            <td>{deal.product}</td>
+                                            <td>{`$${numDisplayer(deal.value)}`}</td>
+                                            <td>{deal.stage}</td>
+                                            <td>{deal.active.toString()}</td>
+                                            <td>{deal.status.toString()}</td>
+                                            <td>{deal.company_name}</td>
+                                            <td>{deal.owner_name}</td>
+                                        </tr>
+                                    )
+                                })}
+                        </tbody>
+                    </table>
+                </main>
+
+        :
+
+        <PipelinePage/>
+
+        }
+    </div>
     )
 }
 export default DealsPage
