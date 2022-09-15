@@ -93,6 +93,7 @@ console.log()
     }
 
 
+    console.log(user)
     return (
         <div className="landing-page">
             <h1>{user.name}'s Dashboard</h1>
