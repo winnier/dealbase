@@ -45,11 +45,11 @@ const EditDeal = ( {id, fetchDeal} ) => {
 
     const updateProduct = async (e) => {
         e.preventDefault()
-        let new_quantity = e.target[0].value
+        let newProduct = e.target[0].value
         let req = await fetch(`http://localhost:3000/deals/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
-                quantity: new_quantity
+                product: newProduct
             }),
             headers: {
                 'Content-type': 'application/json'
@@ -61,8 +61,14 @@ const EditDeal = ( {id, fetchDeal} ) => {
     }
 
 
+
     const updateCompany = async (e) => {
         e.preventDefault()
+        console.log(e.target)
+        console.log('Logging: ', e.target[0].value)
+        let x = e.target[0].value
+        console.log(typeof x)
+
         let newCompany
         for (let i = 0; i < companiesArray.length; i++) {
             if (e.target[0].value == companiesArray[i].name) {
@@ -85,11 +91,11 @@ const EditDeal = ( {id, fetchDeal} ) => {
 
     const updateStage = async (e) => {
         e.preventDefault()
-        let new_price = e.target[0].value
+        let newStage = e.target[0].value
         let req = await fetch(`http://localhost:3000/deals/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
-                price: new_price
+                stage: newStage
             }),
             headers: {
                 'Content-type': 'application/json'
@@ -102,11 +108,11 @@ const EditDeal = ( {id, fetchDeal} ) => {
 
     const updateStatus = async (e) => {
         e.preventDefault()
-        let new_status = e.target[0].value
+        let newStatus = e.target[0].value
         let req = await fetch(`http://localhost:3000/deals/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
-                price: new_status
+                status: newStatus
             }),
             headers: {
                 'Content-type': 'application/json'
@@ -151,10 +157,9 @@ const EditDeal = ( {id, fetchDeal} ) => {
                 <input type="submit" value="Update Product" />
             </form>
             <form onSubmit={updateCompany}>
-                <input type="text" placeholder="Update Company" />
                 <select>
                     {companiesArray.map((company) => {
-                        return <option value={company}>{company.name}</option>
+                        return <option value={company.name}>{company.name}</option>
                     })}
                 </select>
                 <input type="submit" value="Update Company" />
@@ -191,7 +196,7 @@ const EditDeal = ( {id, fetchDeal} ) => {
                         <option value='Will'>{'Will'}</option>
                         <option value='Winnie'>{'Winnie'}</option>
                     </select>
-                    <input type="submit" value="Update Status" />
+                    <input type="submit" value="Update Owner" />
                 </label>
             </form>
         </div>
