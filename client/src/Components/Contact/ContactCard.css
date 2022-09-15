@@ -7,6 +7,14 @@ body{
     background-color: rgba(50, 63, 78, 1)
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
 .main{
     padding: 15px;
     font-family: 'DM Sans';
@@ -71,7 +79,6 @@ body{
     width: 30%;
     height: 50px;
     margin-top: 20px;
-
 }
 
 .col-md-3{

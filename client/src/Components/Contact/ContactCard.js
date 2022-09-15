@@ -3,6 +3,7 @@ import { useParams, NavLink } from "react-router-dom"; // this lets you destruct
 import EditContact from "./EditContact";
 import styles from './ContactCard.css'
 import WebFont from 'webfontloader';
+import PersonIcon from '@mui/icons-material/Person';
 
 const ContactCard = () => {
     let {id} = useParams();
@@ -18,7 +19,8 @@ const ContactCard = () => {
         const contactObj = await response.json()
         console.log('contactObj',contactObj)
         setContact(contactObj)
-        setNotes(contactObj.contact_notes)
+        let reverseOrderNotes = contactObj.contact_notes.reverse()
+        setNotes(reverseOrderNotes)
       }
 
     useEffect(() => {
@@ -62,8 +64,8 @@ const ContactCard = () => {
     }
 
 
-
-    console.log('notes', notes.reverse())
+    console.log('notes', notes)
+    console.log('notes.reverse()', notes.reverse())
     console.log('typeof(notes)', typeof(notes))
 
 
@@ -85,6 +87,8 @@ const ContactCard = () => {
                     <div className="left col-md-4 mt-1">
                         <div className="card text-center sidebar">
                             <div className="card-body">
+                            <span class="material-symbols-outlined"></span>
+                                {/* <img src="imageplaceholder.jpg" alt="profile image" class="profile__image"></img> */}
                                 <div className="card-text">
                                     <div className="card-text-head">
                                         <h3 className="card-data">{contact.name}</h3>
@@ -109,17 +113,17 @@ const ContactCard = () => {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-md-3">
-                                        <h4 className='notesheader'>All Notes</h4>
                                         <ul className='notes'>
-                                            {notes.map((note) => {
-                                                return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
-                                            })}
+                                        <h4 className='notesheader'>All Notes</h4>
                                             <li>
                                                 <form className='form' >
                                                     <textarea className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
                                                     <button className="button" onClick={handleAddNote}>Add Note</button>
                                                 </form>
                                             </li>
+                                            {notes.map((note) => {
+                                                return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
+                                            })}
                                         </ul>
 
 
