@@ -1,0 +1,62 @@
+body{
+    margin-top: 20px;
+    background-color: lightgrey;
+}
+
+.main{
+    padding: 15px;
+    font-family: 'DM Sans';
+}
+
+.sidebar{
+    background-color: rgba(211, 211, 211);
+    color: rgb(50, 63, 78)
+}
+
+.sidebar .card-text-head h3{
+    margin-bottom: -20px;
+}
+.sidebar .card-data {
+    margin-left: 20px;
+    padding-left: 10px;
+    display: block;
+    color: white;
+    padding-bottom: 10px;
+    text-decoration: none;
+}
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    background-color: red;
+}
+
+.card-data{
+    font-family: Montserrat;
+}
+
+.note{
+    font-family: Montserrat;
+}
+
+.newNoteInput{
+    font-family: Montserrat;
+}
+
+.col-md-3{
+    font-family: 'DM Sans';
+    padding: 15px;
+}
+
+.button{
+    margin: 15px;
+    font-family: 'DM Sans';
+}
+
+.card-text-head h1{
+    margin-bottom: -20px;
+}
