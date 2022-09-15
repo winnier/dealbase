@@ -30,9 +30,12 @@ const AddNewDeal = () => {
     let fetchContacts = async () => {
         let req = await fetch('http://localhost:3000/contacts')
         let res = await req.json()
+<<<<<<< HEAD
         res = res.sort((a,b) => {
             return (a.name < b.name ? -1 : 1)
         })
+=======
+>>>>>>> a49c2f1 (working on submitting a new deal)
         setContactsArray(res)
         // console.log("Contacts: ", res)
     }
@@ -40,6 +43,7 @@ const AddNewDeal = () => {
         fetchContacts()
     }, [])
 
+<<<<<<< HEAD
     const handleDealSubmit = async (e) => {
         e.preventDefault();
         let newName = e.target[0].value
@@ -62,9 +66,34 @@ const AddNewDeal = () => {
             if (e.target[8].options[i].selected == true) {
                 contactsIDArray.push(e.target[8].options[i].value)
             }
+=======
+    const handleDealSubmit = (e) => {
+        e.preventDefault();
+        let name = e.target[0].value
+        let product = e.target[1].value
+        let value = e.target[2].value
+        let stage = e.target[3].value
+        let active = e.target[4].value
+        let stat = e.target[5].value
+        let selectedContacts = e.target[6].value
+        // let company = e.target[6].value
+        // let owner = e.target[7].value
+
+        console.log(e.target[6])
+        console.log(e.target[6].options)
+        console.log(e.target[6].value)
+
+        stage = parseInt(stage)
+        value = parseInt(value)
+        if (active == 'Yes') {
+            active = true
+        } else if (active == 'No') {
+            active = false
+>>>>>>> a49c2f1 (working on submitting a new deal)
         }
         console.log(contactsIDArray)
 
+<<<<<<< HEAD
         // stage = parseInt(stage)
         // value = parseInt(value)
         // if (active == 'Yes') {
@@ -130,6 +159,32 @@ const AddNewDeal = () => {
             })
             let res2 = await req2.json()
             console.log(res2)
+=======
+        // fetch(`http://localhost:3000/deals`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         name: name,
+        //         product: product,
+        //         value: value,
+        //         stage: stage,
+        //         active: active,
+        //         status: stat,
+        //         company_id: 486,
+        //         owner_id: 71
+        //         // company_name: company,
+        //         // owner_name: owner,
+        //         // company_id: 800,
+        //         // owner_id: 20
+        //         // company_name: company,
+        //         // owner_name: owner
+        //     })
+        // })
+        // .then((res) => res.json())
+        // .then((data) => console.log(data))
+>>>>>>> a49c2f1 (working on submitting a new deal)
 
     }
     
@@ -160,8 +215,9 @@ const AddNewDeal = () => {
                         <option value='Pending'>Pending</option>
                         <option value='Win'>Win</option>
                         <option value='Loss'>Loss</option>
-                    </select>
+                    </select>s
                 </label>
+<<<<<<< HEAD
                 <label>Owner:
                     <select>
                         {ownersArray.map((owner) => {
@@ -183,6 +239,13 @@ const AddNewDeal = () => {
                         })}
                     </select>
                 </label>
+=======
+                <select multiple>
+                    {contactsArray.map((contact) => {
+                        return <option value={contact.name}>{contact.name}</option>
+                    })}
+                </select>
+>>>>>>> a49c2f1 (working on submitting a new deal)
                 {/* <input type='text' name='company_name' placeholder='Associated Company' value={null} /> */}
                 {/* <input type='text' name='owner_name' placeholder='Associated Owner' value={null} /> */}
                
