@@ -7,7 +7,6 @@ const EditDeal = ( {id, fetchDeal} ) => {
         let req = await fetch('http://localhost:3000/owners')
         let res = await req.json()
         setOwnersArray(res)
-        console.log(res)
     }
 
     useEffect(() => {
@@ -19,7 +18,12 @@ const EditDeal = ( {id, fetchDeal} ) => {
         let req = await fetch('http://localhost:3000/companies')
         let res = await req.json()
         setCompaniesArray(res)
+        console.log("Companies: ", res)
     }
+
+    useEffect(() => {
+        fetchCompanies()
+    },[])
 
 
     const updateName = async (e) => {
@@ -56,13 +60,19 @@ const EditDeal = ( {id, fetchDeal} ) => {
         fetchDeal()
     }
 
+
     const updateCompany = async (e) => {
         e.preventDefault()
-        let new_price = e.target[0].value
+        let newCompany
+        for (let i = 0; i < companiesArray.length; i++) {
+            if (e.target[0].value == companiesArray[i].name) {
+                newCompany = companiesArray[i]
+            }
+        }
         let req = await fetch(`http://localhost:3000/deals/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
-                price: new_price
+                company_id: newCompany.id
             }),
             headers: {
                 'Content-type': 'application/json'
@@ -142,6 +152,11 @@ const EditDeal = ( {id, fetchDeal} ) => {
             </form>
             <form onSubmit={updateCompany}>
                 <input type="text" placeholder="Update Company" />
+                <select>
+                    {companiesArray.map((company) => {
+                        return <option value={company}>{company.name}</option>
+                    })}
+                </select>
                 <input type="submit" value="Update Company" />
             </form>
             <form onSubmit={updateStage}>
