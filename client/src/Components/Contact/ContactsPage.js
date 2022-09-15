@@ -23,7 +23,7 @@ function ContactsPage(){
         }
         return result
     }
-    
+
 
     let navigate = useNavigate()
     const [contacts, setContacts] = useState([])

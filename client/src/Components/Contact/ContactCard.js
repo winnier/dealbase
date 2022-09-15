@@ -9,6 +9,8 @@ const ContactCard = () => {
     const [notes, setNotes] = useState([])
     const [newNote, setNewNote] = useState("")
 
+    let owner = {id: 3, name: "Will", email: "will@dealbase.com", username: "Will", password: "mypassword" }
+
     const fetchContact = async () => {
         const response = await fetch(`http://localhost:3000/contacts/${id}`)
         const contactObj = await response.json()
@@ -32,30 +34,36 @@ const ContactCard = () => {
         .then(alert('contact has been deleted'))
         .catch(alert('this contact is long gone by now...'))
 
-
     }
     const handleAddNote = (e) => {
-        e.preventDefault()
-        
+        e.preventDefault();
+
+        console.log('content', `${newNote}`)
+        console.log('contact.id', contact.id)
+        console.log('owner.id', owner.id)
+        console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
+
+        fetch(`http://localhost:3000/contact_notes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                content: newNote,
+                contact_id: contact.id,
+                owner_id: owner.id
+            })
+        })
+        fetchContact()
         console.log(`you clicked the add note button for ${contact.name}`)
     }
 
     console.log('isEditClicked', isEditClicked)
 
-
-
-
-
-    
-
     console.log('notes', notes)
     console.log('typeof(notes)', typeof(notes))
     console.log('newNote', newNote)
 
-
-    // if (isEditClicked == true) {
-    //     console.log('wwttff')
-    // }
     return (
         
         <div>
@@ -77,15 +85,11 @@ const ContactCard = () => {
             <h4 className='notesheader'>All Notes</h4>
             <ul className='notes'>
                 {notes.map((note) => {
-                    console.log('note', note)
-                    console.log('note.id', note.id)
-                    console.log('typeof(note.created_at)', typeof(note.created_at))
-
                     return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} note content: ${note.content}`}</li>
                 })}
             </ul>
             {isEditClicked?
-            <EditContact contact={contact} setContact={setContact}/> : null}
+            <EditContact fetchContact={fetchContact} contact={contact} setContact={setContact}/> : null}
         </div>
     
     )

@@ -7,11 +7,22 @@ class ContactNotesController < ApplicationController
         contact_note = ContactNote.find_by(id: params[:id])
         render json: contact_note
     end
-    # def create
-    #     contact_note = ContactNote.new(content: params[:content], contact_id: params[:contact_id], owner_id: params[:owner_id])
-    #     if contact_note.save
-    #         render json: {id: contact_note.id, content: contact_note.content,}
-    #     else
-    #     end
-    # end
+    def create
+        contact_note = ContactNote.new(contact_note_params)
+        if contact_note.save
+            render json: contact_note, status: 201
+        else
+            render json: {error: contact_note.errors.full_messages}, status: 422
+        end
+    end
+
+    private
+
+    def contact_note_params
+        params.permit(
+            :content,
+            :contact_id,
+            :owner_id
+        )
+    end
 end
