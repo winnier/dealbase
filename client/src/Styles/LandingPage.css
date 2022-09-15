@@ -7,7 +7,6 @@
     font-family: Verdana;
 }
 
-
 .landing-page h2 {
     /* position: absolute;
     bottom: 0px; */
@@ -16,7 +15,6 @@
     margin-left: 3%;
     padding-left: 3%;
 }
-
 
 .summary{
     position: relative;
@@ -50,3 +48,4 @@
     /* must change this */
     font-size: 20px;
 }
+
