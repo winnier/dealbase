@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import ContactCard from './ContactCard'
 import {useNavigate} from 'react-router-dom'
 import { NavLink } from "react-router-dom"
+import styles from './Contacts.css'
+
 
 function ContactsPage(){
 
@@ -147,7 +149,7 @@ function ContactsPage(){
 
     // console.log('contacts', contacts)
     return(
-        <main>
+        <main className="main">
             <NavLink className='AddNewContact' to='/new_contact'><button>New Contact</button></NavLink>
             <div className='filter'>
                 <label htmlFor='companiesNames'>Choose Company:</label>
@@ -169,7 +171,7 @@ function ContactsPage(){
                 </select>
 
             </div>
-            <table>
+            <table className='contacts-table'>
             <caption>CONTACTS PAGE</caption>
             <thead>
                 <tr>

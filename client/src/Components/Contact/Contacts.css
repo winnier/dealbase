@@ -1,0 +1,11 @@
+.contacts-table {
+    border-collapse: collapse;
+    margin: 25 px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+  }
+
+.contacts-table thead tr {
+    background-color: rgb(246, 248, 250);
+    color: rgb(55, 70, 89)
+}
