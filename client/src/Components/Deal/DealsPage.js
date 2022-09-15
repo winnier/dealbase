@@ -195,7 +195,6 @@ function DealsPage() {
                                 return <option value={companyName}>{companyName}</option>
                             })}
                         </select>
-<<<<<<< HEAD
 
                     </div>
                     <div className='filter'>
@@ -206,61 +205,6 @@ function DealsPage() {
                                 return <option value={ownersName}>{ownersName}</option>
                             })}
                         </select>
-=======
-
-                    </div>
-                    <div className='filter'>
-                        <label htmlFor='owners'>Choose Owner:</label>
-                        <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
-                            <option value="All">All</option>
-                            {ownersNames.map((ownersName) => {
-                                return <option value={ownersName}>{ownersName}</option>
-                            })}
-                        </select>
-
-                    </div>
-                    <table className="page-holder">
-                        <caption>DEALS PAGE</caption>
-                        <thead>
-                            <tr>
-                                {keyArray.map((accessor) => {
-                                    return (
-                                        // onClick = {() => handleSortingChange(accessor)} this goes in the line below
-                                        <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
-                                    )
-                                })}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                deals.map(deal => {
-                                    return (
-                                        <tr>
-                                            <td>{deal.id}</td>
-                                            {/* <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td> */}
-                                            <td onClick={() => handleDealClick(deal.id)}>{deal.name}</td>
-                                            <td>{deal.product}</td>
-                                            <td>{`$${numDisplayer(deal.value)}`}</td>
-                                            <td>{deal.stage}</td>
-                                            <td>{deal.active.toString()}</td>
-                                            <td>{deal.status.toString()}</td>
-                                            <td>{deal.company_name}</td>
-                                            <td>{deal.owner_name}</td>
-                                        </tr>
-                                    )
-                                })}
-                        </tbody>
-                    </table>
-                </main>
-
-        :
-
-        <PipelinePage/>
-
-        }
-        </div>
-
->>>>>>> debc151 (toggle functionality and styling dropdowns)
 
                     </div>
                     <table className="page-holder">
