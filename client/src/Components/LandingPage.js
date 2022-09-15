@@ -95,47 +95,47 @@ console.log()
 
     return (
         <div className="landing-page">
-            <h2>{user.name}'s Dashboard</h2>
+            <h1>{user.name}'s Dashboard</h1>
             <div className="summary" id="your-summary">
                 <Link to="/contacts_page" id="company-contacts" className='landing-card'>
-                    <h1>Contacts</h1>
-                    <p>Number of contacts: {yourContacts.length}</p>
+                    <h2>Contacts</h2>
+                    <p>Number of contacts: <b>{yourContacts.length}</b></p>
                 </Link>
 
                 <Link to="/deals_page" id="deals-page" className='landing-card'>
-                    <h1>Deals</h1>
-                    <p>Number of deals: {deals.length}</p>
-                    <p>Total overall earnings: {overallSum(yourDeals, 'value')}</p>
-                    <p>Total potential earnings: {sumValue(yourDeals, 'value')}</p>
+                    <h2>Deals</h2>
+                    <p>Number of deals: <b>{yourDeals.length}</b></p>
+                    <p>Total overall earnings: <b>{overallSum(yourDeals, 'value')}</b></p>
+                    <p>Total potential earnings: <b>{sumValue(yourDeals, 'value')}</b></p>
                 </Link>
 
                 <Link to="/companies_page" id="company-deals" className='landing-card'>
-                    <h1>Companies</h1>
+                    <h2>Companies</h2>
                     {/* we can rename these things */}
-                    <p>{yourCompanies.length} companies across {countUnique(yourCompanies, "country")} countries.</p>
-                    <p>Spanning {countUnique(yourCompanies, "industry")} industries.</p>
+                    <p><b>{yourCompanies.length}</b> companies across <b>{countUnique(yourCompanies, "country")}</b> countries.</p>
+                    <p>Spanning <b>{countUnique(yourCompanies, "industry")}</b> industries.</p>
                 </Link>
             </div>
 
-            <h2>CompanyName's Dashboard</h2>
+            <h1>CompanyName's Dashboard</h1>
             <div className="summary" id="company-summary">
                 <Link to="/contacts_page" id="company-contacts" className='landing-card'>
-                    <h1>Contacts</h1>
-                    <p>Number of contacts: {contacts.length}</p>
+                    <h2>Contacts</h2>
+                    <p>Number of contacts: <b>{contacts.length}</b></p>
                 </Link>
 
                 <Link to="/deals_page" id="deals-page" className='landing-card'>
-                    <h1>Deals</h1>
-                    <p>Number of deals: {deals.length}</p>
-                    <p>Total overall earnings: {overallSum(deals, 'value')}</p>
-                    <p>Total potential earnings: {sumValue(deals, 'value')}</p>
+                    <h2>Deals</h2>
+                    <p>Number of deals: <b>{deals.length}</b></p>
+                    <p>Total overall earnings: <b>{overallSum(deals, 'value')}</b></p>
+                    <p>Total potential earnings: <b>{sumValue(deals, 'value')}</b></p>
                 </Link>
 
                 <Link to="/companies_page" id="company-deals" className='landing-card'>
-                    <h1>Companies</h1>
+                    <h2>Companies</h2>
                     {/* we can rename these things */}
-                    <p>{companies.length} companies across {countUnique(companies, "country")} countries.</p>
-                    <p>Spanning {countUnique(companies, "industry")} industries.</p>
+                    <p><b>{companies.length}</b> companies across <b>{countUnique(companies, "country")} </b>countries.</p>
+                    <p>Spanning <b>{countUnique(companies, "industry")}</b> industries.</p>
                 </Link>
 
             </div>  

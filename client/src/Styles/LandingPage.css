@@ -5,7 +5,6 @@
     width: 90%;
     margin: auto;
     font-family: Verdana;
-
 }
 
 
@@ -32,21 +31,22 @@
     justify-content: space-between;
 }
 
-.summary h1{
-    margin-top: 0%;
-}
-
 .landing-card {
     width: 31%;
-    height: 250px;
-    padding: 2%;
-    border: 1px solid black;
+    height: 300px;
+    padding: 3%;
     box-sizing: border-box;
-    border-radius: 15px;;
-    box-shadow: 5px 5px black;
+    border-radius: 20px;
+    box-shadow: 0px 2px 10px gray;
+}
 
+.landing-card h2{
+    margin-left: 0;
+    font-size: 25px;
 }
 
 .landing-card p {
     text-align: left;
+    /* must change this */
+    font-size: 20px;
 }

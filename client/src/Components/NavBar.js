@@ -5,6 +5,9 @@ const NavBar = () => {
     return (
         <div className="navbar">
             <ul className='nav-links'>
+                <li className='nav-item' id="nav-company-name">
+                    DealBase
+                </li>
                 <li className='nav-item'>
                     <Link to="/">Home</Link>
                 </li>
