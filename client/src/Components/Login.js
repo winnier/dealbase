@@ -54,9 +54,9 @@ const Login = ({ setUser, setIsLoggedIn }) => {
                     onChange={(e) => handleChange(e.target.name, e.target.value)}
                 />
 
-                <NavLink to="/">
+                {/* <NavLink to="/"> */}
                     <button placeholder='submit' type='submit'>Log In</button>
-                </NavLink>
+                {/* </NavLink> */}
 
                 <div id="signup-sentence">
                     or <Link id="signup-link" to='/signup'>Sign Up</Link>
