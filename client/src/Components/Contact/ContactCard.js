@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
 import EditContact from "./EditContact";
-import styles from './ContactCard.css'
+import styles from '../../Styles/ContactCard.css'
 import WebFont from 'webfontloader';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -39,7 +39,7 @@ const ContactCard = () => {
         .catch(alert('this contact is long gone by now...'))
 
     }
-    const handleAddNote = (e) => {
+    const handleAddNote =async (e) => {
         e.preventDefault();
 
         console.log('newNote', `${newNote}`)
@@ -47,7 +47,7 @@ const ContactCard = () => {
         console.log('owner.id', owner.id)
         console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
 
-        fetch(`http://localhost:3000/contact_notes`, {
+        let req = await fetch(`http://localhost:3000/contact_notes`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
