@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from "react-router-dom"
+import PipelinePage from '../PipelinePage'
 
 function DealsPage() {
 
@@ -172,6 +173,7 @@ function DealsPage() {
     return (
         <main>
             <NavLink className='AddNewContact' to='/new_deal'><button>Create a New Deal</button></NavLink>
+            <NavLink className='PipelineDisplay' to='/pipeline_display'><button>Display Pipeline</button></NavLink>
             <div className='filter'>
                 <label htmlFor='companiesNames'>Choose Company:</label>
                 <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
@@ -190,7 +192,6 @@ function DealsPage() {
                         return <option value={ownersName}>{ownersName}</option>
                     })}
                 </select>
-
             </div>
             <table>
                 <caption>DEALS PAGE</caption>
