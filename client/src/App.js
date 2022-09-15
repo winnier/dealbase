@@ -24,18 +24,20 @@ import EditContact from './Components/Contact/EditContact';
 // STYLESHEETS
 import './App.css';
 import './Styles/Footer.css';
-// import './Styles/NavBar.css';
+import './Styles/LandingPage.css';
 import './Styles/PageStyle.css';
 
 // COMPONENTS
 import NavBar from './Components/NavBar';
 import PipelinePage from './Components/PipelinePage'
 
-const [user, setUser] = useState({})
-const [toggleLogin, setToggleLogin] = useState(false)
-const [isLoggedIn, setIsLoggedIn] = useState(false)
+
 
 function App() {
+
+  const [user, setUser] = useState({})
+  const [toggleLogin, setToggleLogin] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
       <div>
