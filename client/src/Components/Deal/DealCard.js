@@ -68,6 +68,7 @@ const DealCard = () => {
         <div>
             {/* <button onClick={handleEditClick}>Edit Contact</button> */}
             {/* <NavLink className='editContact' to='/edit_deal'><button>Edit Deal</button></NavLink> */}
+            <div>
             <h4>Name: {deal.name}</h4>
             <h4>Product: {deal.product}</h4>
             <h4>Company: {deal.company_name}</h4>
@@ -81,7 +82,7 @@ const DealCard = () => {
             {editState ? <EditDeal fetchDeal={fetchDeal} id={id}/> : null}
             <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
         </div>
-
+        </div>
     )
 }
 
