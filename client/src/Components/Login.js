@@ -59,7 +59,7 @@ const Login = ({ setUser, setIsLoggedIn }) => {
                 </NavLink>
 
                 <div id="signup-sentence">
-                    or <Link id="signup-link"to='/signup'>Sign Up</Link>
+                    or <Link id="signup-link" to='/signup'>Sign Up</Link>
                 </div>
             </form>
         </div>
