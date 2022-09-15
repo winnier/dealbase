@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
 import EditContact from "./EditContact";
+import styles from './ContactCard.css'
+import WebFont from 'webfontloader';
 import styles from '../../Styles/ContactCard.css'
 import WebFont from 'webfontloader';
 import PersonIcon from '@mui/icons-material/Person';
@@ -125,7 +127,6 @@ const ContactCard = () => {
                                                 return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
                                             })}
                                         </ul>
-
 
                                     </div>
                                 </div>
