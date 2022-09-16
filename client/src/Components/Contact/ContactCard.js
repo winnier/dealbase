@@ -77,7 +77,6 @@ const ContactCard = () => {
                     <div className="left col-md-4 mt-1">
                         <div className="card text-center sidebar">
                             <div className="card-body">
-                            <span class="material-symbols-outlined"></span>
                                 {/* <img src="imageplaceholder.jpg" alt="profile image" class="profile__image"></img> */}
                                 <div className="card-text">
                                     <div className="card-text-head">
