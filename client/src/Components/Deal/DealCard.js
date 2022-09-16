@@ -65,23 +65,25 @@ const DealCard = () => {
 
     return (
 
-        <div>
+        <div className="deal-card">
             {/* <button onClick={handleEditClick}>Edit Contact</button> */}
             {/* <NavLink className='editContact' to='/edit_deal'><button>Edit Deal</button></NavLink> */}
-            <div>
-            <h4>Name: {deal.name}</h4>
-            <h4>Product: {deal.product}</h4>
-            <h4>Company: {deal.company_name}</h4>
-            <h4>Stage: {deal.stage}</h4>
-            <h4>Status: {deal.status}</h4>
-            <h4>Owner: {deal.owner_name}</h4>
-            <button onClick={() => editClick()}>Edit Deal</button>
-            <button onClick={handleDealDeleteClick}>Delete Deal</button>
-            <button onClick={() => contactSwitch()}>View Associated Contacts</button>
-            {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
-            {editState ? <EditDeal fetchDeal={fetchDeal} id={id}/> : null}
-            <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
-        </div>
+            <div className="main">
+                <button onClick={handleDealDeleteClick}>Delete Deal</button>
+                <button onClick={() => editClick()}>Edit Deal</button>
+                <div className="row">
+                    <h4>Name: {deal.name}</h4>
+                    <h4>Product: {deal.product}</h4>
+                    <h4>Company: {deal.company_name}</h4>
+                    <h4>Stage: {deal.stage}</h4>
+                    <h4>Status: {deal.status}</h4>
+                    <h4>Owner: {deal.owner_name}</h4>
+                    <button onClick={() => contactSwitch()}>View Associated Contacts</button>
+                    {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
+                    {editState ? <EditDeal fetchDeal={fetchDeal} id={id}/> : null}
+                    <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
+                </div>
+            </div>
         </div>
     )
 }

@@ -42,11 +42,6 @@ const ContactCard = () => {
     const handleAddNote =async (e) => {
         e.preventDefault();
 
-        console.log('newNote', `${newNote}`)
-        console.log('contact.id', contact.id)
-        console.log('owner.id', owner.id)
-        console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
-
         let req = await fetch(`http://localhost:3000/contact_notes`, {
             method: "POST",
             headers: {
@@ -60,7 +55,6 @@ const ContactCard = () => {
         })
         fetchContact()
         setNewNote("")
-        console.log(`you clicked the add note button for ${contact.name}`)
     }
 
 
@@ -78,11 +72,7 @@ const ContactCard = () => {
                 <button className="button" onClick={handleEditClick}>Edit Contact</button>
                 {/* <NavLink className='editContact' to="/edit_contact"><button>Edit Contact</button></NavLink> */}
                 {/* <NavLink className='editContact' to="/edit_contact" state={{ from: "ContactCard"}}><button>Edit Contact</button></NavLink> */}
-                <div className="main">
-                    <div className="topbar">
 
-                    </div>
-                </div>
                 <div className="row">
                     <div className="left col-md-4 mt-1">
                         <div className="card text-center sidebar">
