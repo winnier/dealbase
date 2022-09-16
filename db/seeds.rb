@@ -5,6 +5,7 @@ Company.destroy_all
 Deal.destroy_all
 ContactNote.destroy_all
 ContactDeal.destroy_all
+DealNote.destroy_all
 
 puts "Making owners..."
 owner1 =  Owner.create!(name: "Aaron", email: "aaron@gmail.com", username: "aaron", password_digest: "aaron")
@@ -64,6 +65,8 @@ puts "Making contacts..."
         owner_id: Owner.all.sample.id
     )
 
+
+
 puts "Making deals..."
 50.times {
     company = Company.all.sample
@@ -80,6 +83,19 @@ puts "Making deals..."
     company_id: company.id,
     owner_id: owner.id
 )}
+
+puts "Making deal notes..."
+
+DealNote.create!(
+    content: "this is our first fake deal note",
+    deal_id: Deal.all.sample.id,
+    owner_id: Owner.all.sample.id
+)
+DealNote.create!(
+    content: "this is our second fake deal note",
+    deal_id: Deal.all.sample.id,
+    owner_id: Owner.all.sample.id
+)
 
 puts "Making join table..."
 100.times {ContactDeal.create!(
