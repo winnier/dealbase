@@ -1,0 +1,47 @@
+/* .font-loader {
+    font-family: 'DM Sans';
+} */
+
+.contacts-table {
+    border-collapse: collapse;
+    margin: 25 px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    font-family: 'DM Sans';
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  }
+
+.contacts-table thead tr th {
+    background-color: rgb(246, 248, 250);
+    color: rgb(55, 70, 89);
+    text-align: left;
+    font-family: 'DM Sans';
+    font-weight: bold;
+}
+
+.contacts-table tbody tr {
+    background-color: rgb(255, 255, 255);
+    font-size: xx-small;
+    font-family: 'Montserrat';
+    text-align: left;
+}
+
+.contacts-table th,
+.contacts-table td {
+    padding: 12px 15px;
+}
+
+.contacts-table tbody tr {
+    border-bottom: 1px solid rgb(239, 241, 244);
+}
+
+/* .contacts-table tbody tr:nth-of-type(even) {
+    background-color: rgb(246, 248, 250);;
+} */
+
+.contacts-table tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(246, 248, 250);
+}

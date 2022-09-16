@@ -1,0 +1,39 @@
+#login-container{
+    position: relative;
+    margin: 10% auto;
+    padding: 2%;
+    width: 20%;
+    border: 1px transparent black;
+    box-shadow: 0px 2px 50px gray;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#log-in {
+    display: flex;
+    flex-direction: column;
+}
+
+#log-in button {
+    margin: 10% auto;
+    position: center;
+    
+}
+
+#signup-sentence {
+    margin-top: 3%;
+    font-size: 13px;
+}
+
+#signup-link{
+    font-size: 13px;
+    color:#004491;
+}
+
+#signup-link:hover{
+    color:#5861A1;
+    cursor: pointer;
+}

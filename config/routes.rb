@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post '/companies', to: 'companies#create'
   patch '/companies/:id', to: 'companies#update'
   delete '/companies/:id', to: 'companies#destroy'
+  get 'company/:id/deals', to: 'companies#show_deals'
+  get 'company/:id/contacts', to: 'companies#show_all_contacts'
 
   get '/contacts', to: 'contacts#index'
   get '/contacts/companies', to: 'contacts#showcompanies' # this is used in ContactsPage
@@ -37,5 +39,10 @@ Rails.application.routes.draw do
   get '/contact_notes/:id', to: 'contact_notes#show'
   post '/contact_notes', to: 'contact_notes#create'
   get '/contact/:id/deals', to: 'contact_deals#show'
+
+  #Sessions Login/Logout
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
+  get '/logged_in', to: 'sessions#is_logged_in?'
 
 end

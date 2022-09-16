@@ -3,17 +3,38 @@ import CompanyCard from './CompanyCard';
 import { useNavigate } from 'react-router-dom'
 
 const CompaniesPage = ({}) => {
+
+
+
+
+    let formatter = (str) => {
+        let arr = str.split('')
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == '_') {
+                arr[i] = " "
+            }
+        }
+        for (let i = 0; i < arr.length; i++) {
+            if (i == 0 || arr[i - 1] == " ") {
+                arr[i] = arr[i].toUpperCase()
+            }
+        }
+        let result = ""
+        for (let i = 0; i < arr.length; i++) {
+            result = result + arr[i]
+        }
+        return result
+    }
+
     const [companies, setCompanies] = useState([])
-    const [tableHeaders, setTableHeaders] = useState([])
     const [keyArray, setKeyArray]= useState([])
     const [sortField, setSortField] = useState('')
     const [order, setOrder] = useState('asc')
-    // TO ADD CONTACTS
-    // const [contactsNames, setContactsNames] = useState([])
-    // const [contact, setContact] = useState("All")
 
     const [companiesNames, setCompaniesNames] = useState([])
     const [company, setCompany] = useState("All")
+    const [country, setCountry] = useState("All")
+    const [industry, setIndustry] = useState("All")
 
     const [ownersNames, setOwnersNames] = useState([])
     const [owner, setOwner] = useState("All")
@@ -24,40 +45,53 @@ const CompaniesPage = ({}) => {
     const fetchCompanies = async () => {
         const response = await fetch(`http://localhost:3000/companies`)
         const companiesArray = await response.json()
-        if (company == "All" && owner == "All") {
+        console.log("Companies Array: ",companiesArray)
+        if (country == "All" && industry == "All") {
             setCompanies(companiesArray)
-        } else if (company !== "All" && owner == "All") {
-            setCompanies(companiesArray.filter(contact => contact.company_name == company))
-        } else if (company == "All" && owner !== "All") {
-            setCompanies(companiesArray.filter(contact => contact.owner_name == owner))
-        } else if (company !== "All" && owner !== "All") {
-            setCompanies(companiesArray.filter(contact => contact.owner_name == owner && contact.company_name == company))
+        } else if (country !== "All" && industry == "All") {
+            setCompanies(companiesArray.filter(contact => contact.country == country))
+        } else if (country == "All" && industry !== "All") {
+            setCompanies(companiesArray.filter(contact => contact.industry == industry))
+        } else if (country !== "All" && industry !== "All") {
+            setCompanies(companiesArray.filter(contact => contact.industry == industry && contact.country == country))
         }
-        // TO ADD CONTACTS
-        // if (contact == "All" && owner == "All") {
-        //     setCompanies(companiesArray)
-        // } else if (contact !== "All" && owner == "All") {
-        //     setCompanies(companiesArray.filter(company => company.contact_name == contact))
-        // } else if (contact == "All" && owner !== "All") {
-        //     setCompanies(companiesArray.filter(company => company.owner_name == owner))
-        // } else if (contact !== "All" && owner !== "All") {
-        //     setCompanies(companiesArray.filter(company => company.owner_name == owner && company.contact_name == contact))
-        // }
+     
 
         getKeys(companiesArray[0])
 
     }
-    // TO ADD CONTACTS
-    // const fetchContactsNames = async () => {
-    //     const response = await fetch(`http://localhost:3000//companies_names`)
-    //     const contactsNamesArray = await response.json()
-    //     setContactsNames(contactsNamesArray)
-    // }
+   
+
+    let [countryArray, setCountryArray] = useState([])
+
+    let getCountries = async () => {
+        let arr = []
+        let req = await fetch('http://localhost:3000/companies')
+        let res = await req.json()
+        console.log(res)
+        for (let i = 0; i < res.length; i++){
+            arr.push(res[i].country)
+        }
+        console.log(arr)
+        setCountryArray(arr)
+    }
+
+    let [industryArray, setIndustryArray] = useState([])
+    let getIndustries = async () => {
+        let arr = []
+        let req = await fetch('http://localhost:3000/companies')
+        let res = await req.json()
+        for (let i = 0; i < res.length; i++) {
+            arr.push(res[i].industry)
+        }
+        setIndustryArray(arr)
+    }
 
     const fetchCompaniesNames = async () => {
         const response = await fetch(`http://localhost:3000/companies_names`)
         const companiesNamesArray = await response.json()
         setCompaniesNames(companiesNamesArray)
+        console.log(companiesNamesArray)
     }
 
     const fetchOwnersNames = async () => {
@@ -65,10 +99,6 @@ const CompaniesPage = ({}) => {
         const ownersNamesArray = await response.json()
         setOwnersNames(ownersNamesArray)
     }
-
-
-
-
 
     const handleSorting = (sortField, sortOrder) => {
         // console.log('sortField, sortOrder', sortField, sortOrder)
@@ -93,18 +123,18 @@ const CompaniesPage = ({}) => {
 
       useEffect(() => {
         fetchCompanies()
-        // TO ADD CONTACTS
-        // fetchContactsNames()
         fetchCompaniesNames()
         fetchOwnersNames()
-    },[company, owner])
+        getCountries()
+        getIndustries()
+    },[company, owner, country, industry])
 
     const getKeys = (obj)=> {
         let temp = []
          for(const key in obj){
             if(key == 'nvm'){
             }else{
-                temp.push(key)
+                temp.push(formatter(key))
             }
         }
         setKeyArray(temp)
@@ -114,44 +144,36 @@ const CompaniesPage = ({}) => {
         navigate(`/companies/${id}`)
     }
 
-    // TO ADD CONTACTS
-    // const updateContact = (e) => {
-    //     setContact(e.target.value)
-    // }
-
-    const updateCompany = (e) => {
-        setCompany(e.target.value)
+    const updateCountry = (e) => {
+        setCountry(e.target.value)
+        console.log("Country: ", e.target.value)
+        fetchCompanies()
     }
 
-    const updateOwner = (e) => {
-        setOwner(e.target.value)
+    const updateIndustry = (e) => {
+        setIndustry(e.target.value)
     }
 
     return(
         <main>
-            {/* <div className='filter'>
-                <label htmlFor='contacts'>Choose Company:</label>
-                <select className='chooseBox' name='contactsNames' id='contactsNames' onChange={updateContact} value={contact}>Choose Contact
-                    <option value="All">All</option>
-                    {contactsNames.map((contactName) => {
-                        return <option value={contactName}>{contactName}</option>
-                    })}
-                </select>
-            </div> */}
             <div className='filter'>
-                <label htmlFor='companies'>Choose Company:</label>
-                <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company
+                <label htmlFor='companies'>Filter By Country:</label>
+                <select className='chooseBox' name='countriesArray' id='countryNames' onChange={updateCountry} value={country}>
                     <option value="All">All</option>
-                    {companiesNames.map((companyName) => {
-                        return <option value={companyName}>{companyName}</option>
+                    {countryArray.map((country) => {
+                        return <option value={country}>{country}</option>
                     })}
                 </select>
                 &nbsp;	&nbsp;	&nbsp;
-                <label htmlFor='owners'>Choose Owner:</label>
-                <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
+
+
+
+
+                <label htmlFor='owners'>Filter By Industry:</label>
+                <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateIndustry} value={industry}>
                     <option value="All">All</option>
-                    {ownersNames.map((ownersName) => {
-                        return <option value={ownersName}>{ownersName}</option>
+                    {industryArray.map((industry) => {
+                        return <option value={industry}>{industry}</option>
                     })}
                 </select>
             </div>

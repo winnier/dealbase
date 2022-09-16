@@ -1,10 +1,7 @@
 import {useState, useEffect} from 'react'
+import ContactCard from './ContactCard'
 import {useNavigate} from 'react-router-dom'
 import { NavLink } from "react-router-dom"
-import styles from './Contacts.css'
-import WebFont from 'webfontloader';
-
-
 
 function ContactsPage(){
 
@@ -26,7 +23,7 @@ function ContactsPage(){
         }
         return result
     }
-
+    
 
     let navigate = useNavigate()
     const [contacts, setContacts] = useState([])
@@ -86,11 +83,11 @@ function ContactsPage(){
 
 
       const handleSorting = (sortField, sortOrder) => {
-        console.log('sortField, sortOrder', sortField, sortOrder)
+        // console.log('sortField, sortOrder', sortField, sortOrder)
         if (sortField) {
             const sorted = [...contacts].sort((a,b) => {
                 return (
-                    a[sortField]?.toString().localeCompare(b[sortField].toString(), 'en', { // add the question mark after the field before the toString()
+                    a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
                         numeric: true,
                     }) * (sortOrder === 'asc' ? 1: -1)
                 )
@@ -111,14 +108,6 @@ function ContactsPage(){
       }
 
       useEffect(() => {
-        WebFont.load({
-            google: {
-                families: ['Droid Sans', 'Chilanka']
-            }
-        });
-      }, []);
-
-      useEffect(() => {
         fetchContacts()
         fetchCompaniesNames()
         fetchOwnersNames()
@@ -127,7 +116,7 @@ function ContactsPage(){
     const getKeys = (obj)=> {
         let temp = []
          for(const key in obj){
-            if(key == 'contact_notes'){
+            if(key == 'nvm'){
                 
             }else{
                 temp.push(key)
@@ -158,7 +147,7 @@ function ContactsPage(){
 
     // console.log('contacts', contacts)
     return(
-        <main className="main">
+        <main>
             <NavLink className='AddNewContact' to='/new_contact'><button>New Contact</button></NavLink>
             <div className='filter'>
                 <label htmlFor='companiesNames'>Choose Company:</label>
@@ -180,7 +169,7 @@ function ContactsPage(){
                 </select>
 
             </div>
-            <table className='contacts-table'>
+            <table className="page-holder">
             <caption>CONTACTS PAGE</caption>
             <thead>
                 <tr>

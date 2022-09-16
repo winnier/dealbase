@@ -1,21 +1,37 @@
-/* .page-holder {
-    margin: 8%;
-    border: 1px solid;
-} */
-
-
-table, tr, td{
-    border: 1px solid;
-}
-
-tr {
-    /* display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; */
-    gap: 40px;
+.page-holder {
+    margin: 0% 8%;
 }
 
 th {
-    /* width: 100px; */
+    border-bottom: 1px solid rgb(134, 132, 132);
+    background-color: rgb(226, 226, 226);
+    height: 2em;
+}
+
+td {
+    padding: 0 1em;
+    height: 1.8em;
+}
+
+body tr:hover {
+    background-color: #dae3ee;
+} 
+
+.filter {
+    margin: 2% auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.filter label{
+    margin-bottom: 6px;
+}
+
+.chooseBox{
+    border: 1px transparent;
+    border-radius: 4px;
+    background-color: #dae3ee;
+    text-align: center;
 }

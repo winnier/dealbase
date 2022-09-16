@@ -1,5 +1,5 @@
 class CompanySerializer < ActiveModel::Serializer
-  attributes :id, :name, :address, :country, :industry, :linkedin_url, :website, :owner_name
+  attributes :id, :name, :address, :country, :industry, :linkedin_url, :website
   # :owner_id, :associated_owner, :associated_deals, :employees
 
   def associated_owner
