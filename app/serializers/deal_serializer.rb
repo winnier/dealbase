@@ -1,5 +1,5 @@
 class DealSerializer < ActiveModel::Serializer
-  attributes :id, :name, :product, :value, :stage, :active, :status, :company_name, :owner_name
+  attributes :id, :name, :product, :value, :stage, :active, :status, :company_name, :owner_name, :deal_notes
   # :associated_owner, :associated_contacts
 
   # def associated_company

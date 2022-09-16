@@ -9,6 +9,7 @@ import styles from '../../Styles/ContactCard.css'
 
 
 const ContactCard = () => {
+    let [contactDealsArray, setContactDealsArray] = useState([])
     let {id} = useParams(); 
     const [contact, setContact] = useState({})
     const [isEditClicked, setIsEditClicked] = useState(false)
@@ -17,10 +18,11 @@ const ContactCard = () => {
 
     let owner = {id: 3, name: "Will", email: "will@dealbase.com", username: "Will", password: "mypassword" }
 
+    console.log('id', id)
     const fetchContact = async () => {
         const response = await fetch(`http://localhost:3000/contacts/${id}`)
         const contactObj = await response.json()
-        // console.log('contactObj',contactObj)
+        console.log('contactObj',contactObj)
         setContact(contactObj)
         let reverseOrderNotes = contactObj.contact_notes.reverse()
         setNotes(reverseOrderNotes)
@@ -66,9 +68,6 @@ const ContactCard = () => {
         setDealState(!dealState)
         fetchContactDeals()
     }
-
-    let [contactDealsArray, setContactDealsArray] = useState([])
-
     const fetchContactDeals = async () => {
         const req = await fetch(`http://localhost:3000/contact_to/${id}/deals`)
         const res = await req.json()
@@ -96,14 +95,6 @@ const ContactCard = () => {
     }
 
 /////////////////////////////////////////////////////////////////-------------------////////////////////////////////////
-
-
-
-    console.log('notes', notes)
-    console.log('notes.reverse()', notes.reverse())
-    console.log('typeof(notes)', typeof(notes))
-
-
 
     return (
         
@@ -150,7 +141,7 @@ const ContactCard = () => {
                         </div>
                     </div>
                     <div className="right">
-                        <div>
+                        <div className="card-content">
                             <div className="card-body">
                                 <div>
                                     <div className="col-md-3">
@@ -160,11 +151,11 @@ const ContactCard = () => {
                                                 </form>
                                             <h4 className='notesheader'>All Notes</h4>
                                             <hr></hr>
-                                        <ul className='notes'>
-                                            {notes.map((note) => {
-                                                return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
-                                            })}
-                                        </ul>
+                                            <ul className='notes'>
+                                                {notes.map((note) => {
+                                                    return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
+                                                })}
+                                            </ul>
 
                                     </div>
                                 </div>

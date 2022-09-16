@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
   get '/contact_to/:id/deals', to: 'contacts#associated_deals'
+  get '/deal_to/:id/contacts', to: 'deals#associated_deals'
 
   post '/contact_profile/:id', to: 'contact_deals#create_with_deals'
 

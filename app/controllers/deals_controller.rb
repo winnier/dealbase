@@ -57,7 +57,10 @@ class DealsController < ApplicationController
         deals.each {|deal| names.push(deal.company&.name)}
         render json: names.uniq
     end
-
+    def associated_contacts
+        deal = Deal.find_by(id: params[:id])
+        render json: deal.contacts
+    end
 
 
     private
