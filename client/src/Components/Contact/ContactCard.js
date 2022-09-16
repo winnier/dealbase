@@ -3,7 +3,6 @@ import { useParams, NavLink, useNavigate } from "react-router-dom"; // this lets
 import EditContact from "./EditContact";
 // import ContactCardStyle from './ContactCardStyle.css'
 import WebFont from 'webfontloader';
-import PersonIcon from '@mui/icons-material/Person';
 import RenderDeals from './RenderDeals'
 import AddAssociatedDeals from './AddAssociatedDeals'
 import styles from '../../Styles/ContactCard.css'
@@ -150,12 +149,12 @@ const ContactCard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="right col-md-8 mt-1">
-                        <div className="card mb-3 content">
+                    <div className="right">
+                        <div>
                             <div className="card-body">
-                                <div className="row">
+                                <div>
                                     <div className="col-md-3">
-                                                <form className='note-form' >
+                                                <form className="note-form">
                                                     <button className="note-button" onClick={handleAddNote}>Add Note</button>
                                                     <textarea placeholder="insert text here" className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
                                                 </form>

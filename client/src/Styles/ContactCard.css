@@ -81,12 +81,7 @@ body{
     border: 0.5px solid black;
     margin-left: 0;
 }
-.col-md-3{
-    font-family: 'DM Sans';
-    padding: 15px;
-    padding-left: 40px;
-    padding-right: 40px;
-}
+
 
 button{
     margin: 15px;

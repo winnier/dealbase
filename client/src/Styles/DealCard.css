@@ -81,7 +81,12 @@ button{
 
 
 
-
+.col-md-3{
+    font-family: 'DM Sans';
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
 
 
 
