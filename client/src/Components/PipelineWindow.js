@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import DealCard from "./Deal/DealCard";
 
 // Modal.setAppElement("#app");
 
@@ -16,10 +17,7 @@ const PipelineWindow = ({ show, onClose, item }) => {
                 <button className="close-btn" onClick={onClose}>X</button>
             </div>
             <div>
-                <h2>Description</h2>
-                <p>{item.product}</p>
-                <h2>Status</h2>
-                <p> {`${item.stage}`}</p>
+                <DealCard existingDeal={item} />
             </div>
         </Modal>
     );
