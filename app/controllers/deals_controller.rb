@@ -8,6 +8,16 @@ class DealsController < ApplicationController
         render json: deal
     end
 
+    
+    # def showdeals
+    #     # companies = Contact.all.uniq{|x| x.company_name}.pluck(:company_name)
+    #     deal = Deal.all
+    #     names = []
+    #     contacts.each {|contact| names.push(contact.company&.name)}
+        
+    #     render json: names.uniq
+    # end
+
     def create
         deal = Deal.new(deal_params)
         if deal.save
@@ -40,9 +50,11 @@ class DealsController < ApplicationController
     def show_companies
         deals = Deal.all
         names = []
-        deals.each {|deal| names.push(deal.company.name)}
+        deals.each {|deal| names.push(deal.company&.name)}
         render json: names.uniq
     end
+
+
 
     private
 

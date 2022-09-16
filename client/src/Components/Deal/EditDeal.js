@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const EditDeal = ( {id, fetchDeal} ) => {
+const EditDeal = ( {id, fetchDeal, stage} ) => {
 
     let [ownersArray, setOwnersArray] = useState([])
     let fetchOwners = async () => {
@@ -109,10 +109,17 @@ const EditDeal = ( {id, fetchDeal} ) => {
     const updateStatus = async (e) => {
         e.preventDefault()
         let newStatus = e.target[0].value
+        console.log(newStatus)
+        let newStage = stage
+        if (newStatus != "Pending") {
+            newStage = 6
+        }
+        console.log(newStage)
         let req = await fetch(`http://localhost:3000/deals/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
-                status: newStatus
+                status: newStatus,
+                stage: newStage
             }),
             headers: {
                 'Content-type': 'application/json'

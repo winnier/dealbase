@@ -53,6 +53,11 @@ class ContactsController < ApplicationController
         end
     end
 
+    def associated_deals
+        contact = Contact.find_by(id: params[:id])
+        render json: contact.deals
+    end
+
     private
 
     def contact_params

@@ -40,4 +40,6 @@ Rails.application.routes.draw do
   post '/contact_notes', to: 'contact_notes#create'
   get '/contact/:id/deals', to: 'contact_deals#show'
 
+  get '/contact_to/:id/deals', to: 'contacts#associated_deals'
+
 end

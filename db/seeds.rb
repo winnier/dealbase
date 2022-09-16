@@ -3,6 +3,7 @@ Owner.destroy_all
 Contact.destroy_all
 Company.destroy_all
 Deal.destroy_all
+ContactNote.destroy_all
 ContactDeal.destroy_all
 
 puts "Making owners..."
@@ -53,14 +54,14 @@ puts "Making contacts..."
 
     ContactNote.create!(
         content: "this is fake content I wrote",
-        contact_id: Contact.first.id,
-        owner_id: Owner.third.id
+        contact_id: Contact.all.sample.id,
+        owner_id: Owner.all.sample.id
     )
 
     ContactNote.create!(
         content: "this is a second fake note content I wrote",
-        contact_id: Contact.first.id,
-        owner_id: Owner.first.id
+        contact_id: Contact.all.sample.id,
+        owner_id: Owner.all.sample.id
     )
 
 puts "Making deals..."

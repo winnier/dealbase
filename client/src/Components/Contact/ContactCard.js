@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
+import { useParams, NavLink, useNavigate } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
 import EditContact from "./EditContact";
 import styles from '../../Styles/ContactCard.css'
 import WebFont from 'webfontloader';
 import PersonIcon from '@mui/icons-material/Person';
+import RenderDeals from './RenderDeals'
+import AddAssociatedDeals from './AddAssociatedDeals'
 
 const ContactCard = () => {
     let {id} = useParams();
@@ -17,7 +19,7 @@ const ContactCard = () => {
     const fetchContact = async () => {
         const response = await fetch(`http://localhost:3000/contacts/${id}`)
         const contactObj = await response.json()
-        console.log('contactObj',contactObj)
+        // console.log('contactObj',contactObj)
         setContact(contactObj)
         let reverseOrderNotes = contactObj.contact_notes.reverse()
         setNotes(reverseOrderNotes)
@@ -39,14 +41,8 @@ const ContactCard = () => {
         .catch(alert('this contact is long gone by now...'))
 
     }
-    const handleAddNote =async (e) => {
+    const handleAddNote = async (e) => {
         e.preventDefault();
-
-        console.log('newNote', `${newNote}`)
-        console.log('contact.id', contact.id)
-        console.log('owner.id', owner.id)
-        console.log('contact_note: ', `content: ${newNote}, contact_id: ${contact.id}, owner_id: ${owner.id}`)
-
         let req = await fetch(`http://localhost:3000/contact_notes`, {
             method: "POST",
             headers: {
@@ -60,8 +56,45 @@ const ContactCard = () => {
         })
         fetchContact()
         setNewNote("")
-        console.log(`you clicked the add note button for ${contact.name}`)
     }
+
+
+/////////////////////////////////////////////////////////////////-------------------////////////////////////////////////
+    let [dealState, setDealState] = useState(false)
+    let dealSwitch = () => {
+        setDealState(!dealState)
+    }
+
+    let [contactDealsArray, setContactDealsArray] = useState([])
+
+    const fetchContactDeals = async () => {
+        const req = await fetch(`http://localhost:3000/contact_to/${id}/deals`)
+        const res = await req.json()
+        console.log(res)
+        setContactDealsArray(res)
+    }
+
+    useEffect(() => {
+        fetchContactDeals()
+    }, [])
+
+    let c = 0
+
+    let navigate = useNavigate()
+
+
+    const backToContacts = () => {
+        navigate('/contacts_page')
+    }
+
+    let [associateDeals, setAssociateDeals] = useState(false)
+
+    let flipDealSwitch = () => {
+        setAssociateDeals(!associateDeals)
+    }
+
+/////////////////////////////////////////////////////////////////-------------------////////////////////////////////////
+
 
 
     console.log('notes', notes)
@@ -135,9 +168,15 @@ const ContactCard = () => {
                 </div>
             </div>
 
+            {isEditClicked ? <EditContact id={id} fetchContact={fetchContact} /> : null}
 
-            {isEditClicked?
-            <EditContact fetchContact={fetchContact} contact={contact} setContact={setContact}/> : null}
+            <button onClick={() => dealSwitch()}>View Associated Deals</button>
+            {dealState ? contactDealsArray.map((deal) => { return <RenderDeals key={c++} name={deal.name} product={deal.product} value={deal.value} stage={deal.stage} status={deal.status} company_name={deal.company_name} owner_name={deal.owner_name} /> }) : null}
+
+            <button onClick={() => flipDealSwitch()}>Add Associated Deals</button>
+            {associateDeals ? <AddAssociatedDeals /> : null}
+
+            <button onClick={() => backToContacts()}>{'Back to Contacts'}</button>
         </div>
     
     )
