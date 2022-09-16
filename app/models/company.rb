@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
     has_many :deals
     has_many :contacts
+    has_many :company_notes
     belongs_to :owner
 
     def contact_name
