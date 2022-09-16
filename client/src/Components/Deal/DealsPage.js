@@ -24,40 +24,40 @@ function DealsPage() {
         return result
     }
 
-    // const numDisplayer = (number) => {
-    //     if (Math.floor(number) != number) {
-    //         let x = number.toString()
-    //         let numArr = x.split('')
-    //         console.log(numArr)
-    //         let len = numArr.length
-    //         let a = numArr.indexOf('.')
-    //         for (let pos = a - 1; pos > 0; pos--) {
-    //             if ((a - pos) % 3 == 0 && len - pos != 0) {
-    //                 numArr.splice(pos, 0, ',')
-    //             }
-    //         }
-    //         let numWithCommas = ""
-    //         for (let i = 0; i < numArr.length; i++) {
-    //             numWithCommas += numArr[i]
-    //         }
-    //         return numWithCommas
-    //     } else if (Math.floor(number) == number) {
-    //         let x = number.toString()
-    //         let numArr = x.split('')
-    //         let len = numArr.length
-    //         for (let pos = numArr.length; pos > 0; pos--) {
-    //             if ((len - pos) % 3 == 0 && len - pos != 0) {
-    //                 numArr.splice(pos, 0, ',')
-    //             }
-    //         }
-    //         let numWithCommas = ""
-    //         for (let i = 0; i < numArr.length; i++) {
-    //             numWithCommas += numArr[i]
-    //         }
-    //         numWithCommas = numWithCommas + '.00'
-    //         return numWithCommas
-    //     }
-    // }
+    const numDisplayer = (number) => {
+        if (Math.floor(number) != number) {
+            let x = number.toString()
+            let numArr = x.split('')
+            console.log(numArr)
+            let len = numArr.length
+            let a = numArr.indexOf('.')
+            for (let pos = a - 1; pos > 0; pos--) {
+                if ((a - pos) % 3 == 0 && len - pos != 0) {
+                    numArr.splice(pos, 0, ',')
+                }
+            }
+            let numWithCommas = ""
+            for (let i = 0; i < numArr.length; i++) {
+                numWithCommas += numArr[i]
+            }
+            return numWithCommas
+        } else if (Math.floor(number) == number) {
+            let x = number.toString()
+            let numArr = x.split('')
+            let len = numArr.length
+            for (let pos = numArr.length; pos > 0; pos--) {
+                if ((len - pos) % 3 == 0 && len - pos != 0) {
+                    numArr.splice(pos, 0, ',')
+                }
+            }
+            let numWithCommas = ""
+            for (let i = 0; i < numArr.length; i++) {
+                numWithCommas += numArr[i]
+            }
+            numWithCommas = numWithCommas + '.00'
+            return numWithCommas
+        }
+    }
 
 
     let navigate = useNavigate()
@@ -195,6 +195,18 @@ function DealsPage() {
                                 return <option value={companyName}>{companyName}</option>
                             })}
                         </select>
+<<<<<<< HEAD
+
+                    </div>
+                    <div className='filter'>
+                        <label htmlFor='owners'>Choose Owner:</label>
+                        <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateOwner} value={owner}>Choose Owner
+                            <option value="All">All</option>
+                            {ownersNames.map((ownersName) => {
+                                return <option value={ownersName}>{ownersName}</option>
+                            })}
+                        </select>
+=======
 
                     </div>
                     <div className='filter'>
@@ -250,7 +262,54 @@ function DealsPage() {
     </div>
 =======
         </div>
+<<<<<<< HEAD
 >>>>>>> 05a9e42 (commit)
+=======
+
+>>>>>>> debc151 (toggle functionality and styling dropdowns)
+
+                    </div>
+                    <table className="page-holder">
+                        <caption>DEALS PAGE</caption>
+                        <thead>
+                            <tr>
+                                {keyArray.map((accessor) => {
+                                    return (
+                                        // onClick = {() => handleSortingChange(accessor)} this goes in the line below
+                                        <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
+                                    )
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                deals.map(deal => {
+                                    return (
+                                        <tr>
+                                            <td>{deal.id}</td>
+                                            {/* <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td> */}
+                                            <td onClick={() => handleDealClick(deal.id)}>{deal.name}</td>
+                                            <td>{deal.product}</td>
+                                            <td>{`$${numDisplayer(deal.value)}`}</td>
+                                            <td>{deal.stage}</td>
+                                            <td>{deal.active.toString()}</td>
+                                            <td>{deal.status.toString()}</td>
+                                            <td>{deal.company_name}</td>
+                                            <td>{deal.owner_name}</td>
+                                        </tr>
+                                    )
+                                })}
+                        </tbody>
+                    </table>
+                </main>
+
+        :
+
+        <PipelinePage/>
+
+        }
+        </div>
+>>>>>>> 1c5b6c6 (commit)
     )
 }
 export default DealsPage
