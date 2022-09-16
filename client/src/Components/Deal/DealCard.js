@@ -10,10 +10,10 @@ const DealCard = ({ existingDeal }) => {
     let { id } = useParams()
     const [deal, setDeal] = useState(existingDeal || {})
 
-    const fetchDeal = async (id) => {
-        const response = await fetch(`http://localhost:3000/deals/${id}`)
-        const dealObj = await response.json()
-        setDeal(dealObj)
+    const fetchDeal = async () => {
+        const req = await fetch(`http://localhost:3000/deals/${id}`)
+        const res = await req.json()
+        setDeal(res)
     }
 
     const fetchDealContacts = async () => {

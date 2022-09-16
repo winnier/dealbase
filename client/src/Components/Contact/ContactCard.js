@@ -40,7 +40,7 @@ const ContactCard = () => {
             method: "DELETE",
         })
         .then(alert('contact has been deleted'))
-        .catch(alert('this contact is long gone by now...'))
+        backToContacts()
 
     }
     const handleAddNote = async (e) => {
