@@ -40,9 +40,9 @@ Rails.application.routes.draw do
   post '/contact_notes', to: 'contact_notes#create'
   get '/contact/:id/deals', to: 'contact_deals#show'
 
-  #Sessions Login/Logout
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
+  get '/contact_to/:id/deals', to: 'contacts#associated_deals'
 
 end

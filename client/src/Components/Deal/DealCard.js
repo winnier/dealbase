@@ -77,7 +77,8 @@ const DealCard = ({ existingDeal }) => {
             <button onClick={handleDealDeleteClick}>Delete Deal</button>
             <button onClick={() => contactSwitch()}>View Associated Contacts</button>
             {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
-            {editState ? <EditDeal fetchDeal={() => { fetchDeal(deal.id) }} id={deal.id}/> : null}
+            {/* {editState ? <EditDeal fetchDeal={() => { fetchDeal(deal.id) }} id={deal.id}/> : null} */}
+            {editState ? <EditDeal stage={deal.stage} fetchDeal={fetchDeal} id={id}/> : null}
             <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
         </div>
         </div>

@@ -1,147 +1,190 @@
 import {useEffect, useState} from 'react'
 
-function EditContact ({contact, setContact, fetchContact}) {
-    
-    console.log('contact', contact)
-    
-    const {name, email, phone_number, address, linkedin_url, company_name, owner_name} = contact
+function EditContact({ contact, setContact, fetchContact, id }) {
 
-    const [owners, setOwners] = useState([])
-    const [updatedName, setUpdatedName] = useState(name)
-    const [updatedEmail, setUpdatedEmail] = useState(email)
-    const [updatedPhone, setUpdatedPhone] = useState(phone_number)
-    const [updatedAddress, setUpdatedAddress] = useState(address)
-    const [updatedLinkedin, setUpdatedLinkedin] = useState(linkedin_url)
-    const [updatedCompany, setUpdatedCompany] = useState(company_name)
-    const [updatedOwner, setUpdatedOwner] = useState(owner_name)
+    const updateName = async (e) => {
+        e.preventDefault()
+        let newName = e.target[0].value
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                name: newName
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        // let res = await req.json()
+        // console.log(res)
+        fetchContact()
+    }
 
-    const fetchOwners = async () => {
-        const response = await fetch(`http://localhost:3000/owners`)
-        const ownersArray = await response.json()
-        setOwners(ownersArray)
+    const updateEmail = async (e) => {
+        e.preventDefault()
+        let newEmail = e.target[0].value
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                email: newEmail
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        fetchContact()
+    }
+
+    const updatePhoneNumber = async (e) => {
+        e.preventDefault()
+        let newPhoneNumber = e.target[0].value
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                phone_number: newPhoneNumber
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        fetchContact()
+    }
+
+    const updateAddress = async (e) => {
+        e.preventDefault()
+        let newAddress = e.target[0].value
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                address: newAddress
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        fetchContact()
+    }
+
+    const updateLinkedIn = async (e) => {
+        e.preventDefault()
+        let newLinkedIn = e.target[0].value
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                linkedin_url: newLinkedIn
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        fetchContact()
+    }
+
+
+    let [companiesArray, setCompaniesArray] = useState([])
+
+    let fetchCompanies = async () => {
+        let req = await fetch('http://localhost:3000/companies')
+        let res = await req.json()
+        setCompaniesArray(res)
+    }
+
+    useEffect(() => {
+        fetchCompanies()
+    }, [])
+
+
+    const updateCompany = async (e) => {
+        e.preventDefault()
+        let newCompany
+        for (let i = 0; i < companiesArray.length; i++) {
+            if (e.target[0].value == companiesArray[i].name) {
+                newCompany = companiesArray[i]
+            }
+        }
+        console.log(newCompany)
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                company_id: newCompany.id
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        // let res = await req.json()
+        // console.log(res)
+        fetchContact()
+    }
+
+    let [ownersArray, setOwnersArray] = useState([])
+    let fetchOwners = async () => {
+        let req = await fetch('http://localhost:3000/owners')
+        let res = await req.json()
+        setOwnersArray(res)
     }
 
     useEffect(() => {
         fetchOwners()
     }, [])
 
-    const handleSubmit = (e) => {
+
+
+
+    const updateOwner = async (e) => {
         e.preventDefault()
-        console.log('owners', owners)
-        let newOwnerArray = []
-        let filteredOwnerArray = owners.filter((owner) => owner.name == updatedOwner);
-        newOwnerArray = [...filteredOwnerArray]
-        console.log('newOwnerArray[0]', newOwnerArray[0])
-        let newOwnerObject = newOwnerArray[0]
-        console.log('newOwnerObject', newOwnerObject)
-        let newOwnerId = newOwnerObject.id
-        console.log('newOwnerId', newOwnerId)
-
-
-        
-        fetch(`http://localhost:3000/contacts/${contact.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({name: updatedName, email: updatedEmail, phone_number: updatedPhone, address: updatedAddress, linkedin_url: updatedLinkedin, owner_id: newOwnerId})
-        })
-        .then((r) => r.json())        
-        fetchContact()
-    }
-
-    const updateOwner = (e) => {
-        e.preventDefault()
-        // console.log('e.target[0].value',e.target[0].value)
-        let new_owner
-        for (let i = 0; i < owners.length; i++) {
-            if (owners[i].name == e.target[0].value) {
-                new_owner = owners[i]
+        let newOwner
+        console.log(ownersArray)
+        console.log(e.target[0].value)
+        for (let i = 0; i < ownersArray.length; i++) {
+            if (ownersArray[i].name == e.target[0].value) {
+                newOwner = ownersArray[i]
             }
         }
-        fetch(`http://localhost:3000/contacts/${contact.id}`, {
+        let req = await fetch(`http://localhost:3000/contacts/${id}`, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
             body: JSON.stringify({
-                owner_id: new_owner.id
-            })
+                owner_id: newOwner.id
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
         })
-        .then((r) => r.json())
+     
         fetchContact()
     }
 
+
     return (
-        <div className='edit-contact'>
-            <h2>Edit Contact</h2>
-            <form onSubmit={handleSubmit}>
-            <button type='submit'>Save Changes</button>
-                <label htmlFor='name'>Name: </label>
-                <input
-                type='text'
-                name='name'
-                placeholder="Name"
-                value={updatedName}
-                onChange={(e) => setUpdatedName(e.target.value)}
-                >
-                </input>
-                <label htmlFor='email'>Email: </label>
-                <input
-                type='text'
-                name='email'
-                placeholder="email"
-                value={updatedEmail}
-                onChange={(e) => setUpdatedEmail(e.target.value)}
-                >
-                </input>
-                <label htmlFor='phone'>Phone: </label>
-                <input
-                type='text'
-                name='phone'
-                placeholder="Phone"
-                value={updatedPhone}
-                onChange={(e) => setUpdatedPhone(e.target.value)}
-                >
-                </input>
-                <label htmlFor={address}>Address: </label>
-                <input
-                type='text'
-                name='address'
-                placeholder="Address"
-                value={updatedAddress}
-                onChange={(e) => setUpdatedAddress(e.target.value)}
-                >
-                </input>
-                <label htmlFor="linkedin">Linkedin: </label>
-                <input
-                type='text'
-                name='linkedin'
-                placeholder="Linkedin"
-                value={updatedLinkedin}
-                onChange={(e) => setUpdatedLinkedin(e.target.value)}
-                >
-                </input>
-                <label htmlFor='company'>Company Name: </label>
-                <input
-                type='text'
-                name='company'
-                placeholder="Company"
-                value={updatedCompany}
-                onChange={(e) => setUpdatedCompany(e.target.value)}
-                >
-                </input>
-                <label htmlFor='owner'>Owner: </label>
-                <input
-                type='text'
-                name='owner'
-                placeholder="Owner"
-                value={updatedOwner}
-                onChange={(e) => setUpdatedOwner(e.target.value)}
-                >
-                </input>
-                </form>
-                <form onSubmit={updateOwner}>
+        <div>
+            <form onSubmit={updateName}>
+                <input type="text" placeholder="Update Name" />
+                <input type="submit" value="Update Name" />
+            </form>
+            <form onSubmit={updateEmail}>
+                <input type="text" placeholder="Update Email" />
+                <input type="submit" value="Update Email" />
+            </form>
+            <form onSubmit={updatePhoneNumber}>
+                <input type="text" placeholder="Update Phone Number" />
+                <input type="submit" value="Update Phone Number" />
+            </form>
+            <form onSubmit={updateAddress}>
+                <input type="text" placeholder="Update Address" />
+                <input type="submit" value="Update Address" />
+            </form>
+            <form onSubmit={updateLinkedIn}>
+                <input type="text" placeholder="Update LinkedIn" />
+                <input type="submit" value="Update LinkedIn" />
+            </form>
+            <form onSubmit={updateCompany}>
+                <select>
+                    {companiesArray.map((company) => {
+                        return <option value={company.name}>{company.name}</option>
+                    })}
+                </select>
+                <input type="submit" value="Update Company" />
+            </form>
+            <form onSubmit={updateOwner}>
                 <label>
                     <select>
                         <option value='Aaron'>{'Aaron'}</option>
@@ -152,8 +195,7 @@ function EditContact ({contact, setContact, fetchContact}) {
                     </select>
                     <input type="submit" value="Update Owner" />
                 </label>
-                </form>
-                
+            </form>
 
         </div>
     )
