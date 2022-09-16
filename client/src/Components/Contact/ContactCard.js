@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
 import EditContact from "./EditContact";
-import ContactCardStyle from './ContactCardStyle.css'
+// import ContactCardStyle from './ContactCardStyle.css'
 import WebFont from 'webfontloader';
 import PersonIcon from '@mui/icons-material/Person';
 import RenderDeals from './RenderDeals'
 import AddAssociatedDeals from './AddAssociatedDeals'
+import styles from '../../Styles/ContactCard.css'
+
 
 const ContactCard = () => {
     let {id} = useParams(); 
