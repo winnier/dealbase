@@ -110,8 +110,8 @@ const ContactCard = () => {
         
         <div className='contact-card'>
                 <div className="main">
-                <button className="button" onClick={handleContactDeleteClick}>Delete Contact</button>
-                <button className="button" onClick={handleEditClick}>Edit Contact</button>
+                <button onClick={handleContactDeleteClick}>Delete Contact</button>
+                <button onClick={handleEditClick}>Edit Contact</button>
                 {/* <NavLink className='editContact' to="/edit_contact"><button>Edit Contact</button></NavLink> */}
                 {/* <NavLink className='editContact' to="/edit_contact" state={{ from: "ContactCard"}}><button>Edit Contact</button></NavLink> */}
 
