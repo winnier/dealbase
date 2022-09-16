@@ -133,8 +133,19 @@ const ContactCard = () => {
                                         <h4 className="card-data">Linkedin: {contact.linkedin_url}</h4>
                                         <h4 className="card-data">Company: {contact.company_name}</h4>
                                         <h4 className="card-data">Owner: {contact.owner_name}</h4>
-                                        <h4 className="card-data">Deals</h4>
                                     </div>
+                                    <hr></hr>
+{isEditClicked ? <EditContact id={id} fetchContact={fetchContact} /> : null}
+
+<button onClick={() => dealSwitch()}>View Associated Deals</button>
+<div className="deals-container">
+{dealState ? contactDealsArray.map((deal) => { return <RenderDeals key={c++} name={deal.name} product={deal.product} value={deal.value} stage={deal.stage} status={deal.status} company_name={deal.company_name} owner_name={deal.owner_name} /> }) : null}
+</div>
+
+<button onClick={() => flipDealSwitch()}>Add Associated Deals</button>
+{associateDeals ? <AddAssociatedDeals id={id} contactID={contact.id} /> : null}
+
+<button onClick={() => backToContacts()}>{'Back to Contacts'}</button>
                                 </div>
                             </div>
                         </div>
@@ -144,14 +155,13 @@ const ContactCard = () => {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-md-3">
-                                        <ul className='notes'>
-                                        <h4 className='notesheader'>All Notes</h4>
-                                            <li>
-                                                <form className='form' >
-                                                    <textarea className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
-                                                    <button className="button" onClick={handleAddNote}>Add Note</button>
+                                                <form className='note-form' >
+                                                    <button className="note-button" onClick={handleAddNote}>Add Note</button>
+                                                    <textarea placeholder="insert text here" className='newNoteInput' value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
                                                 </form>
-                                            </li>
+                                            <h4 className='notesheader'>All Notes</h4>
+                                            <hr></hr>
+                                        <ul className='notes'>
                                             {notes.map((note) => {
                                                 return <li className='note' key={note.id}>{`note created: ${note.created_at.substring(0, 10)} note by: ${note.owner_name} ${note.content}`}</li>
                                             })}
@@ -165,15 +175,6 @@ const ContactCard = () => {
                 </div>
             </div>
 
-            {isEditClicked ? <EditContact id={id} fetchContact={fetchContact} /> : null}
-
-            <button onClick={() => dealSwitch()}>View Associated Deals</button>
-            {dealState ? contactDealsArray.map((deal) => { return <RenderDeals key={c++} name={deal.name} product={deal.product} value={deal.value} stage={deal.stage} status={deal.status} company_name={deal.company_name} owner_name={deal.owner_name} /> }) : null}
-
-            <button onClick={() => flipDealSwitch()}>Add Associated Deals</button>
-            {associateDeals ? <AddAssociatedDeals id={id} contactID={contact.id} /> : null}
-
-            <button onClick={() => backToContacts()}>{'Back to Contacts'}</button>
         </div>
     
     )

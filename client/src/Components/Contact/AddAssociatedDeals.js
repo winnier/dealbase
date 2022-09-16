@@ -82,11 +82,11 @@ const AddAssociatedDeals = ( {id, contactID} ) => {
                 <label>Deals:
                     <select multiple>
                         {dealsArray.map((deal) => {
-                            return <option value={deal.id}>{deal.product}</option>
+                            return <option className="deal-options" value={deal.id}>{deal.product}</option>
                         })}
                     </select>
                 </label>
-                <input type="submit" value="Add Associations"></input>
+                <input className="add-associations" type="submit" value="Add Associations"></input>
             </form>
         </div>
     )

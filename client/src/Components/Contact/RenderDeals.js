@@ -1,11 +1,11 @@
 
 
-
+import '../../Styles/ContactCard.css'
 const RenderDeals = ({ name, product, value, stage, active, status, company_name, owner_name }) => {
 
 
     return (
-        <div>
+        <div className="render-deals">
             <p>{name}</p>
             <p>{product}</p>
             <p>{value}</p>

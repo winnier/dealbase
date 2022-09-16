@@ -1,0 +1,2 @@
+class DealNote < ApplicationRecord
+end
