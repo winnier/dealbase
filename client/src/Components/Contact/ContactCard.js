@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom"; // this lets you destructure the id out of the parameters. 
 import EditContact from "./EditContact";
-import styles from './ContactCard.css'
-import WebFont from 'webfontloader';
-import styles from '../../Styles/ContactCard.css'
+import ContactCardStyle from './ContactCardStyle.css'
 import WebFont from 'webfontloader';
 import PersonIcon from '@mui/icons-material/Person';
 

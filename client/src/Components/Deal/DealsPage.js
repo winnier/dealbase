@@ -228,7 +228,7 @@ function DealsPage() {
                                             {/* <td onClick={() => handleContactClick(contact.id)}>{contact.name}</td> */}
                                             <td onClick={() => handleDealClick(deal.id)}>{deal.name}</td>
                                             <td>{deal.product}</td>
-                                            <td>{`$${numDisplayer(deal.value)}`}</td>
+                                            <td>{`$${(deal.value)}`}</td>
                                             <td>{deal.stage}</td>
                                             <td>{deal.active.toString()}</td>
                                             <td>{deal.status.toString()}</td>
