@@ -6,6 +6,11 @@ class ContactsController < ApplicationController
 
     end
 
+    def get_company
+        contact = Contact.find_by(id: params[:id])
+        render json: contact.company
+    end
+
     def create
         contact = Contact.new(contact_params)
         if contact.save

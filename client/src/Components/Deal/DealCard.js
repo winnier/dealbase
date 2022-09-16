@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom"; // useParams lets you destructure the id out of the parameters. 
 import RenderContacts from './RenderContacts'
 import EditDeal from './EditDeal'
+import AddAssociatedContacts from "./AddAssociatedContacts";
 
 const DealCard = ({ existingDeal }) => {
     let [dealContacts, setDealContacts] = useState([])
@@ -16,9 +17,8 @@ const DealCard = ({ existingDeal }) => {
     }
 
     const fetchDealContacts = async () => {
-        const req = await fetch(`http://localhost:3000/contact/${deal.id}/deals`)
+        const req = await fetch(`http://localhost:3000/contact/${id}/deals`)
         const res = await req.json()
-        console.log(res)
         setDealContacts(res)
     }
 
@@ -46,6 +46,7 @@ const DealCard = ({ existingDeal }) => {
     let [contactState, setContactState] = useState(false)
     let contactSwitch = () => {
         setContactState(!contactState)
+        fetchDealContacts()
     }
     
     let c = 0
@@ -61,12 +62,17 @@ const DealCard = ({ existingDeal }) => {
         console.log(editState)
     }
 
+    let [associateContacts, setAssociateContacts] = useState(false)
+
+    let flipContactSwitch = () => {
+        setAssociateContacts(!associateContacts)
+    }
+
     return (
 
         <div>
             {/* <button onClick={handleEditClick}>Edit Contact</button> */}
             {/* <NavLink className='editContact' to='/edit_deal'><button>Edit Deal</button></NavLink> */}
-            <div>
             <h4>Name: {deal.name}</h4>
             <h4>Product: {deal.product}</h4>
             <h4>Company: {deal.company_name}</h4>
@@ -79,8 +85,11 @@ const DealCard = ({ existingDeal }) => {
             {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
             {/* {editState ? <EditDeal fetchDeal={() => { fetchDeal(deal.id) }} id={deal.id}/> : null} */}
             {editState ? <EditDeal stage={deal.stage} fetchDeal={fetchDeal} id={id}/> : null}
+
+                <button onClick={() => flipContactSwitch()}>Add Associated Contacts</button>
+                {associateContacts ? <AddAssociatedContacts id={id} /> : null}
+            
             <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
-        </div>
         </div>
     )
 }

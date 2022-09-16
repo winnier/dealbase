@@ -23,6 +23,14 @@ class ContactDealsController < ApplicationController
         # end
     end
 
+    def create_with_deals
+        deal = Deal.find_by(params[:deal_id])
+        arr = params[:deal_id_array]
+        arr.each do |id|
+            cd = ContactDeal.create!(deal_id: id, contact_id: params[:contact_id], company_id: params[:company_id])
+        end
+    end
+
     def update
         contact_deal = ContactDeal.find_by(id: params[:id])
         if contact_deal
