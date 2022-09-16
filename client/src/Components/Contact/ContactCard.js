@@ -115,8 +115,8 @@ const ContactCard = () => {
                 {/* <NavLink className='editContact' to="/edit_contact" state={{ from: "ContactCard"}}><button>Edit Contact</button></NavLink> */}
 
                 <div className="row">
-                    <div className="left col-md-4 mt-1">
-                        <div className="card text-center sidebar">
+                    <div className="left">
+                        <div className="card sidebar">
                             <div className="card-body">
                                 {/* <img src="imageplaceholder.jpg" alt="profile image" class="profile__image"></img> */}
                                 <div className="card-text">
