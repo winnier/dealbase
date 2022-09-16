@@ -29,6 +29,11 @@ body tr:hover {
     margin-bottom: 6px;
 }
 
+.page-holder caption {
+    margin-bottom: 6px;
+
+}
+
 .chooseBox{
     border: 1px transparent;
     border-radius: 4px;

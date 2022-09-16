@@ -1,8 +1,12 @@
 
 * {
-  color: black;
-  font-family: Verdana;
+  font-family: Montserrat;
 }
+
+body{
+  margin-top: 20px;
+  background: rgb(209,209,209);
+  background: linear-gradient(90deg, rgba(209,209,209,1) 0%, rgba(237,237,237,1) 33%, rgba(249,249,249,1) 50%, rgba(237,237,237,1) 67%, rgba(230,230,230,1) 85%, rgba(209,209,209,1) 100%);}
 
 p5{
   font-size: 9px;

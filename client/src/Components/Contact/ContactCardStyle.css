@@ -1,7 +1,3 @@
-/* body{
-    margin-top: 20px;
-    background-color: lightgrey;
-}
 
 .main{
     padding: 15px;
@@ -16,11 +12,12 @@
 .sidebar .card-text-head h3{
     margin-bottom: -20px;
 }
+
 .sidebar .card-data {
     margin-left: 20px;
     padding-left: 10px;
     display: block;
-    color: white;
+    /* color: white; */
     padding-bottom: 10px;
     text-decoration: none;
 }

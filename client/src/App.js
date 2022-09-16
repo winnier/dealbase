@@ -29,6 +29,8 @@ import './Styles/LandingPage.css';
 import './Styles/PageStyle.css';
 import './Styles/Login.css';
 import './Styles/DealsToggle.css'
+import WebFont from 'webfontloader';
+
 
 // COMPONENTS
 import NavBar from './Components/NavBar';

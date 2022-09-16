@@ -14,15 +14,17 @@ a {
 .nav-links {
     display: flex;
     flex-direction: inline;
-    gap: 100px;
+    gap: 2.2em;
     justify-content: center;
     list-style: none;
-    font-size: 20px;
+    font-size: 1.5rem;
     margin-top: 20px;
     padding-bottom: 10px;
     background-color: whitesmoke;
-    border-radius: 100px;
+    border-radius: 10px;
+    max-width: 99%;
 }
+
 
 #nav-company-name{
     font-weight: bold;
@@ -32,7 +34,7 @@ a {
 .nav-item {
     color: black;
     padding: 5px;
-    border-radius: 50px;
+    border-radius: 20px;
     transition: 0.3s;
 }
 
