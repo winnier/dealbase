@@ -61,8 +61,9 @@ const PipelineItem = ({ item, index, moveItem, status }) => {
                 onClick={onOpen}
             >
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
-                <p className={"item-title"}>{item.content}</p>
-                <p className={"item-status"}>{item.icon}</p>
+                <p className={"item-content"}><strong>{item.name}</strong></p>
+                <p className={"item-content"}>{item.product}</p>
+                {/* <p className={"item-status"}>{item.icon}</p> */}
             </div>
             <PipelineWindow
                 item={item}

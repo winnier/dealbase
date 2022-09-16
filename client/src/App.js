@@ -60,8 +60,10 @@ function App() {
               <Route path="/deals_page" element={<DealsPage />} />
               <Route path="/pipeline_page" element={<PipelinePage />} />
               <Route path='new_deal' element={<AddNewDeal />} />
+              <Route path='/pipeline_display' element={<PipelinePage />} />
               <Route path='login' element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn}/>} />
               <Route path='*' element={<ErrorPage/>} />
+
 
 
             </Routes > 

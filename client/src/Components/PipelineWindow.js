@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import DealCard from "./Deal/DealCard";
 
 // Modal.setAppElement("#app");
 
@@ -12,14 +13,11 @@ const PipelineWindow = ({ show, onClose, item }) => {
             overlayClassName={"overlay"}
         >
             <div className={"close-btn-ctn"}>
-                <h1 style={{ flex: "1 90%" }}>{item.title}</h1>
+                <h1 style={{ flex: "1 90%" }}>{item.name}</h1>
                 <button className="close-btn" onClick={onClose}>X</button>
             </div>
             <div>
-                <h2>Description</h2>
-                <p>{item.content}</p>
-                <h2>Status</h2>
-                <p>{item.icon} {`${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`}</p>
+                <DealCard existingDeal={item} />
             </div>
         </Modal>
     );

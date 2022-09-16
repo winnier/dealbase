@@ -2,22 +2,41 @@ import React, { useState } from "react";
 import PipelineItem from "./PipelineItem";
 import PipelineDropWrapper from "./PipelineDropWrapper";
 import PipelineColumn from "./PipelineColumn";
-import { data, statuses } from "../data";
+import { statuses } from "../data";
 import '../Styles/Pipeline.css';
+import { useEffect } from "react";
 
 const PipelinePage = () => {
-    
-    const [items, setItems] = useState(data);
+    const [items, setItems] = useState([])
+
+    const fetchDeals = async () => {
+        const response = await fetch(`http://localhost:3000/deals`)
+        const dealsArray = await response.json()
+        setItems(dealsArray)
+    }
+   
+    useEffect(()=> {
+        fetchDeals()
+    }, [])
 
     const onDrop = (item, monitor, status) => {
-        const mapping = statuses.find(si => si.status === status);
-
+        item.stage = status;
         setItems(prevState => {
             const newItems = prevState
                 .filter(i => i.id !== item.id)
-                .concat({ ...item, status, icon: mapping.icon });
+                .concat({ ...item });
             return [ ...newItems ];
         });
+
+        let req = fetch(`http://localhost:3000/deals/${item.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                stage: status
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
     };
 
     const moveItem = (dragIndex, hoverIndex) => {
@@ -34,11 +53,11 @@ const PipelinePage = () => {
             {statuses.map(s => {
                 return (
                     <div key={s.status} className={"col-wrapper"}>
-                        <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
+                        <h2 className={"col-header"}>{s.status}</h2>
                         <PipelineDropWrapper onDrop={onDrop} status={s.status}>
                             <PipelineColumn>
                                 {items
-                                    .filter(i => i.status === s.status)
+                                    .filter(i => i.stage === s.status)
                                     .map((i, idx) => <PipelineItem key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
                                 }
                             </PipelineColumn>
