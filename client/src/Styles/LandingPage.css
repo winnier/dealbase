@@ -92,9 +92,6 @@
 }
 
 .svg {
-    width: 20px;
-}
-
-#company-deals .landing-card  {
-    min-width: 500px;
+    width: 100px;
+    fill: blue
 }

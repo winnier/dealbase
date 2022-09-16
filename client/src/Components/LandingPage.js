@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import CompanyCard from './Company/CompanyCard'
-import { BsFillFilePersonFill } from 'react-icons/bs';
+import { BsFillFilePersonFill, BsFillFolderFill} from 'react-icons/bs';
+import { FaMoneyBillAlt } from 'react-icons/fa';
+
 
 
 
@@ -149,7 +151,7 @@ const LandingPage = (user) => {
                     <Link to="/deals_page" id="ttl-deals" className='landing-card'>
                         <div>
                             <p><b>{deals.length}</b></p>
-                            <BsFillFilePersonFill className='landing-icon'/>
+                            <BsFillFolderFill className='landing-icon'/>
                         </div>
                         <p>Total Deals</p>
                     </Link>
@@ -157,11 +159,10 @@ const LandingPage = (user) => {
 
                 <div id="company-second-div">
                    
-
                     <Link to="/deals_page" id="total-earnings" className='landing-card'>
                         <div>
                             <p><b>{moneyDisplayer(overallSum(deals, 'value'))}</b></p>
-                            <BsFillFilePersonFill className='landing-icon'/>
+                            <FaMoneyBillAlt className='landing-icon'/>
                         </div>
                         <p>Total Overall Earnings</p>
                     </Link>
@@ -169,7 +170,7 @@ const LandingPage = (user) => {
                     <Link to="/deals_page" id="total-potential-earnings" className='landing-card'>
                         <div>
                             <p><b>{moneyDisplayer(sumValue(deals, 'value'))}</b></p>
-                            <BsFillFilePersonFill className='landing-icon'/>
+                            <FaMoneyBillAlt className='landing-icon'/>
                         </div>
                         <p>Total Potential Earnings</p>
                     </Link>
