@@ -20,4 +20,9 @@ class Company < ApplicationRecord
         deal.name
         end
     end
+    def as_json(opts = {})
+        hash = super
+        hash[:company_notes] = company_notes
+        hash
+    end
 end

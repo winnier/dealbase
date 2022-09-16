@@ -136,9 +136,9 @@ const CompaniesPage = ({}) => {
     const getKeys = (obj)=> {
         let temp = []
          for(const key in obj){
-            if(key == 'nvm'){
+            if(key == 'company_notes'){
             }else{
-                temp.push(formatter(key))
+                temp.push(key)
             }
         }
         setKeyArray(temp)
@@ -189,7 +189,7 @@ const CompaniesPage = ({}) => {
                     <tr>
                         {keyArray.map((accessor)=>{
                             return(
-                                <th onClick={() => handleSortingChange(accessor)}>{accessor}</th>
+                                <th onClick={() => handleSortingChange(accessor)}>{formatter(accessor)}</th>
                             )
                         })}
                     </tr>

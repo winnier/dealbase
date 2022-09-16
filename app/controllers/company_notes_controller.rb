@@ -15,6 +15,7 @@ class CompanyNotesController < ApplicationController
         if company_note.save
             render json: company_note, status: 201
         else
+            puts company_note.errors.full_messages
             render json: {error: company_note.errors.full_messages}, status: 422
         end
     end
