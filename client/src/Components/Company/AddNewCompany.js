@@ -17,6 +17,7 @@ const AddNewCompany = () => {
         setRand(parseInt(Math.random() * 5) )
         console.log(rand)
     }, [])
+    
 
     const handleContactSubmit = async (e) => {
         e.preventDefault();
