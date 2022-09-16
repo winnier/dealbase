@@ -8,7 +8,7 @@ import RenderDeals from './RenderDeals'
 import AddAssociatedDeals from './AddAssociatedDeals'
 
 const ContactCard = () => {
-    let {id} = useParams();
+    let {id} = useParams(); 
     const [contact, setContact] = useState({})
     const [isEditClicked, setIsEditClicked] = useState(false)
     const [notes, setNotes] = useState([])
@@ -111,16 +111,11 @@ const ContactCard = () => {
                 <button className="button" onClick={handleEditClick}>Edit Contact</button>
                 {/* <NavLink className='editContact' to="/edit_contact"><button>Edit Contact</button></NavLink> */}
                 {/* <NavLink className='editContact' to="/edit_contact" state={{ from: "ContactCard"}}><button>Edit Contact</button></NavLink> */}
-                <div className="main">
-                    <div className="topbar">
 
-                    </div>
-                </div>
                 <div className="row">
                     <div className="left col-md-4 mt-1">
                         <div className="card text-center sidebar">
                             <div className="card-body">
-                            <span class="material-symbols-outlined"></span>
                                 {/* <img src="imageplaceholder.jpg" alt="profile image" class="profile__image"></img> */}
                                 <div className="card-text">
                                     <div className="card-text-head">
@@ -181,4 +176,4 @@ const ContactCard = () => {
     )
 }
 
-export default ContactCard;
+export default ContactCard; 
