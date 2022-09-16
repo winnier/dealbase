@@ -153,7 +153,7 @@ function ContactsPage(){
     // console.log('contacts', contacts)
     return(
         <main className="main">
-            <NavLink className='AddNewContact' to='/new_contact'><button>New Contact</button></NavLink>
+            <NavLink className='AddNewContact' to='/new_contact'><button>Create a New Contact</button></NavLink>
             <div className='filter'>
                 <label htmlFor='companiesNames'>Choose Company:</label>
                 <select className='chooseBox' name='companiesNames' id='companiesNames' onChange={updateCompany} value={company}>Choose Company

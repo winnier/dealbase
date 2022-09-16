@@ -1,37 +1,11 @@
 import { useState, useEffect } from 'react'
 
-const AddAssociatedDeals = ( {id, contactID} ) => {
+const AddAssociatedContacts = ({ id }) => {
 
+    // id = deal id
     let [contactsArray, setContactsArray] = useState([])
 
     let [dealsArray, setDealsArray] = useState([])
-
-    let fetchDeals = async () => {
-        let req = await fetch('http://localhost:3000/deals')
-        let res = await req.json()
-        res = res.sort((a, b) => {
-            return (a.name < b.name ? -1 : 1)
-        })
-        setDealsArray(res)
-        // console.log("Contacts: ", res)
-    }
-    useEffect(() => {
-        fetchDeals()
-    }, [])
-
-    let [companyID, setCompanyID] = useState(0)
-
-    let fetchCompany = async () => {
-        let req = await fetch(`http://localhost:3000/contact/${contactID}/company`)
-        let res = await req.json()
-        console.log(res)
-        console.log(res.id)
-        setCompanyID(res.id)
-    }
-
-    useEffect(() => {
-        fetchCompany()
-    }, [])
 
     let fetchContacts = async () => {
         let req = await fetch('http://localhost:3000/contacts')
@@ -46,28 +20,56 @@ const AddAssociatedDeals = ( {id, contactID} ) => {
         fetchContacts()
     }, [])
 
+    let [companyID, setCompanyID] = useState(0)
 
-    const handleDealSubmit = async (e) => {
+    let fetchCompany = async () => {
+        let req = await fetch(`http://localhost:3000/deal/${id}/company`)
+        let res = await req.json()
+        console.log(res)
+        console.log(res.id)
+        setCompanyID(res.id)
+    }
+
+    useEffect(() => {
+        console.log(id)
+        fetchCompany()
+    }, [])
+
+    // let fetchContacts = async () => {
+    //     let req = await fetch('http://localhost:3000/contacts')
+    //     let res = await req.json()
+    //     res = res.sort((a, b) => {
+    //         return (a.name < b.name ? -1 : 1)
+    //     })
+    //     setContactsArray(res)
+    //     // console.log("Contacts: ", res)
+    // }
+    // useEffect(() => {
+    //     fetchContacts()
+    // }, [])
+
+
+    const handleContactSubmit = async (e) => {
         e.preventDefault();
 
-        let dealsIDArray = []
+        let contactsIDArray = []
         for (let i = 0; i < contactsArray.length; i++) {
             if (e.target[0].options[i].selected == true) {
-                dealsIDArray.push(e.target[0].options[i].value)
+                contactsIDArray.push(e.target[0].options[i].value)
             }
         }
-        console.log(dealsIDArray)
+        console.log(contactsIDArray)
 
         id = parseInt(id)
 
-        let req2 = await fetch(`http://localhost:3000/contact_profile/${id}`, {
+        let req2 = await fetch('http://localhost:3000/contact_deals', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                deal_id_array: dealsIDArray,
-                contact_id: id,
+                deal_id: id,
+                contact_id_array: contactsIDArray,
                 company_id: companyID
             })
         })
@@ -78,11 +80,11 @@ const AddAssociatedDeals = ( {id, contactID} ) => {
 
     return (
         <div>
-            <form onSubmit={handleDealSubmit}>
-                <label>Deals:
+            <form onSubmit={handleContactSubmit}>
+                <label>Contacts:
                     <select multiple>
-                        {dealsArray.map((deal) => {
-                            return <option value={deal.id}>{deal.product}</option>
+                        {contactsArray.map((contact) => {
+                            return <option value={contact.id}>{contact.name}</option>
                         })}
                     </select>
                 </label>
@@ -95,4 +97,4 @@ const AddAssociatedDeals = ( {id, contactID} ) => {
 
 
 
-export default AddAssociatedDeals
+export default AddAssociatedContacts

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom"; // useParams lets you destructure the id out of the parameters. 
 import RenderContacts from './RenderContacts'
 import EditDeal from './EditDeal'
+import AddAssociatedContacts from "./AddAssociatedContacts";
 import styles from '../../Styles/DealCard.css'
 
 const DealCard = ({ existingDeal }) => {
@@ -10,16 +11,15 @@ const DealCard = ({ existingDeal }) => {
     let { id } = useParams()
     const [deal, setDeal] = useState(existingDeal || {})
 
-    const fetchDeal = async (id) => {
-        const response = await fetch(`http://localhost:3000/deals/${id}`)
-        const dealObj = await response.json()
-        setDeal(dealObj)
+    const fetchDeal = async () => {
+        const req = await fetch(`http://localhost:3000/deals/${id}`)
+        const res = await req.json()
+        setDeal(res)
     }
 
     const fetchDealContacts = async () => {
-        const req = await fetch(`http://localhost:3000/contact/${deal.id}/deals`)
+        const req = await fetch(`http://localhost:3000/contact/${id}/deals`)
         const res = await req.json()
-        console.log(res)
         setDealContacts(res)
     }
 
@@ -47,6 +47,7 @@ const DealCard = ({ existingDeal }) => {
     let [contactState, setContactState] = useState(false)
     let contactSwitch = () => {
         setContactState(!contactState)
+        fetchDealContacts()
     }
     
     let c = 0
@@ -60,6 +61,12 @@ const DealCard = ({ existingDeal }) => {
     let editClick = () => {
         setEditState(!editState)
         console.log(editState)
+    }
+
+    let [associateContacts, setAssociateContacts] = useState(false)
+
+    let flipContactSwitch = () => {
+        setAssociateContacts(!associateContacts)
     }
 
     return (

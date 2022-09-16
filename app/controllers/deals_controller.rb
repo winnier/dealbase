@@ -8,6 +8,10 @@ class DealsController < ApplicationController
         render json: deal
     end
 
+    def get_company
+        deal = Deal.find_by(id: params[:id])
+        render json: deal.company
+    end
     
     # def showdeals
     #     # companies = Contact.all.uniq{|x| x.company_name}.pluck(:company_name)

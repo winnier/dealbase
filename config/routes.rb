@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/companies/:id', to: 'companies#show'
   get '/companies_names', to: 'companies#names'
   get '/companies/:id/contacts', to: 'companies#showcontacts'
+  
   post '/companies', to: 'companies#create'
   patch '/companies/:id', to: 'companies#update'
   delete '/companies/:id', to: 'companies#destroy'
@@ -44,5 +45,10 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
   get '/contact_to/:id/deals', to: 'contacts#associated_deals'
+
+  post '/contact_profile/:id', to: 'contact_deals#create_with_deals'
+
+  get 'contact/:id/company', to: 'contacts#get_company'
+  get '/deal/:id/company', to: 'deals#get_company'
 
 end
