@@ -79,12 +79,14 @@ const DealCard = () => {
                                 <div className="card-text">
                                     <div className="card-text-head"></div>
                                         <h3 className="card-data">{deal.name}</h3>
-                                        <hr className="card-data"></hr>
-                                        <h4 className="card-data">Product: {deal.product}</h4>
-                                        <h4 className="card-data">Company: {deal.company_name}</h4>
-                                        <h4 className="card-data">Stage: {deal.stage}</h4>
-                                        <h4 className="card-data">Status: {deal.status}</h4>
-                                        <h4 className="card-data">Owner: {deal.owner_name}</h4>
+                                        <hr></hr>
+                                        <div className="card-text-body">
+                                            <h4 className="card-data">Product: {deal.product}</h4>
+                                            <h4 className="card-data">Company: {deal.company_name}</h4>
+                                            <h4 className="card-data">Stage: {deal.stage}</h4>
+                                            <h4 className="card-data">Status: {deal.status}</h4>
+                                            <h4 className="card-data">Owner: {deal.owner_name}</h4>
+                                        </div>
                                         <button onClick={() => contactSwitch()}>View Associated Contacts</button>
                                         {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
                                         {editState ? <EditDeal fetchDeal={fetchDeal} id={id}/> : null}

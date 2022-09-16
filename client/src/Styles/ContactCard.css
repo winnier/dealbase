@@ -70,13 +70,13 @@ body{
     padding: 15px;
 }
 
-.button{
+button{
     margin: 15px;
     font-family: 'DM Sans';
     box-shadow: 3px 5px 10px rgba(136, 136, 136);
 }
 
-.card-text-head h1{
+.card-text-head h3{
     margin-bottom: -20px;
 }
 
