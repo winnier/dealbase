@@ -1,10 +1,165 @@
 
-* {
+/* * {
   color: black;
   font-family: Verdana;
-}
+} */
 
 p5{
   font-size: 9px;
 }
+#whole-ass-page {
+  color: black;
+}
 
+#page {
+  background: gray;
+  background: url('./../public/business.jpg');
+  background-position: center; 
+  background-size: cover;
+  color: white;
+  height: 800px;
+  width: 100%;
+  
+}
+
+#gradient-background {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 43%, rgba(0, 0, 0, 0) 100%, rgba(255, 255, 255, 1) 100%);
+  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(255, 255, 255, 0.1)); */
+  height: 100vh;
+}
+
+#nav {
+  height: 20px;
+  width: 100%;
+  background-color: black;
+  box-shadow: white;
+  border-bottom: white 1px solid;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+}
+
+#logo {
+}
+
+#login p{
+  position: absolute;
+  right: 0;
+  margin-top: 0;
+}
+
+.login-container {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 380px;
+  width: 350px;
+  top: 230px;
+  right: 200px;
+  border-radius: 10px;
+  color: black;
+}
+
+.login-container h2 {
+  font-family: 'Bebas Neue';
+  font-size: 3em;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+
+.log-in {
+  font-family: 'Bebas Neue';
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: center
+}
+
+
+
+.log-in label {
+  height: 30px;
+  font-size: 1.5rem;
+  /* margin-left: 100px ; */
+}
+
+.log-in input {
+  height: 15px;
+  width: 300px;
+  /* margin: 5px 10%; */
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 6px 10px;
+  font-size: 18px;
+  border-radius: 30px;
+  border:none;
+}
+
+.log-in button {
+  /* height: 25px; */
+  width: 320px;
+  padding: 6px 10px;
+  font-size: 18px;
+  background-color: #1FA9E0;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+  /* margin-left: 33px; */
+}
+
+.log-in button:hover {
+  background-color: #208ab4;
+  cursor: pointer;
+}
+
+#home-text {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  color: white;
+  font-family: 'Bebas Neue';
+  width: 700px;
+  font-size: 5em;
+  margin-bottom: 50;
+  margin-top: 220px;
+  margin-left: 70px;
+  animation-duration: 1s;
+  animation-name: slidein;
+}
+
+#short-desc {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  color: white;
+  font-family: 'Bebas Neue';
+  width: 600px;
+  font-size: 40px;
+  margin-bottom: 50;
+  margin-top: 430px;
+  margin-left: 70px;
+  animation-duration: 1.5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  0% { 
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+      transform: translateX(0);
+  }
+}

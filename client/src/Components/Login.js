@@ -33,18 +33,18 @@ const Login = ({ setUser, setIsLoggedIn }) => {
 
     return (
         <div id='tint'>
-        <div id='login-container'>
+        <div className='login-container'>
             <h2>Log In</h2>
 
-            <form id='log-in' onSubmit={(e) => handleSubmit(e, loginInfo)}>
-                <h3>Username</h3>
+            <form className='log-in' id='log-in' onSubmit={(e) => handleSubmit(e, loginInfo)}>
+                <label>Username</label>
                 <input
                     paceholder="username"
                     type="text"
                     name="username"
                     onChange={(e) => handleChange(e.target.name, e.target.value)}
                 />
-                <h3>Password</h3>
+                <label>Password</label>
                 <input
                     paceholder="password"
                     type="password"
@@ -54,9 +54,6 @@ const Login = ({ setUser, setIsLoggedIn }) => {
                 <NavLink to="/">
                     <button placeholder='submit' type='submit'>Log In</button>
                 </NavLink>
-                <div>
-                    or <Link to='/signup'>Sign Up</Link>
-                </div>
             </form>
         </div>
         </div>

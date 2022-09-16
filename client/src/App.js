@@ -9,6 +9,7 @@ import CompanyCard from './Components/CompanyCard';
 import LandingPage from './Components/LandingPage';
 import Footer from './Components/Footer';
 import Login from './Components/Login'
+import Home from './Components/Home'
 
 
 import DealsPage from './Components/Deal/DealsPage';
@@ -42,10 +43,11 @@ function App() {
       <div>
         <DndProvider backend={HTML5Backend}>
           <BrowserRouter>
-            <NavBar toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} isLoggedIn={isLoggedIn} user={user} />
+            {/* <NavBar toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} isLoggedIn={isLoggedIn} user={user} /> */}
             { toggleLogin ? <Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} /> : null}
             <Routes > 
               <Route path="/" element={ <LandingPage user={user}/>} />
+              <Route path='/home' element={ <Home />} />
               <Route path="/contacts_page" element={<ContactsPage />} />
               <Route path='/contact_profile/:id' element={<ContactCard />}/>
               <Route path='/deal_profile/:id' element={<DealCard />}/>
