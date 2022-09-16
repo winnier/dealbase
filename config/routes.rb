@@ -51,6 +51,9 @@ Rails.application.routes.draw do
 
   get 'contact/:id/company', to: 'contacts#get_company'
   get '/deal/:id/company', to: 'deals#get_company'
+  get '/company_notes', to: 'company_notes#index'
+  get '/company_notes/:id', to: 'company_notes#show'
+  post '/company_notes', to: 'company_notes#create'
 
   get '/deal_notes', to: 'deal_notes#index'
   get '/deal_notes/:id', to: 'deal_notes#show'

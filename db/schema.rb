@@ -23,6 +23,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_135441) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "company_notes", force: :cascade do |t|
+    t.text "content"
+    t.integer "company_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contact_deals", force: :cascade do |t|
     t.integer "contact_id"
     t.integer "deal_id"

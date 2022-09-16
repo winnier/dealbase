@@ -53,7 +53,7 @@ const PipelinePage = () => {
             {statuses.map(s => {
                 return (
                     <div key={s.status} className={"col-wrapper"}>
-                        <h2 className={"col-header"}>{s.status}</h2>
+                        <h2 className={"col-header"}>{s.name}</h2>
                         <PipelineDropWrapper onDrop={onDrop} status={s.status}>
                             <PipelineColumn>
                                 {items
