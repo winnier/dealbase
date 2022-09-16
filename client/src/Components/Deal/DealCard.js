@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom"; // useParams lets you destructure the id out of the parameters. 
 import RenderContacts from './RenderContacts'
 import EditDeal from './EditDeal'
+import styles from '../../Styles/DealCard.css'
 
 const DealCard = () => {
     let { id } = useParams();
@@ -72,21 +73,22 @@ const DealCard = () => {
                 <button className="button" onClick={handleDealDeleteClick}>Delete Deal</button>
                 <button className="button" onClick={() => editClick()}>Edit Deal</button>
                 <div className="row">
-                    <div className="left col-md-4 mt-1">
-                        <div className="card text-center sidebar">
+                    <div className="left">
+                        <div className="card sidebar">
                             <div className="card-body">
                                 <div className="card-text">
                                     <div className="card-text-head"></div>
-                                    <h3>{deal.name}</h3>
-                                    <h4>Product: {deal.product}</h4>
-                                    <h4>Company: {deal.company_name}</h4>
-                                    <h4>Stage: {deal.stage}</h4>
-                                    <h4>Status: {deal.status}</h4>
-                                    <h4>Owner: {deal.owner_name}</h4>
-                                    <button onClick={() => contactSwitch()}>View Associated Contacts</button>
-                                    {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
-                                    {editState ? <EditDeal fetchDeal={fetchDeal} id={id}/> : null}
-                                    <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
+                                        <h3>{deal.name}</h3>
+                                        <hr></hr>
+                                        <h4>Product: {deal.product}</h4>
+                                        <h4>Company: {deal.company_name}</h4>
+                                        <h4>Stage: {deal.stage}</h4>
+                                        <h4>Status: {deal.status}</h4>
+                                        <h4>Owner: {deal.owner_name}</h4>
+                                        <button onClick={() => contactSwitch()}>View Associated Contacts</button>
+                                        {contactState ? dealContacts.map((deal) =>  { return <RenderContacts key={c++} name={deal.name} email={deal.email} phone_number={deal.phone_number} address={deal.address} linkedin={deal.linkedin_url} company_name={deal.company_name} owner_name={deal.owner_name}/>}) : null }
+                                        {editState ? <EditDeal fetchDeal={fetchDeal} id={id}/> : null}
+                                        <button onClick={() => backToDeals()}>{'Back to Deals'}</button>
                                 </div>
                             </div>
                         </div>
