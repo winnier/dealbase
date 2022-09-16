@@ -65,6 +65,7 @@ const ContactCard = () => {
     let [dealState, setDealState] = useState(false)
     let dealSwitch = () => {
         setDealState(!dealState)
+        fetchContactDeals()
     }
 
     let [contactDealsArray, setContactDealsArray] = useState([])
@@ -170,7 +171,7 @@ const ContactCard = () => {
             {dealState ? contactDealsArray.map((deal) => { return <RenderDeals key={c++} name={deal.name} product={deal.product} value={deal.value} stage={deal.stage} status={deal.status} company_name={deal.company_name} owner_name={deal.owner_name} /> }) : null}
 
             <button onClick={() => flipDealSwitch()}>Add Associated Deals</button>
-            {associateDeals ? <AddAssociatedDeals /> : null}
+            {associateDeals ? <AddAssociatedDeals id={id} contactID={contact.id} /> : null}
 
             <button onClick={() => backToContacts()}>{'Back to Contacts'}</button>
         </div>

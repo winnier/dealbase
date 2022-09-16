@@ -1,6 +1,10 @@
 import {useState, useEffect} from 'react';
 import CompanyCard from './CompanyCard';
 import { useNavigate } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
+import AddNewCompany from './AddNewCompany'
+
+
 
 const CompaniesPage = ({}) => {
 
@@ -156,6 +160,8 @@ const CompaniesPage = ({}) => {
 
     return(
         <main>
+            <NavLink className='AddNewContact' to='/new_company'><button>Add New Company</button></NavLink>
+
             <div className='filter'>
                 <label htmlFor='companies'>Filter By Country:</label>
                 <select className='chooseBox' name='countriesArray' id='countryNames' onChange={updateCountry} value={country}>
@@ -168,7 +174,6 @@ const CompaniesPage = ({}) => {
 
 
 
-
                 <label htmlFor='owners'>Filter By Industry:</label>
                 <select className='chooseBox' name='ownersNames' id='ownersNames' onChange={updateIndustry} value={industry}>
                     <option value="All">All</option>
@@ -177,6 +182,7 @@ const CompaniesPage = ({}) => {
                     })}
                 </select>
             </div>
+
             <table className="page-holder">
                 <caption>COMPANY PAGE</caption>
                 <thead>

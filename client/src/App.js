@@ -7,6 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import CompaniesPage from './Components/Company/CompaniesPage';
 import CompanyCard from './Components/Company/CompanyCard';
+import AddNewCompany from './Components/Company/AddNewCompany'
 import LandingPage from './Components/LandingPage';
 import Footer from './Components/Footer';
 import Login from './Components/Login'
@@ -61,6 +62,7 @@ function App() {
               <Route path="/pipeline_page" element={<PipelinePage />} />
               <Route path='new_deal' element={<AddNewDeal />} />
               <Route path='/pipeline_display' element={<PipelinePage />} />
+              <Route path='/new_company' element={<AddNewCompany />} />
               <Route path='login' element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn}/>} />
               <Route path='*' element={<ErrorPage/>} />
 
