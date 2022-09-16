@@ -1,16 +1,39 @@
 .page-holder {
-    margin: 0% 8%;
+    margin: 0% 2%;
+    margin-bottom: 2%;
+    color: rgb(55, 70, 89);
+    border: none;
+    border-collapse: collapse;
+    text-align: left;
+    border-spacing: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
+thead {
+    background-color: rgb(246, 248, 250);
+    padding: 0.5em 1em;
+    border-bottom: 1px solid black;
+}
+
+tbody {
+    background-color: rgb(255, 255, 255);
+}
+
+tbody tr {
+    border-bottom: 1px solid lightgray;
+}
+
 
 th {
     border-bottom: 1px solid rgb(134, 132, 132);
-    background-color: rgb(226, 226, 226);
-    height: 2em;
+    height: 1em;
+    font-size: small;
+    padding: 0.7em 1.5em;
 }
 
 td {
-    padding: 0 1em;
-    height: 1.8em;
+    font-size: small;
+    padding: 0.7em 1.5em;
 }
 
 body tr:hover {
@@ -30,8 +53,8 @@ body tr:hover {
 }
 
 .page-holder caption {
-    margin-bottom: 6px;
-
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .chooseBox{
@@ -39,4 +62,9 @@ body tr:hover {
     border-radius: 4px;
     background-color: #dae3ee;
     text-align: center;
+}
+
+
+.AddNewContact button {
+    margin-left: 5%;
 }

@@ -60,14 +60,11 @@
     gap: 18px;
 }
 
-
-
-
 .landing-card {
     background-color: white;
     padding: 1.5em;
     margin: 1.5em;
-    min-width: 300px;
+    min-width: 400px;
     box-sizing: border-box;
     border-radius: 7px;
     box-shadow: 0px 1px 2px gray;
@@ -78,5 +75,26 @@
 .landing-card p {
     text-align: left;
     font-size: 20px;
-    width: 60%;
+    width: 50%;
+}
+
+.landing-card div{
+    width: 30%;
+    margin-left: 5%;
+}
+
+#company-first-div .landing-card  {
+    min-width: 200px;
+}
+
+#company-second-div .landing-card  {
+    min-width: 500px;
+}
+
+.svg {
+    width: 20px;
+}
+
+#company-deals .landing-card  {
+    min-width: 500px;
 }

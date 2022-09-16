@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import CompanyCard from './Company/CompanyCard'
+import { BsFillFilePersonFill } from 'react-icons/bs';
+
 
 
 const LandingPage = (user) => {
@@ -57,8 +59,6 @@ const LandingPage = (user) => {
          return yourArr
     }
 
-
-console.log()
     const overallSum = (table, columnName) => {
         let sum = 0
         table.forEach((element) => {
@@ -93,7 +93,44 @@ console.log()
     }
 
 
-    console.log(user)
+    const moneyDisplayer = (number) => {
+        if (Math.floor(number) != number) {
+            let x = number.toString()
+            let numArr = x.split('')
+            let len = numArr.length
+            let a = numArr.indexOf('.')
+            for (let pos = a - 1; pos > 0; pos--) {
+                if ((a - pos) % 3 == 0 && len - pos != 0) {
+                    numArr.splice(pos, 0, ',')
+                }
+            }
+            let numWithCommas = ""
+            for (let i = 0; i < numArr.length; i++) {
+                numWithCommas += numArr[i]
+            }
+            return numWithCommas
+        } else if (Math.floor(number) == number) {
+            let x = number.toString()
+            // console.log(x)
+            let numArr = x.split('')
+            let len = numArr.length
+            for (let pos = numArr.length; pos > 0; pos--) {
+                if ((len - pos) % 3 == 0 && len - pos != 0) {
+                    numArr.splice(pos, 0, ',')
+                }
+            }
+            numArr.unshift("$")
+            // console.log(numArr)
+            let numWithCommas = ""
+            for (let i = 0; i < numArr.length; i++) {
+                numWithCommas += numArr[i]
+            }
+            numWithCommas = numWithCommas + '.00'
+            return numWithCommas
+        }
+    }
+    
+
     return (
         <div className="landing-page">
               {/* <h1>CompanyName's Dashboard</h1> */}
@@ -102,24 +139,38 @@ console.log()
                 
                 <div id="company-first-div">
                     <Link to="/contacts_page" id="company-contacts" className='landing-card'>
-                        <p><b>{contacts.length}</b></p>
+                        <div>
+                            <p><b>{contacts.length}</b></p>
+                            <BsFillFilePersonFill className='landing-icon'/>
+                        </div>
+                        
                         <p>Total Contacts</p>
+                    </Link>
+                    <Link to="/deals_page" id="ttl-deals" className='landing-card'>
+                        <div>
+                            <p><b>{deals.length}</b></p>
+                            <BsFillFilePersonFill className='landing-icon'/>
+                        </div>
+                        <p>Total Deals</p>
                     </Link>
                 </div>
 
                 <div id="company-second-div">
-                    <Link to="/deals_page" id="ttl-deals" className='landing-card'>
-                        <p><b>{deals.length}</b></p>
-                        <p>Total Deals</p>
-                    </Link>
+                   
 
                     <Link to="/deals_page" id="total-earnings" className='landing-card'>
-                        <p><b>{overallSum(deals, 'value')}</b></p>
+                        <div>
+                            <p><b>{moneyDisplayer(overallSum(deals, 'value'))}</b></p>
+                            <BsFillFilePersonFill className='landing-icon'/>
+                        </div>
                         <p>Total Overall Earnings</p>
                     </Link>
                     
                     <Link to="/deals_page" id="total-potential-earnings" className='landing-card'>
-                        <p><b>{sumValue(deals, 'value')}</b></p>
+                        <div>
+                            <p><b>{moneyDisplayer(sumValue(deals, 'value'))}</b></p>
+                            <BsFillFilePersonFill className='landing-icon'/>
+                        </div>
                         <p>Total Potential Earnings</p>
                     </Link>
                 </div>
@@ -134,7 +185,7 @@ console.log()
 
 
             {/* <h1>{user.name}'s Dashboard</h1> */}
-            <div className="summary" id="your-summary">
+            {/* <div className="summary" id="your-summary">
                 <Link to="/contacts_page" id="comp-contacts" className='landing-card'>
                     <h2>Contacts</h2>
                     <p>Number of contacts: <b>{yourContacts.length}</b></p>
@@ -151,7 +202,7 @@ console.log()
                     <p>You have clients in <b>{yourCompanies.length}</b> companies across <b>{countUnique(yourCompanies, "country")}</b> countries.</p>
                     <p>Spanning <b>{countUnique(yourCompanies, "industry")}</b> industries.</p>
                 </Link>
-            </div>
+            </div> */}
             
         </div>
     )
