@@ -73,7 +73,7 @@ const ContactCard = () => {
     const fetchContactDeals = async () => {
         const req = await fetch(`http://localhost:3000/contact_to/${id}/deals`)
         const res = await req.json()
-        console.log(res)
+        console.log('fetchdealsres', res)
         setContactDealsArray(res)
     }
 

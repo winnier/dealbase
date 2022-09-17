@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_135441) do
     t.datetime "updated_at", null: false
     t.integer "company_id"
     t.integer "owner_id"
-    t.text "comments"
   end
 
   create_table "owners", force: :cascade do |t|
